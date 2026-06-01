@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python \"C:\\\\Users\\\\Fati\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\7ebe845b-f1fe-4529-a447-52ba7af29380\\\\b44c870b-9421-4607-9ee9-410989d69ebe\\\\skills\\\\docx\\\\scripts\\\\office\\\\unpack.py\" rapport.docx rapport_analysis_unpacked/)",
+      "Bash(pandoc rapport.docx -o rapport_text.md)",
+      "Bash(python -c ' *)",
+      "Bash(Out-File -FilePath rapport_content.txt -Encoding utf8)",
+      "Bash(Get-Content rapport_content.txt)"
+    ]
+  }
+}

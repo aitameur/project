@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w '%{http_code} -> %{redirect_url}\\\\n' -b 'PHPSESSID=qeufvtqf8c07o0nrqqf7i5u9i4; security=low' http://localhost:8080/vulnerabilities/upload)",
+      "Bash(curl -s -L -b 'PHPSESSID=qeufvtqf8c07o0nrqqf7i5u9i4; security=low' -o /tmp/redirect_test.html -w 'final code: %{http_code}\\\\n' http://localhost:8080/vulnerabilities/upload)",
+      "Read(//tmp/**)",
+      "Bash(python main.py --url http://localhost:8080/vulnerabilities/upload/ --cookie 'PHPSESSID=qeufvtqf8c07o0nrqqf7i5u9i4; security=low' --output rapport_dvwa_upload.html --depth 1 --only file_upload,xss,sqli -v)",
+      "Bash(grep -n \"^\\\\\\\\\\\\\\\\chapter\\\\|^\\\\\\\\\\\\\\\\section\\\\|^\\\\\\\\\\\\\\\\subsection\\\\|^\\\\\\\\\\\\\\\\chapter\\\\*\" \"C:\\\\Users\\\\Fati\\\\Desktop\\\\PFa\\\\main.tex\")",
+      "Read(//c/Users/Fati/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/7ebe845b-f1fe-4529-a447-52ba7af29380/b44c870b-9421-4607-9ee9-410989d69ebe/skills/docx/scripts/office/**)",
+      "Read(//c/Users/Fati/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/7ebe845b-f1fe-4529-a447-52ba7af29380/b44c870b-9421-4607-9ee9-410989d69ebe/skills/docx/**)",
+      "Bash(npm list *)",
+      "PowerShell(node --version)",
+      "PowerShell(npm list -g docx 2>$null)",
+      "Bash(python build_docx_v2_part2.py)",
+      "Bash(python main.py --help)",
+      "Bash(python -m pytest tests/ -v --tb=short)",
+      "Bash(file *.docx)",
+      "Bash(python -m pytest --collect-only)",
+      "Bash(xargs wc *)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 -u -c ' *)",
+      "PowerShell(Get-Command docker -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Command php -ErrorAction SilentlyContinue)",
+      "Bash(ls -la /mnt/c/Users/Fati/Desktop/PFa/)",
+      "Bash(cd /home)",
+      "Bash(extract-text \"/mnt/c/Users/Fati/Desktop/PFa/finale/rapport.docx\")",
+      "Bash(extract-text \"/mnt/c/Users/Fati/Desktop/PFa/finale/rapport_backup.docx\")",
+      "Bash(ls /skills/docx/scripts/office/ 2>&1)",
+      "Bash(python C:/Users/Fati/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/7ebe845b-f1fe-4529-a447-52ba7af29380/b44c870b-9421-4607-9ee9-410989d69ebe/skills/docx/scripts/office/unpack.py C:/Users/Fati/Desktop/PFa/finale/rapport_backup.docx /tmp/rapport_unpacked/)"
+    ]
+  }
+}

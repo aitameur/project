@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Rapport de scan - http://localhost:8080/vulnerabilities/upload/</title>
+  <style>
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0; font-family: -apple-system, Segoe UI, sans-serif;
+  background: #f5f5f5; color: #1e293b;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 30px; }
+header {
+  background: linear-gradient(135deg, #003366 0%, #004d99 100%);
+  color: white; padding: 40px 30px; border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+header h1 { margin: 0 0 8px 0; font-size: 28px; }
+header .meta { opacity: 0.9; font-size: 14px; }
+header .meta span { display: inline-block; margin-right: 20px; }
+.dashboard {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px; margin: 25px 0;
+}
+.card {
+  padding: 20px; border-radius: 8px; border-left: 6px solid;
+  background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.card .count { font-size: 36px; font-weight: bold; }
+.card .label { font-size: 14px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
+h2 { color: #003366; border-bottom: 2px solid #b40000; padding-bottom: 8px; }
+.vuln {
+  background: white; border-radius: 8px; margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06); overflow: hidden;
+}
+.vuln summary {
+  cursor: pointer; padding: 16px 20px; font-weight: 600;
+  display: flex; align-items: center; gap: 12px;
+  list-style: none;
+}
+.vuln summary::-webkit-details-marker { display: none; }
+.badge {
+  display: inline-block; padding: 4px 10px; border-radius: 4px;
+  font-size: 12px; font-weight: bold; color: white;
+}
+.owasp-badge {
+  background: #003366; color: white; padding: 4px 8px;
+  border-radius: 4px; font-size: 12px;
+}
+.vuln-body { padding: 0 20px 20px 20px; border-top: 1px solid #e2e8f0; }
+.vuln-body dl { display: grid; grid-template-columns: 140px 1fr; gap: 8px 16px; margin: 16px 0; }
+.vuln-body dt { font-weight: 600; color: #475569; }
+.vuln-body dd { margin: 0; }
+code, pre {
+  background: #f1f5f9; padding: 2px 6px; border-radius: 4px;
+  font-family: Consolas, Monaco, monospace; font-size: 13px;
+  word-break: break-all;
+}
+pre { padding: 12px; overflow-x: auto; }
+.recommendation {
+  background: #ecfdf5; border-left: 4px solid #008c3c;
+  padding: 12px 16px; border-radius: 4px; margin-top: 12px;
+}
+footer {
+  text-align: center; padding: 20px; color: #64748b; font-size: 13px;
+  margin-top: 40px;
+}
+.empty-state {
+  text-align: center; padding: 60px 20px; background: white;
+  border-radius: 8px; color: #64748b;
+}
+.empty-state .icon { font-size: 48px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Rapport de scan de vulnérabilités</h1>
+      <div class="meta">
+        <span><strong>Cible :</strong> http://localhost:8080/vulnerabilities/upload/</span>
+        <span><strong>Date :</strong> 23/04/2026 19:09:47</span>
+        <span><strong>Durée :</strong> 235.26s</span>
+        <span><strong>Pages scannées :</strong> 20</span>
+      </div>
+    </header>
+
+    <h2>Tableau de bord</h2>
+    <div class="dashboard"><div class="card" style="border-left-color:#c80000;background:#fee2e2;"><div class="count" style="color:#c80000;">2</div><div class="label">Critique</div></div><div class="card" style="border-left-color:#dc7800;background:#ffedd5;"><div class="count" style="color:#dc7800;">1</div><div class="label">Élevé</div></div><div class="card" style="border-left-color:#b4a000;background:#fef9c3;"><div class="count" style="color:#b4a000;">6</div><div class="label">Moyen</div></div><div class="card" style="border-left-color:#008c3c;background:#dcfce7;"><div class="count" style="color:#008c3c;">0</div><div class="label">Faible</div></div></div>
+
+    <h2>Vulnérabilités détectées (9)</h2>
+    
+<details class="vuln" open>
+  <summary>
+    <span class="badge" style="background:#c80000;">Critique</span>
+    <span class="owasp-badge">A03</span>
+    <span>SQL Injection</span>
+    <span style="margin-left:auto; color:#64748b; font-size:13px;">
+      CVSS 9.8
+    </span>
+  </summary>
+  <div class="vuln-body">
+    <dl>
+      <dt>URL</dt><dd><code>http://localhost:8080/vulnerabilities/brute/</code></dd>
+      <dt>Méthode</dt><dd><code>GET</code></dd>
+      <dt>Paramètre</dt><dd><code>username</code></dd>
+      <dt>Payload</dt><dd><pre>&#x27;</pre></dd>
+      <dt>Preuve</dt><dd>Erreur SQL détectée : &#x27;You have an error in your SQL syntax&#x27;</dd>
+      <dt>Vecteur CVSS</dt><dd><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</code></dd>
+    </dl>
+    <div class="recommendation">
+      <strong>Recommandation :</strong> Utiliser des requêtes paramétrées (prepared statements) ou un ORM. Valider et échapper toutes les entrées utilisateur. Appliquer le principe du moindre privilège sur le compte de base de données.
+    </div>
+  </div>
+</details>
+
+<details class="vuln" open>
+  <summary>
+    <span class="badge" style="background:#c80000;">Critique</span>
+    <span class="owasp-badge">A03</span>
+    <span>SQL Injection</span>
+    <span style="margin-left:auto; color:#64748b; font-size:13px;">
+      CVSS 9.8
+    </span>
+  </summary>
+  <div class="vuln-body">
+    <dl>
+      <dt>URL</dt><dd><code>http://localhost:8080/vulnerabilities/sqli/</code></dd>
+      <dt>Méthode</dt><dd><code>GET</code></dd>
+      <dt>Paramètre</dt><dd><code>id</code></dd>
+      <dt>Payload</dt><dd><pre>&#x27;</pre></dd>
+      <dt>Preuve</dt><dd>Erreur SQL détectée : &#x27;You have an error in your SQL syntax&#x27;</dd>
+      <dt>Vecteur CVSS</dt><dd><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</code></dd>
+    </dl>
+    <div class="recommendation">
+      <strong>Recommandation :</strong> Utiliser des requêtes paramétrées (prepared statements) ou un ORM. Valider et échapper toutes les entrées utilisateur. Appliquer le principe du moindre privilège sur le compte de base de données.
+    </div>
+  </div>
+</details>
+
+<details class="vuln" open>
+  <summary>
+    <span class="badge" style="background:#dc7800;">Élevé</span>
+    <span class="owasp-badge">A04</span>
+    <span>Unrestricted File Upload</span>
+    <span style="margin-left:auto; color:#64748b; font-size:13px;">
+      CVSS 8.8
+    </span>
+  </summary>
+  <div class="vuln-body">
+    <dl>
+      <dt>URL</dt><dd><code>http://localhost:8080/vulnerabilities/upload/</code></dd>
+      <dt>Méthode</dt><dd><code>POST</code></dd>
+      <dt>Paramètre</dt><dd><code>uploaded</code></dd>
+      <dt>Payload</dt><dd><pre>Upload de 4221b886_shell.php (application/x-php)</pre></dd>
+      <dt>Preuve</dt><dd>Le serveur a accepté un fichier avec une extension dangereuse et l&#x27;a rendu accessible à http://localhost:8080/hackable/uploads/4221b886_shell.php. Marqueur unique retrouvé dans la réponse servie.</dd>
+      <dt>Vecteur CVSS</dt><dd><code>CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H</code></dd>
+    </dl>
+    <div class="recommendation">
+      <strong>Recommandation :</strong> Valider rigoureusement le type de fichier côté serveur (extension ET magic bytes). Utiliser une liste blanche d&#x27;extensions. Stocker les fichiers en dehors du webroot ou sur un domaine différent. Renommer les fichiers uploadés avec des noms aléatoires. Désactiver l&#x27;exécution des scripts dans le répertoire d&#x27;upload.
+    </div>
+  </div>
+</details>
+
+<details class="vuln" open>
+  <summary>
+    <span class="badge" style="background:#b4a000;">Moyen</span>
+    <span class="owasp-badge">A03</span>
+    <span>Cross-Site Scripting</span>
+    <span style="margin-left:auto; color:#64748b; font-size:13px;">
+      CVSS 6.1
+    </span>
+  </summary>
+  <div class="vuln-body">
+    <dl>
+      <dt>URL</dt><dd><code>http://localhost:8080/vulnerabilities/brute/</code></dd>
+      <dt>Méthode</dt><dd><code>GET</code></dd>
+      <dt>Paramètre</dt><dd><code>username</code></dd>
+      <dt>Payload</dt><dd><pre>&#x27;&quot;&gt;&lt;img src=x onerror=alert(1)&gt;</pre></dd>
+      <dt>Preuve</dt><dd>Le payload est réfléchi tel quel dans la réponse (pas d&#x27;échappement HTML).</dd>
+      <dt>Vecteur CVSS</dt><dd><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N</code></dd>
+    </dl>
+    <div class="recommendation">
+      <strong>Recommandation :</strong> Échapper systématiquement les sorties HTML (encodage contextuel). Utiliser une Content-Security-Policy (CSP) stricte. Valider les entrées côté serveur et utiliser des frameworks qui échappent automatiquement le HTML.
+    </div>
+  </div>
+</details>
+
+<details class="vuln" open>
+  <summary>
+    <span class="badge" style="background:#b4a000;">Moyen</span>
+    <span class="owasp-badge">A03</span>
+    <span>Cross-Site Scripting</span>
+    <span style="margin-left:auto; color:#64748b; font-size:13px;">
+      CVSS 6.1
+    </span>
+  </summary>
+  <div class="vuln-body">
+    <dl>
+      <dt>URL</dt><dd><code>http://localhost:8080/vulnerabilities/csp/</code></dd>
+      <dt>Méthode</dt><dd><code>POST</code></dd>
+      <dt>Paramètre</dt><dd><code>include</code></dd>
+      <dt>Payload</dt><dd><pre>&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</pre></dd>
+      <dt>Preuve</dt><dd>Le payload est réfléchi tel quel dans la réponse (pas d&#x27;échappement HTML).</dd>
+      <dt>Vecteur CVSS</dt><dd><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N</code></dd>
+    </dl>
+    <div class="recommendation">
+      <strong>Recommandation :</strong> Échapper systématiquement les sorties HTML (encodage contextuel). Utiliser une Content-Security-Policy (CSP) stricte. Valider les entrées côté serveur et utiliser des frameworks qui échappent automatiquement le HTML.
+    </div>
+  </div>
+</details>
+
+<details class="vuln" open>
+  <summary>
+    <span class="badge" style="background:#b4a000;">Moyen</span>
+    <span class="owasp-badge">A03</span>
+    <span>Cross-Site Scripting</span>
+    <span style="margin-left:auto; color:#64748b; font-size:13px;">
+      CVSS 6.1
+    </span>
+  </summary>
+  <div class="vuln-body">
+    <dl>
+      <dt>URL</dt><dd><code>http://localhost:8080/vulnerabilities/sqli/</code></dd>
+      <dt>Méthode</dt><dd><code>GET</code></dd>
+      <dt>Paramètre</dt><dd><code>id</code></dd>
+      <dt>Payload</dt><dd><pre>&#x27;&quot;&gt;&lt;img src=x onerror=alert(1)&gt;</pre></dd>
+      <dt>Preuve</dt><dd>Le payload est réfléchi tel quel dans la réponse (pas d&#x27;échappement HTML).</dd>
+      <dt>Vecteur CVSS</dt><dd><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N</code></dd>
+    </dl>
+    <div class="recommendation">
+      <strong>Recommandation :</strong> Échapper systématiquement les sorties HTML (encodage contextuel). Utiliser une Content-Security-Policy (CSP) stricte. Valider les entrées côté serveur et utiliser des frameworks qui échappent automatiquement le HTML.
+    </div>
+  </div>
+</details>
+
+<details class="vuln" open>
+  <summary>
+    <span class="badge" style="background:#b4a000;">Moyen</span>
+    <span class="owasp-badge">A03</span>
+    <span>Cross-Site Scripting</span>
+    <span style="margin-left:auto; color:#64748b; font-size:13px;">
+      CVSS 6.1
+    </span>
+  </summary>
+  <div class="vuln-body">
+    <dl>
+      <dt>URL</dt><dd><code>http://localhost:8080/vulnerabilities/xss_r/</code></dd>
+      <dt>Méthode</dt><dd><code>GET</code></dd>
+      <dt>Paramètre</dt><dd><code>name</code></dd>
+      <dt>Payload</dt><dd><pre>&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</pre></dd>
+      <dt>Preuve</dt><dd>Le payload est réfléchi tel quel dans la réponse (pas d&#x27;échappement HTML).</dd>
+      <dt>Vecteur CVSS</dt><dd><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N</code></dd>
+    </dl>
+    <div class="recommendation">
+      <strong>Recommandation :</strong> Échapper systématiquement les sorties HTML (encodage contextuel). Utiliser une Content-Security-Policy (CSP) stricte. Valider les entrées côté serveur et utiliser des frameworks qui échappent automatiquement le HTML.
+    </div>
+  </div>
+</details>
+
+<details class="vuln" open>
+  <summary>
+    <span class="badge" style="background:#b4a000;">Moyen</span>
+    <span class="owasp-badge">A03</span>
+    <span>Cross-Site Scripting</span>
+    <span style="margin-left:auto; color:#64748b; font-size:13px;">
+      CVSS 6.1
+    </span>
+  </summary>
+  <div class="vuln-body">
+    <dl>
+      <dt>URL</dt><dd><code>http://localhost:8080/vulnerabilities/xss_s/</code></dd>
+      <dt>Méthode</dt><dd><code>POST</code></dd>
+      <dt>Paramètre</dt><dd><code>txtName</code></dd>
+      <dt>Payload</dt><dd><pre>&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</pre></dd>
+      <dt>Preuve</dt><dd>Le payload est réfléchi tel quel dans la réponse (pas d&#x27;échappement HTML).</dd>
+      <dt>Vecteur CVSS</dt><dd><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N</code></dd>
+    </dl>
+    <div class="recommendation">
+      <strong>Recommandation :</strong> Échapper systématiquement les sorties HTML (encodage contextuel). Utiliser une Content-Security-Policy (CSP) stricte. Valider les entrées côté serveur et utiliser des frameworks qui échappent automatiquement le HTML.
+    </div>
+  </div>
+</details>
+
+<details class="vuln" open>
+  <summary>
+    <span class="badge" style="background:#b4a000;">Moyen</span>
+    <span class="owasp-badge">A03</span>
+    <span>Cross-Site Scripting</span>
+    <span style="margin-left:auto; color:#64748b; font-size:13px;">
+      CVSS 6.1
+    </span>
+  </summary>
+  <div class="vuln-body">
+    <dl>
+      <dt>URL</dt><dd><code>http://localhost:8080/vulnerabilities/xss_s/</code></dd>
+      <dt>Méthode</dt><dd><code>POST</code></dd>
+      <dt>Paramètre</dt><dd><code>mtxMessage</code></dd>
+      <dt>Payload</dt><dd><pre>&lt;script&gt;alert(&#x27;XSS&#x27;)&lt;/script&gt;</pre></dd>
+      <dt>Preuve</dt><dd>Le payload est réfléchi tel quel dans la réponse (pas d&#x27;échappement HTML).</dd>
+      <dt>Vecteur CVSS</dt><dd><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N</code></dd>
+    </dl>
+    <div class="recommendation">
+      <strong>Recommandation :</strong> Échapper systématiquement les sorties HTML (encodage contextuel). Utiliser une Content-Security-Policy (CSP) stricte. Valider les entrées côté serveur et utiliser des frameworks qui échappent automatiquement le HTML.
+    </div>
+  </div>
+</details>
+
+
+    <footer>
+      Généré par <strong>OWASP Top 10 Scanner</strong> — PFA EMSI 2024-2025
+      <br>Salma El Kamili &amp; Fatima Ezzahrae Nouama
+    </footer>
+  </div>
+</body>
+</html>

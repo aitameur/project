@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rapport de Sécurité — http://localhost:8080/</title>
+  <style>
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0; font-family: 'Segoe UI', -apple-system, Arial, sans-serif;
+  background: #f0f2f5; color: #1e293b;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 30px; }
+
+/* ── COVER PAGE ─────────────────────────────────────────── */
+.cover {
+  background: linear-gradient(160deg, #001f4d 0%, #003580 45%, #0050b3 100%);
+  border-radius: 12px; color: white; margin-bottom: 30px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25); overflow: hidden; position: relative;
+}
+.cover::before {
+  content: ''; position: absolute; top: -80px; right: -80px;
+  width: 320px; height: 320px; border-radius: 50%;
+  background: rgba(255,255,255,0.04); pointer-events: none;
+}
+.cover::after {
+  content: ''; position: absolute; bottom: -60px; left: -60px;
+  width: 240px; height: 240px; border-radius: 50%;
+  background: rgba(255,255,255,0.03); pointer-events: none;
+}
+.cover-top {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 36px; border-bottom: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.15);
+}
+.cover-school { font-size: 13px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; opacity: 0.85; }
+.cover-year { font-size: 12px; opacity: 0.65; }
+.cover-body { padding: 50px 36px 36px; position: relative; z-index: 1; }
+.cover-icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 72px; height: 72px; background: rgba(255,255,255,0.1);
+  border-radius: 16px; margin-bottom: 28px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.cover-type {
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: #7dd3fc; margin-bottom: 12px;
+}
+.cover-title {
+  font-size: 34px; font-weight: 800; line-height: 1.2;
+  margin: 0 0 10px 0; letter-spacing: -0.5px;
+}
+.cover-subtitle {
+  font-size: 16px; opacity: 0.75; margin-bottom: 36px; font-weight: 400;
+}
+.cover-meta-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 0; border-radius: 10px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.15); margin-bottom: 36px;
+}
+.cover-meta-item {
+  padding: 16px 20px; background: rgba(255,255,255,0.07);
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.cover-meta-item:last-child { border-right: none; }
+.cover-meta-label {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px;
+  opacity: 0.55; margin-bottom: 5px; font-weight: 600;
+}
+.cover-meta-value { font-size: 14px; font-weight: 600; }
+.cover-authors {
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+.cover-author {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.08); border-radius: 8px;
+  padding: 10px 16px; border: 1px solid rgba(255,255,255,0.12);
+}
+.cover-author-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: linear-gradient(135deg, #7dd3fc, #3b82f6);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; flex-shrink: 0;
+}
+.cover-author-name { font-size: 13px; font-weight: 600; }
+.cover-author-role { font-size: 11px; opacity: 0.6; }
+.cover-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 36px; border-top: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.1); font-size: 12px; opacity: 0.65;
+}
+.risk-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ── DASHBOARD ───────────────────────────────────────────── */
+.section-title {
+  color: #003366; font-size: 18px; font-weight: 700;
+  border-bottom: 3px solid #b40000; padding-bottom: 10px;
+  margin: 30px 0 16px; display: flex; align-items: center; gap: 8px;
+}
+.dashboard {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px; margin: 0 0 30px;
+}
+.card {
+  padding: 22px; border-radius: 10px; border-left: 5px solid;
+  background: white; box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+  transition: transform .15s;
+}
+.card:hover { transform: translateY(-2px); }
+.card .count { font-size: 40px; font-weight: 800; line-height: 1; }
+.card .label { font-size: 11px; color: #64748b; text-transform: uppercase;
+  letter-spacing: 1.5px; margin-top: 6px; }
+
+/* ── VULNS ───────────────────────────────────────────────── */
+.vuln {
+  background: white; border-radius: 10px; margin-bottom: 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07); overflow: hidden;
+}
+.vuln summary {
+  cursor: pointer; padding: 16px 20px; font-weight: 600;
+  display: flex; align-items: center; gap: 12px; list-style: none;
+}
+.vuln summary::-webkit-details-marker { display: none; }
+.badge {
+  display: inline-block; padding: 4px 10px; border-radius: 4px;
+  font-size: 11px; font-weight: 700; color: white; letter-spacing: 0.5px;
+}
+.owasp-badge {
+  background: #003366; color: white; padding: 4px 8px;
+  border-radius: 4px; font-size: 11px; font-weight: 700;
+}
+.vuln-body { padding: 0 20px 20px 20px; border-top: 1px solid #e2e8f0; }
+.vuln-body dl { display: grid; grid-template-columns: 140px 1fr;
+  gap: 8px 16px; margin: 16px 0; }
+.vuln-body dt { font-weight: 600; color: #475569; }
+.vuln-body dd { margin: 0; }
+code, pre {
+  background: #f1f5f9; padding: 2px 6px; border-radius: 4px;
+  font-family: Consolas, Monaco, monospace; font-size: 13px; word-break: break-all;
+}
+pre { padding: 12px; overflow-x: auto; }
+.recommendation {
+  background: #ecfdf5; border-left: 4px solid #008c3c;
+  padding: 12px 16px; border-radius: 4px; margin-top: 12px;
+}
+footer {
+  text-align: center; padding: 24px; color: #64748b; font-size: 12px;
+  margin-top: 40px; border-top: 1px solid #e2e8f0;
+}
+.empty-state {
+  text-align: center; padding: 60px 20px; background: white;
+  border-radius: 10px; color: #64748b;
+}
+.empty-state .icon { font-size: 48px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ══ PAGE DE GARDE ══════════════════════════════════════ -->
+    <div class="cover">
+      <div class="cover-top">
+        <div>
+          <div class="cover-school">EMSI — École Marocaine des Sciences de l'Ingénieur</div>
+          <div class="cover-year">Filière Ingénierie Informatique &amp; Réseaux</div>
+        </div>
+        <div style="font-size:12px; opacity:0.6; text-align:right;">
+          Projet de Fin d'Année 2024–2025<br>
+          <span style="opacity:.7;">Confidentiel</span>
+        </div>
+      </div>
+
+      <div class="cover-body">
+        <div class="cover-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"
+          stroke="rgba(255,255,255,0.9)" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <polyline points="9 12 11 14 15 10"/>
+        </svg></div>
+
+        <div class="cover-type">Rapport d'Audit de Sécurité Web</div>
+        <h1 class="cover-title">Scanner de Vulnérabilités<br>OWASP Top 10</h1>
+        <p class="cover-subtitle">
+          Analyse automatisée des failles de sécurité basée sur le référentiel OWASP Top 10 2021
+        </p>
+
+        <div class="cover-meta-grid">
+          <div class="cover-meta-item">
+            <div class="cover-meta-label">Cible analysée</div>
+            <div class="cover-meta-value" style="font-size:12px; word-break:break-all;">
+              http://localhost:8080/
+            </div>
+          </div>
+          <div class="cover-meta-item">
+            <div class="cover-meta-label">Date du rapport</div>
+            <div class="cover-meta-value">21 May 2026</div>
+          </div>
+          <div class="cover-meta-item">
+            <div class="cover-meta-label">Niveau de risque global</div>
+            <div class="cover-meta-value">
+              <span class="risk-pill" style="background:#ffedd5; color:#dc7800;">
+                &#9679; ÉLEVÉ
+              </span>
+            </div>
+          </div>
+          <div class="cover-meta-item">
+            <div class="cover-meta-label">Pages analysées</div>
+            <div class="cover-meta-value">1 page(s)</div>
+          </div>
+          <div class="cover-meta-item">
+            <div class="cover-meta-label">Durée du scan</div>
+            <div class="cover-meta-value">10.62 secondes</div>
+          </div>
+          <div class="cover-meta-item">
+            <div class="cover-meta-label">Vulnérabilités trouvées</div>
+            <div class="cover-meta-value">4 faille(s)</div>
+          </div>
+        </div>
+
+        <div class="cover-authors">
+          <div class="cover-author">
+            <div class="cover-author-avatar">SE</div>
+            <div>
+              <div class="cover-author-name">Salma El Kamili</div>
+              <div class="cover-author-role">Étudiante ingénieure</div>
+            </div>
+          </div>
+          <div class="cover-author">
+            <div class="cover-author-avatar">FN</div>
+            <div>
+              <div class="cover-author-name">Fatima Ezzahrae Nouama</div>
+              <div class="cover-author-role">Étudiante ingénieure</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-bottom">
+        <span>OWASP Top 10 Scanner v1.0 — PFA EMSI 2024-2025</span>
+        <span>Généré le 21/05/2026 00:53:14</span>
+      </div>
+    </div>
+    <!-- ══ FIN PAGE DE GARDE ══════════════════════════════════ -->
+
+    <div class="section-title">&#9776; Tableau de bord</div>
+    <div class="dashboard"><div class="card" style="border-left-color:#c80000;background:#fee2e2;"><div class="count" style="color:#c80000;">0</div><div class="label">Critique</div></div><div class="card" style="border-left-color:#dc7800;background:#ffedd5;"><div class="count" style="color:#dc7800;">1</div><div class="label">Élevé</div></div><div class="card" style="border-left-color:#b4a000;background:#fef9c3;"><div class="count" style="color:#b4a000;">3</div><div class="label">Moyen</div></div><div class="card" style="border-left-color:#008c3c;background:#dcfce7;"><div class="count" style="color:#008c3c;">0</div><div class="label">Faible</div></div></div>
+
+    <div class="section-title">&#9888; Vulnérabilités détectées (4)</div>
+    
+<details class="vuln" open>
+  <summary>
+    <span class="badge" style="background:#dc7800;">Élevé</span>
+    <span class="owasp-badge">A02</span>
+    <span>Cryptographic Failures</span>
+    <span style="margin-left:auto; color:#64748b; font-size:13px;">
+      CVSS 7.5
+    </span>
+  </summary>
+  <div class="vuln-body">
+    <dl>
+      <dt>URL</dt><dd><code>http://localhost:8080/</code></dd>
+      <dt>Méthode</dt><dd><code>GET</code></dd>
+      <dt>Paramètre</dt><dd><code>(page)</code></dd>
+      <dt>Payload</dt><dd><pre>HTTP en clair</pre></dd>
+      <dt>Preuve</dt><dd>Formulaire avec champ password servi en HTTP non chiffré.</dd>
+      <dt>Vecteur CVSS</dt><dd><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N</code></dd>
+    </dl>
+    <div class="recommendation">
+      <strong>Recommandation :</strong> Servir toutes les pages sensibles en HTTPS. Activer HSTS.
+    </div>
+  </div>
+</details>
+
+<details class="vuln" open>
+  <summary>
+    <span class="badge" style="background:#b4a000;">Moyen</span>
+    <span class="owasp-badge">A05</span>
+    <span>Security Misconfiguration</span>
+    <span style="margin-left:auto; color:#64748b; font-size:13px;">
+      CVSS 5.3
+    </span>
+  </summary>
+  <div class="vuln-body">
+    <dl>
+      <dt>URL</dt><dd><code>http://localhost:8080/</code></dd>
+      <dt>Méthode</dt><dd><code>GET</code></dd>
+      <dt>Paramètre</dt><dd><code>Header: x-content-type-options</code></dd>
+      <dt>Payload</dt><dd><pre>(manquant)</pre></dd>
+      <dt>Preuve</dt><dd>Header x-content-type-options absent.</dd>
+      <dt>Vecteur CVSS</dt><dd><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N</code></dd>
+    </dl>
+    <div class="recommendation">
+      <strong>Recommandation :</strong> Ajouter X-Content-Type-Options: nosniff.
+    </div>
+  </div>
+</details>
+
+<details class="vuln" open>
+  <summary>
+    <span class="badge" style="background:#b4a000;">Moyen</span>
+    <span class="owasp-badge">A05</span>
+    <span>Security Misconfiguration</span>
+    <span style="margin-left:auto; color:#64748b; font-size:13px;">
+      CVSS 5.3
+    </span>
+  </summary>
+  <div class="vuln-body">
+    <dl>
+      <dt>URL</dt><dd><code>http://localhost:8080/</code></dd>
+      <dt>Méthode</dt><dd><code>GET</code></dd>
+      <dt>Paramètre</dt><dd><code>Header: x-frame-options</code></dd>
+      <dt>Payload</dt><dd><pre>(manquant)</pre></dd>
+      <dt>Preuve</dt><dd>Header x-frame-options absent.</dd>
+      <dt>Vecteur CVSS</dt><dd><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N</code></dd>
+    </dl>
+    <div class="recommendation">
+      <strong>Recommandation :</strong> Ajouter X-Frame-Options: DENY.
+    </div>
+  </div>
+</details>
+
+<details class="vuln" open>
+  <summary>
+    <span class="badge" style="background:#b4a000;">Moyen</span>
+    <span class="owasp-badge">A06</span>
+    <span>Vulnerable Components</span>
+    <span style="margin-left:auto; color:#64748b; font-size:13px;">
+      CVSS 5.3
+    </span>
+  </summary>
+  <div class="vuln-body">
+    <dl>
+      <dt>URL</dt><dd><code>http://localhost:8080/login.php</code></dd>
+      <dt>Méthode</dt><dd><code>GET</code></dd>
+      <dt>Paramètre</dt><dd><code>Server</code></dd>
+      <dt>Payload</dt><dd><pre>Apache/2.4.25</pre></dd>
+      <dt>Preuve</dt><dd>Header Server divulgue Apache 2.4.25.</dd>
+      <dt>Vecteur CVSS</dt><dd><code>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N</code></dd>
+    </dl>
+    <div class="recommendation">
+      <strong>Recommandation :</strong> Masquer la version avec ServerTokens Prod.
+    </div>
+  </div>
+</details>
+
+
+    <footer>
+      <strong>OWASP Top 10 Scanner</strong> — Projet de Fin d'Année EMSI 2024-2025<br>
+      Salma El Kamili &amp; Fatima Ezzahrae Nouama &nbsp;|&nbsp; 21/05/2026 00:53:14
+    </footer>
+  </div>
+</body>
+</html>
