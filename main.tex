@@ -1,0 +1,894 @@
+\documentclass[12pt, a4paper]{report}
+
+% ─── Packages ───────────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shadows, shapes.geometric}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{lmodern}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{tcolorbox}
+\usepackage{mdframed}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{setspace}
+\usepackage{amssymb}
+\usepackage{pifont}
+
+\tcbuselibrary{skins, breakable}
+
+\geometry{
+  top=2.5cm, bottom=2.5cm,
+  left=3cm, right=2.5cm
+}
+
+% ─── Colors ─────────────────────────────────────────────────────────────────
+\definecolor{primaryblue}{RGB}{0, 51, 102}
+\definecolor{accentred}{RGB}{180, 0, 0}
+\definecolor{lightgray}{RGB}{245, 245, 245}
+\definecolor{darkgray}{RGB}{80, 80, 80}
+\definecolor{codebg}{RGB}{248, 248, 248}
+\definecolor{owaspgreen}{RGB}{0, 120, 80}
+\definecolor{critred}{RGB}{200, 0, 0}
+\definecolor{highorange}{RGB}{220, 120, 0}
+\definecolor{medyellow}{RGB}{180, 160, 0}
+\definecolor{lowgreen}{RGB}{0, 140, 60}
+
+% ─── Hyperref Setup ─────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=primaryblue,
+  urlcolor=accentred,
+  citecolor=primaryblue,
+  pdfauthor={Salma El Kamili, Fatima Ezzahrae Nouama},
+  pdftitle={Scanner de Vulnérabilités Web -- OWASP Top 10},
+}
+
+% ─── Section formatting ──────────────────────────────────────────────────────
+\titleformat{\chapter}[block]
+  {\normalfont\LARGE\bfseries\color{primaryblue}}
+  {\thechapter.}{1em}{}[{\color{accentred}\titlerule[1.5pt]}]
+\titlespacing*{\chapter}{0pt}{20pt}{15pt}
+
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{primaryblue}}
+  {\thesection}{0.8em}{}
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{darkgray}}
+  {\thesubsection}{0.8em}{}
+
+% ─── Code listing style ──────────────────────────────────────────────────────
+\lstdefinestyle{shellstyle}{
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\small,
+  frame=single,
+  rulecolor=\color{primaryblue},
+  breaklines=true,
+  captionpos=b,
+}
+\lstset{style=shellstyle}
+
+% ─── Custom boxes ────────────────────────────────────────────────────────────
+\newtcolorbox{problembox}{
+  colback=accentred!5, colframe=accentred,
+  fonttitle=\bfseries, title=Problématique,
+  arc=4pt, boxrule=1.5pt
+}
+\newtcolorbox{infobox}[1]{
+  colback=primaryblue!5, colframe=primaryblue,
+  fonttitle=\bfseries, title=#1,
+  arc=4pt, boxrule=1pt
+}
+
+% ════════════════════════════════════════════════════════════════════════════
+\begin{document}
+\pagestyle{empty}
+
+% ════════════════════════════════════════════════════════════════════════════
+%  PAGE DE GARDE
+% ════════════════════════════════════════════════════════════════════════════
+\begin{titlepage}
+
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[primaryblue]
+      (current page.north west) rectangle
+      ([yshift=-4cm] current page.north east);
+    \fill[primaryblue]
+      (current page.south west) rectangle
+      ([yshift=2cm] current page.south east);
+    \fill[accentred]
+      ([yshift=-4cm] current page.north west) rectangle
+      ([yshift=-4.35cm] current page.north east);
+    \fill[accentred]
+      ([yshift=2cm] current page.south west) rectangle
+      ([yshift=2.35cm] current page.south east);
+  \end{tikzpicture}
+
+  \vspace*{-1cm}
+  \begin{center}
+    \textcolor{white}{\large\bfseries NOM DE L'ÉTABLISSEMENT}\\[0.2cm]
+    \textcolor{white}{\normalsize Filière : [Votre Filière] \quad|\quad Année académique : 2024--2025}
+  \end{center}
+
+  \vspace{0.8cm}
+
+  \begin{center}
+    \begin{tikzpicture}
+      \draw[primaryblue, line width=2pt, dashed, rounded corners=5pt]
+        (0,0) rectangle (4,2.5);
+      \node[primaryblue] at (2,1.25) {\small Logo École};
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.5cm}
+
+  \begin{center}
+    \begin{tikzpicture}
+      \node[draw=accentred, line width=1.5pt, rounded corners=4pt,
+            inner xsep=20pt, inner ysep=8pt,
+            text=accentred, font=\large\bfseries] {
+        Rapport de Projet de Fin d'Année (PFA)
+      };
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.6cm}
+
+  \begin{center}
+    {\color{primaryblue}\rule{0.85\linewidth}{1.5pt}}\\[0.5cm]
+    {\LARGE\bfseries\color{primaryblue}
+      Scanner de Vulnérabilités Web\\[0.3cm]
+      \color{accentred} OWASP Top 10
+    }\\[0.5cm]
+    {\color{primaryblue}\rule{0.85\linewidth}{1.5pt}}
+  \end{center}
+
+  \vspace{0.5cm}
+
+  \begin{center}
+    \textcolor{darkgray}{\normalsize
+      Détection automatique des vulnérabilités critiques des applications web\\
+      basée sur le référentiel OWASP Top 10
+    }
+  \end{center}
+
+  \vspace{0.8cm}
+
+  \begin{center}
+    \begin{tabular}{p{0.42\linewidth} p{0.42\linewidth}}
+      \toprule
+      \multicolumn{1}{c}{\color{primaryblue}\bfseries Réalisé par} &
+      \multicolumn{1}{c}{\color{primaryblue}\bfseries Encadré par} \\
+      \midrule
+      \vspace{2pt}
+      \textbullet\ Salma \textsc{El Kamili} \newline
+      \textbullet\ Fatima Ezzahrae \textsc{Nouama} &
+      \vspace{2pt}
+      Pr.\ [Nom Encadrant] \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+
+  \vspace{0.6cm}
+
+  \begin{center}
+    \textcolor{darkgray}{\footnotesize Vulnérabilités couvertes :}\\[0.3cm]
+    \footnotesize
+    \begin{tabular}{@{}*{5}{>{\centering\arraybackslash}p{0.17\linewidth}}@{}}
+      \colorbox{accentred!15}{\color{accentred}\bfseries A01 -- Broken Access} &
+      \colorbox{accentred!15}{\color{accentred}\bfseries A02 -- Cryptographic} &
+      \colorbox{accentred!15}{\color{accentred}\bfseries A03 -- Injection} &
+      \colorbox{accentred!15}{\color{accentred}\bfseries A04 -- Insecure Design} &
+      \colorbox{accentred!15}{\color{accentred}\bfseries A05 -- Misconfig} \\[4pt]
+      \colorbox{primaryblue!12}{\color{primaryblue}\bfseries A06 -- Components} &
+      \colorbox{primaryblue!12}{\color{primaryblue}\bfseries A07 -- Auth Failures} &
+      \colorbox{primaryblue!12}{\color{primaryblue}\bfseries A08 -- Data Integrity} &
+      \colorbox{primaryblue!12}{\color{primaryblue}\bfseries A09 -- Logging} &
+      \colorbox{primaryblue!12}{\color{primaryblue}\bfseries A10 -- SSRF} \\
+    \end{tabular}
+  \end{center}
+
+  \vfill
+  \begin{center}
+    \textcolor{white}{\normalsize Année Universitaire 2024 -- 2025}
+  \end{center}
+  \vspace{0.3cm}
+
+\end{titlepage}
+
+% ─── Header / Footer ─────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{primaryblue}\textit{Scanner de Vulnérabilités Web -- OWASP Top 10}}
+\fancyhead[R]{\small\color{darkgray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{14pt}
+
+% ─── Table des matières ──────────────────────────────────────────────────────
+\tableofcontents
+\listoffigures
+\listoftables
+\newpage
+
+% ─── Introduction générale ───────────────────────────────────────────────────
+\chapter*{Introduction Générale}
+\addcontentsline{toc}{chapter}{Introduction Générale}
+\onehalfspacing
+
+La sécurité des applications web représente aujourd'hui l'un des défis majeurs du
+domaine informatique. Avec l'essor du numérique et la multiplication des services
+en ligne, les cyberattaques ciblant les applications web se sont intensifiées,
+causant des pertes financières et des atteintes à la confidentialité des données.
+
+Dans ce contexte, ce projet de fin d'année vise à concevoir et développer un
+\textbf{scanner de vulnérabilités web} automatisé, capable de détecter les failles
+de sécurité les plus répandues telles que définies par le référentiel
+\textbf{OWASP Top 10 2021}.
+
+Ce rapport est structuré comme suit :
+\begin{itemize}[leftmargin=2em, itemsep=3pt]
+  \item Le \textbf{Chapitre 1} présente l'état de l'art : analyse des outils
+        existants, des vulnérabilités et des techniques de détection.
+  \item Le \textbf{Chapitre 2} expose la conception de notre solution : architecture,
+        diagrammes UML et choix technologiques.
+  \item Le \textbf{Chapitre 3} détaillera la réalisation et l'implémentation
+        de l'outil.
+\end{itemize}
+
+\newpage
+
+% ════════════════════════════════════════════════════════════════════════════
+%  CHAPITRE 1 — ÉTAT DE L'ART
+% ════════════════════════════════════════════════════════════════════════════
+\chapter{État de l'Art}
+
+\onehalfspacing
+
+\section{Sécurité des Applications Web : Contexte Général}
+
+La sécurité applicative est devenue un enjeu stratégique à l'ère du numérique.
+Selon le rapport \textit{Verizon Data Breach Investigations Report 2023}, plus de
+\textbf{74\%} des violations de données impliquent une interaction humaine ou une
+exploitation de failles applicatives. Les applications web, exposées publiquement
+sur Internet, constituent une surface d'attaque particulièrement vaste.
+
+Les attaquants exploitent ces failles pour :
+\begin{itemize}[leftmargin=2em, itemsep=3pt]
+  \item Voler des données personnelles et financières
+  \item Prendre le contrôle de comptes utilisateurs
+  \item Exécuter du code arbitraire sur le serveur
+  \item Accéder à des ressources internes non autorisées
+\end{itemize}
+
+\section{Le Référentiel OWASP Top 10}
+
+\subsection{Présentation de l'OWASP}
+
+L'\textbf{OWASP} (\textit{Open Web Application Security Project}) est une fondation
+à but non lucratif qui œuvre pour améliorer la sécurité des logiciels. Elle publie
+depuis 2003 la liste \textbf{OWASP Top 10}, mise à jour régulièrement pour refléter
+les risques les plus critiques pour les applications web.
+
+\subsection{OWASP Top 10 -- Édition 2021}
+
+L'édition 2021 classe les dix catégories de risques suivantes :
+
+\begin{center}
+\begin{tabular}{>{\bfseries\centering\arraybackslash}p{1.2cm}
+                >{\raggedright\arraybackslash}p{4.5cm}
+                >{\raggedright\arraybackslash}p{7cm}}
+  \toprule
+  \textcolor{primaryblue}{Code} &
+  \textcolor{primaryblue}{Catégorie} &
+  \textcolor{primaryblue}{Description} \\
+  \midrule
+  A01 & Broken Access Control
+      & Contrôle d'accès insuffisant permettant des accès non autorisés aux ressources \\[3pt]
+  A02 & Cryptographic Failures
+      & Mauvaise utilisation ou absence de chiffrement exposant des données sensibles \\[3pt]
+  A03 & Injection
+      & Injection de code malveillant (SQL, NoSQL, OS, LDAP) via des entrées non validées \\[3pt]
+  A04 & Insecure Design
+      & Failles architecturales dues à l'absence de modélisation des menaces \\[3pt]
+  A05 & Security Misconfiguration
+      & Configurations par défaut non sécurisées, services inutiles activés \\[3pt]
+  A06 & Vulnerable Components
+      & Utilisation de bibliothèques et frameworks avec des failles connues \\[3pt]
+  A07 & Auth \& Session Failures
+      & Authentification faible, gestion de session déficiente \\[3pt]
+  A08 & Software \& Data Integrity
+      & Absence de vérification d'intégrité sur les mises à jour et pipelines CI/CD \\[3pt]
+  A09 & Logging \& Monitoring Failures
+      & Journalisation insuffisante retardant la détection des attaques \\[3pt]
+  A10 & SSRF
+      & Falsification de requêtes côté serveur vers des ressources internes \\
+  \bottomrule
+\end{tabular}
+\captionof{table}{OWASP Top 10 -- Édition 2021}
+\end{center}
+
+\section{Vulnérabilités Ciblées : Définitions et Mécanismes}
+
+\subsection{SQL Injection (SQLi)}
+
+L'injection SQL est l'une des vulnérabilités les plus anciennes et les plus
+dangereuses. Elle survient lorsque des entrées utilisateur non filtrées sont
+incorporées directement dans des requêtes SQL. L'attaquant peut alors manipuler
+la requête pour extraire, modifier ou supprimer des données.
+
+\begin{lstlisting}[language=SQL, caption={Exemple de payload SQLi classique}]
+' OR '1'='1
+' UNION SELECT username, password FROM users --
+\end{lstlisting}
+
+\subsection{Cross-Site Scripting (XSS)}
+
+Le XSS permet à un attaquant d'injecter du code JavaScript malveillant dans
+les pages vues par d'autres utilisateurs. On distingue :
+\begin{itemize}[leftmargin=2em, itemsep=2pt]
+  \item \textbf{XSS Réfléchi :} le payload est inclus dans la réponse HTTP
+        immédiate (via un paramètre d'URL).
+  \item \textbf{XSS Persistant :} le payload est stocké en base de données
+        et servi à tous les visiteurs.
+  \item \textbf{XSS basé sur le DOM :} manipulation directe du DOM côté client.
+\end{itemize}
+
+\subsection{IDOR (Insecure Direct Object Reference)}
+
+L'IDOR se produit lorsqu'une application expose des références directes à des
+objets internes (identifiants, noms de fichiers) sans vérifier les autorisations
+de l'utilisateur. Un attaquant peut modifier ces références pour accéder à des
+ressources appartenant à d'autres utilisateurs.
+
+\subsection{SSRF (Server-Side Request Forgery)}
+
+Le SSRF force le serveur à effectuer des requêtes HTTP vers des ressources
+internes ou externes choisies par l'attaquant. Cela peut permettre d'atteindre
+des services internes normalement inaccessibles depuis l'extérieur (métadonnées
+cloud, bases de données internes, etc.).
+
+\subsection{Path Traversal}
+
+Cette attaque exploite une validation insuffisante des chemins de fichiers pour
+accéder à des fichiers arbitraires sur le serveur (ex : \texttt{../../etc/passwd}).
+
+\subsection{XXE (XML External Entity)}
+
+Lorsqu'un parseur XML traite des entités externes définies par l'attaquant,
+il peut divulguer des fichiers locaux, effectuer des SSRF, ou provoquer un déni
+de service.
+
+\section{Outils de Scan de Vulnérabilités Existants}
+
+\subsection{OWASP ZAP (Zed Attack Proxy)}
+
+OWASP ZAP est un outil open source développé par l'OWASP, disponible en mode
+proxy intercepteur ou en ligne de commande. Il propose un scan actif et passif,
+et dispose d'une API REST permettant l'intégration dans des pipelines CI/CD.
+
+\textbf{Points forts :} open source, communauté active, extensible via plugins.\\
+\textbf{Limites :} interface complexe, lent sur les grandes applications.
+
+\subsection{Burp Suite}
+
+Burp Suite (PortSwigger) est la référence professionnelle pour les tests
+d'intrusion web. La version Community est gratuite mais limitée ; la version
+Professional offre un scanner automatisé puissant.
+
+\textbf{Points forts :} très complet, fiable, outils manuels avancés.\\
+\textbf{Limites :} version complète payante (coût élevé), fermé.
+
+\subsection{Nikto}
+
+Nikto est un scanner web léger en ligne de commande, orienté détection de
+configurations dangereuses, versions obsolètes et fichiers sensibles exposés.
+
+\textbf{Points forts :} rapide, simple, open source.\\
+\textbf{Limites :} peu de couverture des vulnérabilités applicatives (SQLi, XSS...).
+
+\subsection{Acunetix / Invicti}
+
+Acunetix est un scanner commercial performant avec une couverture étendue de
+l'OWASP Top 10, une interface web et des rapports détaillés.
+
+\textbf{Points forts :} couverture étendue, rapports professionnels.\\
+\textbf{Limites :} prix très élevé, non accessible pour les projets académiques.
+
+\subsection{Tableau Comparatif des Outils}
+
+\begin{center}
+\begin{tabular}{l c c c c c}
+  \toprule
+  \textbf{Outil} & \textbf{Open Source} & \textbf{SQLi} & \textbf{XSS}
+                 & \textbf{SSRF} & \textbf{CLI} \\
+  \midrule
+  OWASP ZAP    & \textcolor{lowgreen}{$\checkmark$} & \textcolor{lowgreen}{$\checkmark$}
+               & \textcolor{lowgreen}{$\checkmark$} & Partiel
+               & \textcolor{lowgreen}{$\checkmark$} \\
+  Burp Suite   & \textcolor{accentred}{$\times$}  & \textcolor{lowgreen}{$\checkmark$}
+               & \textcolor{lowgreen}{$\checkmark$} & \textcolor{lowgreen}{$\checkmark$}
+               & Partiel \\
+  Nikto        & \textcolor{lowgreen}{$\checkmark$} & \textcolor{accentred}{$\times$}
+               & \textcolor{accentred}{$\times$}  & \textcolor{accentred}{$\times$}
+               & \textcolor{lowgreen}{$\checkmark$} \\
+  Acunetix     & \textcolor{accentred}{$\times$}  & \textcolor{lowgreen}{$\checkmark$}
+               & \textcolor{lowgreen}{$\checkmark$} & \textcolor{lowgreen}{$\checkmark$}
+               & \textcolor{accentred}{$\times$}  \\
+  \textbf{Notre outil} & \textcolor{lowgreen}{$\checkmark$} & \textcolor{lowgreen}{$\checkmark$}
+               & \textcolor{lowgreen}{$\checkmark$} & \textcolor{lowgreen}{$\checkmark$}
+               & \textcolor{lowgreen}{$\checkmark$} \\
+  \bottomrule
+\end{tabular}
+\captionof{table}{Comparaison des outils de scan de vulnérabilités web}
+\end{center}
+
+\section{Techniques de Détection Automatique}
+
+\subsection{Scan Actif vs Scan Passif}
+
+\begin{itemize}[leftmargin=2em, itemsep=4pt]
+  \item \textbf{Scan passif :} analyse le trafic HTTP sans envoyer de requêtes
+        supplémentaires. Non intrusif mais limité en couverture.
+  \item \textbf{Scan actif :} envoie des requêtes spécialement forgées pour
+        provoquer des comportements révélateurs. Plus efficace mais plus intrusif.
+\end{itemize}
+
+Notre outil adopte une approche de \textbf{scan actif ciblé}.
+
+\subsection{Fuzzing}
+
+Le fuzzing consiste à envoyer des données semi-aléatoires ou basées sur des
+dictionnaires (\textit{wordlists}) dans les paramètres d'entrée afin de provoquer
+des erreurs ou des comportements anormaux révélant des vulnérabilités.
+
+\subsection{Analyse par Signatures}
+
+Chaque type de vulnérabilité possède des signatures caractéristiques dans les
+réponses HTTP. Par exemple, une erreur SQL de type \texttt{syntax error near...}
+indique une potentielle injection SQL. Notre moteur analyse ces signatures pour
+confirmer la présence d'une faille.
+
+\section{Synthèse et Positionnement}
+
+Les outils existants sont soit trop génériques (Nikto), soit trop coûteux
+(Burp Suite Pro, Acunetix), soit complexes à intégrer dans un workflow étudiant.
+Notre projet se positionne comme un outil \textbf{open source, léger, modulaire
+et pédagogique}, focalisé sur les vulnérabilités de l'OWASP Top 10 et utilisable
+directement en ligne de commande avec Python.
+
+\begin{infobox}{Positionnement de notre outil}
+\begin{itemize}[leftmargin=1.5em, itemsep=2pt]
+  \item Gratuit et open source
+  \item Orienté OWASP Top 10 (détection ciblée et précise)
+  \item Interface CLI simple : \texttt{python scanner.py --url <cible>}
+  \item Rapport HTML exploitable immédiatement
+  \item Architecture modulaire facilitant les extensions futures
+\end{itemize}
+\end{infobox}
+
+\newpage
+
+% ════════════════════════════════════════════════════════════════════════════
+%  CHAPITRE 2 — CONCEPTION
+% ════════════════════════════════════════════════════════════════════════════
+\chapter{Conception}
+
+\onehalfspacing
+
+\section{Architecture Générale du Système}
+
+Notre scanner est organisé selon une \textbf{architecture en pipeline à quatre modules}
+indépendants et communicants. Cette approche modulaire facilite la maintenance,
+les tests unitaires et l'ajout de nouveaux modules de détection.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  box/.style={draw=primaryblue, fill=primaryblue!8, rounded corners=6pt,
+              minimum width=2.8cm, minimum height=1.4cm,
+              font=\small\bfseries\color{primaryblue}, align=center,
+              drop shadow},
+  arr/.style={->, very thick, color=accentred},
+  lbl/.style={font=\tiny\color{darkgray}, above=2pt}
+]
+  \node[box] (input)  at (0,0)    {Entrée\\{\tiny URL cible}};
+  \node[box] (crawl)  at (3.5,0)  {Crawling\\{\tiny \& Discovery}};
+  \node[box] (scan)   at (7,0)    {Scan\\{\tiny \& Détection}};
+  \node[box] (eval)   at (10.5,0) {Évaluation\\{\tiny CVSS v3.1}};
+  \node[box] (report) at (7,-2.5) {Reporting\\{\tiny HTML}};
+
+  \draw[arr] (input)  -- node[lbl]{URL} (crawl);
+  \draw[arr] (crawl)  -- node[lbl]{Endpoints} (scan);
+  \draw[arr] (scan)   -- node[lbl]{Vulnérabilités} (eval);
+  \draw[arr] (eval)   -- node[lbl]{Scores} ++(0,-1.2) -| (report);
+\end{tikzpicture}
+\caption{Architecture en pipeline du scanner de vulnérabilités}
+\end{figure}
+
+\section{Diagramme de Cas d'Utilisation}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  uc/.style={draw=primaryblue, fill=primaryblue!6, rounded corners=4pt,
+             minimum width=4.5cm, minimum height=0.7cm,
+             font=\small, align=center},
+  actor/.style={font=\small\bfseries\color{primaryblue}},
+  arr/.style={->, thick, color=darkgray}
+]
+  % Actor
+  \draw[primaryblue, line width=1.5pt] (0,0) circle (0.3cm);
+  \draw[primaryblue, line width=1.5pt] (0,-0.3) -- (0,-1);
+  \draw[primaryblue, line width=1.5pt] (-0.4,-0.6) -- (0.4,-0.6);
+  \draw[primaryblue, line width=1.5pt] (0,-1) -- (-0.3,-1.5);
+  \draw[primaryblue, line width=1.5pt] (0,-1) -- (0.3,-1.5);
+  \node[actor] at (0,-2) {Utilisateur};
+
+  % Use cases
+  \node[uc] (uc1) at (5, 1.8)  {Lancer un scan};
+  \node[uc] (uc2) at (5, 0.6)  {Configurer les options};
+  \node[uc] (uc3) at (5,-0.6)  {Consulter les résultats};
+  \node[uc] (uc4) at (5,-1.8)  {Exporter le rapport HTML};
+
+  % Arrows
+  \draw[arr] (0.4,-0.75) -- (uc1.west);
+  \draw[arr] (0.4,-0.75) -- (uc2.west);
+  \draw[arr] (0.4,-0.75) -- (uc3.west);
+  \draw[arr] (0.4,-0.75) -- (uc4.west);
+
+  % System boundary
+  \draw[primaryblue, dashed, rounded corners=6pt, line width=1pt]
+    (3.2, 2.4) rectangle (9.3,-2.4);
+  \node[primaryblue, font=\small\bfseries] at (6.25, 2.1) {Système Scanner};
+\end{tikzpicture}
+\caption{Diagramme de cas d'utilisation}
+\end{figure}
+
+\section{Diagramme de Classes}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  cls/.style={draw=primaryblue, fill=white, rounded corners=3pt,
+              minimum width=3.8cm, font=\small},
+  arr/.style={->, thick, color=darkgray},
+  comp/.style={->, thick, color=accentred, dashed}
+]
+  % Scanner (main)
+  \node[cls] (scanner) at (5.5,6) {
+    \begin{tabular}{|l|}
+      \hline
+      \multicolumn{1}{|c|}{\textbf{\color{primaryblue}Scanner}} \\
+      \hline
+      url : str \\
+      options : dict \\
+      \hline
+      run() \\
+      get\_report() \\
+      \hline
+    \end{tabular}
+  };
+
+  % Crawler
+  \node[cls] (crawler) at (0,3) {
+    \begin{tabular}{|l|}
+      \hline
+      \multicolumn{1}{|c|}{\textbf{\color{primaryblue}Crawler}} \\
+      \hline
+      base\_url : str \\
+      visited : set \\
+      \hline
+      crawl() \\
+      extract\_forms() \\
+      \hline
+    \end{tabular}
+  };
+
+  % VulnDetector
+  \node[cls] (detector) at (5.5,3) {
+    \begin{tabular}{|l|}
+      \hline
+      \multicolumn{1}{|c|}{\textbf{\color{primaryblue}VulnDetector}} \\
+      \hline
+      payloads : list \\
+      \hline
+      detect\_sqli() \\
+      detect\_xss() \\
+      detect\_ssrf() \\
+      detect\_idor() \\
+      detect\_xxe() \\
+      \hline
+    \end{tabular}
+  };
+
+  % Evaluator
+  \node[cls] (eval) at (11,3) {
+    \begin{tabular}{|l|}
+      \hline
+      \multicolumn{1}{|c|}{\textbf{\color{primaryblue}CVSSEvaluator}} \\
+      \hline
+      base\_score : float \\
+      \hline
+      compute\_score() \\
+      get\_severity() \\
+      \hline
+    \end{tabular}
+  };
+
+  % Reporter
+  \node[cls] (reporter) at (5.5,0) {
+    \begin{tabular}{|l|}
+      \hline
+      \multicolumn{1}{|c|}{\textbf{\color{primaryblue}HTMLReporter}} \\
+      \hline
+      vulns : list \\
+      output\_path : str \\
+      \hline
+      generate() \\
+      save() \\
+      \hline
+    \end{tabular}
+  };
+
+  % Vulnerability
+  \node[cls] (vuln) at (11,0) {
+    \begin{tabular}{|l|}
+      \hline
+      \multicolumn{1}{|c|}{\textbf{\color{primaryblue}Vulnerability}} \\
+      \hline
+      name : str \\
+      url : str \\
+      payload : str \\
+      severity : str \\
+      cvss : float \\
+      \hline
+      to\_dict() \\
+      \hline
+    \end{tabular}
+  };
+
+  % Relations
+  \draw[comp] (scanner) -- (crawler);
+  \draw[comp] (scanner) -- (detector);
+  \draw[comp] (scanner) -- (eval);
+  \draw[comp] (scanner) -- (reporter);
+  \draw[arr]  (detector) -- node[right,font=\tiny]{crée} (vuln);
+  \draw[arr]  (eval)     -- (vuln);
+  \draw[arr]  (reporter) -- (vuln);
+\end{tikzpicture}
+\caption{Diagramme de classes du scanner}
+\end{figure}
+
+\section{Diagramme de Séquence -- Scan d'une Vulnérabilité}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  lifeline/.style={draw=primaryblue, dashed, very thin},
+  msg/.style={->, thick, color=primaryblue},
+  ret/.style={->, dashed, thick, color=darkgray},
+  box/.style={draw=primaryblue, fill=primaryblue!10, rounded corners=2pt,
+              font=\small\bfseries\color{primaryblue}, minimum width=2cm,
+              minimum height=0.5cm, align=center}
+]
+  % Lifeline headers
+  \node[box] (user)     at (0,0)    {Utilisateur};
+  \node[box] (scanner)  at (3,0)    {Scanner};
+  \node[box] (crawler)  at (6,0)    {Crawler};
+  \node[box] (detector) at (9,0)    {Detector};
+  \node[box] (reporter) at (12,0)   {Reporter};
+
+  % Lifelines
+  \foreach \x in {0,3,6,9,12}
+    \draw[lifeline] (\x,-0.3) -- (\x,-7);
+
+  % Messages
+  \draw[msg] (0,-0.8)  -- node[above,font=\tiny]{run(url)} (3,-0.8);
+  \draw[msg] (3,-1.4)  -- node[above,font=\tiny]{crawl(url)} (6,-1.4);
+  \draw[ret] (6,-2.0)  -- node[above,font=\tiny]{endpoints, forms} (3,-2.0);
+  \draw[msg] (3,-2.6)  -- node[above,font=\tiny]{detect(endpoints)} (9,-2.6);
+  \draw[ret] (9,-3.2)  -- node[above,font=\tiny]{vulns + payloads} (3,-3.2);
+  \draw[msg] (3,-3.8)  -- node[above,font=\tiny]{evaluate(vulns)} (9,-3.8);
+  \draw[ret] (9,-4.4)  -- node[above,font=\tiny]{scored vulns} (3,-4.4);
+  \draw[msg] (3,-5.0)  -- node[above,font=\tiny]{generate\_report()} (12,-5.0);
+  \draw[ret] (12,-5.6) -- node[above,font=\tiny]{rapport.html} (3,-5.6);
+  \draw[ret] (3,-6.2)  -- node[above,font=\tiny]{rapport.html} (0,-6.2);
+\end{tikzpicture}
+\caption{Diagramme de séquence d'un cycle de scan complet}
+\end{figure}
+
+\section{Description Détaillée des Modules}
+
+\subsection{Module de Crawling}
+
+Le module de crawling explore récursivement l'application cible à partir de l'URL
+de base fournie. Il utilise la bibliothèque \texttt{requests} pour les requêtes HTTP
+et \texttt{BeautifulSoup} pour l'analyse du HTML.
+
+\textbf{Fonctionnement :}
+\begin{enumerate}[leftmargin=2em, itemsep=3pt]
+  \item Téléchargement de la page à l'URL de départ
+  \item Extraction de tous les liens \texttt{<a href>} internes au domaine
+  \item Identification des formulaires \texttt{<form>} et de leurs champs
+  \item Collecte des paramètres GET depuis les URLs
+  \item Mise en file d'attente des nouvelles URLs à visiter (BFS)
+\end{enumerate}
+
+\subsection{Module de Détection}
+
+Chaque type de vulnérabilité est géré par une méthode dédiée. Le module charge
+des listes de \textit{payloads} depuis des fichiers de configuration et les injecte
+dans chaque paramètre identifié.
+
+\begin{center}
+\begin{tabular}{l >{\raggedright\arraybackslash}p{5cm} >{\raggedright\arraybackslash}p{4cm}}
+  \toprule
+  \textbf{Vulnérabilité} & \textbf{Méthode de détection} & \textbf{Indicateur de succès} \\
+  \midrule
+  SQL Injection & Payload avec guillemets, UNION, sleep & Message d'erreur SQL, délai \\
+  XSS           & Injection \texttt{<script>alert()</script>} & Réflexion dans la réponse \\
+  IDOR          & Incrémentation d'ID dans les paramètres & Contenu d'un autre utilisateur \\
+  SSRF          & URL pointant vers 127.0.0.1 ou metadata & Réponse interne reçue \\
+  Path Traversal& \texttt{../../etc/passwd} dans les paramètres fichier & Contenu système dans réponse \\
+  XXE           & Entité XML externe dans les corps XML & Contenu de fichier local \\
+  \bottomrule
+\end{tabular}
+\captionof{table}{Méthodes de détection par type de vulnérabilité}
+\end{center}
+
+\subsection{Module d'Évaluation (CVSS v3.1)}
+
+Chaque vulnérabilité détectée reçoit un score CVSS calculé selon les métriques
+de base : vecteur d'attaque, complexité, privilèges requis, interaction utilisateur,
+et impact sur la confidentialité, l'intégrité et la disponibilité.
+
+\begin{center}
+\begin{tabular}{l c l}
+  \toprule
+  \textbf{Score CVSS} & \textbf{Plage} & \textbf{Niveau} \\
+  \midrule
+  \textcolor{critred}{\textbf{Critique}}    & 9.0 -- 10.0 & Correction immédiate requise \\
+  \textcolor{highorange}{\textbf{Élevé}}    & 7.0 -- 8.9  & Correction prioritaire \\
+  \textcolor{medyellow}{\textbf{Moyen}}     & 4.0 -- 6.9  & Correction planifiée \\
+  \textcolor{lowgreen}{\textbf{Faible}}     & 0.1 -- 3.9  & Correction à terme \\
+  \bottomrule
+\end{tabular}
+\captionof{table}{Classification de gravité selon CVSS v3.1}
+\end{center}
+
+\subsection{Module de Reporting HTML}
+
+Le module génère un fichier HTML autonome contenant :
+\begin{itemize}[leftmargin=2em, itemsep=3pt]
+  \item Un tableau de bord avec le nombre de vulnérabilités par niveau de gravité
+  \item Une liste détaillée de chaque faille avec URL, payload, preuve et recommandation
+  \item Un style CSS intégré pour un rendu lisible sans dépendance externe
+\end{itemize}
+
+\section{Technologies et Environnement Technique}
+
+\begin{center}
+\begin{tabular}{l l >{\raggedright\arraybackslash}p{6cm}}
+  \toprule
+  \textbf{Composant} & \textbf{Technologie} & \textbf{Rôle} \\
+  \midrule
+  Langage           & Python 3.10+        & Développement de l'outil \\
+  Requêtes HTTP     & \texttt{requests}   & Envoi et réception des requêtes web \\
+  Parsing HTML      & \texttt{BeautifulSoup4} & Extraction des liens et formulaires \\
+  Analyse réponses  & \texttt{re} (regex) & Détection de signatures de vulnérabilités \\
+  Rapport           & HTML/CSS pur        & Génération du rapport final \\
+  CLI               & \texttt{argparse}   & Interface ligne de commande \\
+  Tests             & \texttt{pytest}     & Tests unitaires des modules \\
+  Cible de test     & DVWA / WebGoat      & Applications vulnérables intentionnellement \\
+  \bottomrule
+\end{tabular}
+\captionof{table}{Stack technologique du projet}
+\end{center}
+
+\section{Structure du Projet}
+
+\begin{lstlisting}[caption={Arborescence du projet}]
+scanner/
+|-- scanner.py          # Point d'entree CLI
+|-- crawler/
+|   |-- __init__.py
+|   `-- crawler.py      # Module de crawling
+|-- detectors/
+|   |-- __init__.py
+|   |-- sqli.py         # Detecteur SQLi
+|   |-- xss.py          # Detecteur XSS
+|   |-- ssrf.py         # Detecteur SSRF
+|   |-- idor.py         # Detecteur IDOR
+|   |-- xxe.py          # Detecteur XXE
+|   `-- path_traversal.py
+|-- evaluator/
+|   `-- cvss.py         # Calcul du score CVSS
+|-- reporter/
+|   `-- html_reporter.py
+|-- payloads/
+|   |-- sqli.txt
+|   |-- xss.txt
+|   `-- path_traversal.txt
+`-- tests/
+    `-- test_detectors.py
+\end{lstlisting}
+
+\newpage
+
+% ════════════════════════════════════════════════════════════════════════════
+%  CONCLUSION GÉNÉRALE
+% ════════════════════════════════════════════════════════════════════════════
+\chapter*{Conclusion Générale}
+\addcontentsline{toc}{chapter}{Conclusion Générale}
+
+\onehalfspacing
+
+Ce rapport a présenté les fondements théoriques et la conception de notre scanner
+de vulnérabilités web basé sur l'OWASP Top 10. Le premier chapitre a dressé un
+état de l'art approfondi, comparant les outils existants et définissant les
+mécanismes des vulnérabilités ciblées. Le second chapitre a formalisé notre
+conception via des diagrammes UML (cas d'utilisation, classes, séquence) et
+précisé l'architecture modulaire retenue.
+
+La phase suivante, objet du chapitre 3, consistera en la \textbf{réalisation et
+l'implémentation} de l'outil : développement des modules de crawling, de détection,
+d'évaluation CVSS et de génération de rapports HTML, ainsi que les tests sur des
+environnements volontairement vulnérables (DVWA, WebGoat).
+
+% ─── Bibliographie ───────────────────────────────────────────────────────────
+\begin{thebibliography}{9}
+
+\bibitem{owasp2021}
+OWASP Foundation,
+\textit{OWASP Top 10 -- 2021},
+\url{https://owasp.org/Top10/}, 2021.
+
+\bibitem{verizon2023}
+Verizon,
+\textit{2023 Data Breach Investigations Report},
+\url{https://www.verizon.com/business/resources/reports/dbir/}, 2023.
+
+\bibitem{cvss31}
+FIRST,
+\textit{Common Vulnerability Scoring System v3.1: Specification Document},
+\url{https://www.first.org/cvss/v3.1/specification-document}, 2019.
+
+\bibitem{zap}
+OWASP Foundation,
+\textit{OWASP ZAP -- Zed Attack Proxy},
+\url{https://www.zaproxy.org/}, 2023.
+
+\bibitem{burp}
+PortSwigger,
+\textit{Burp Suite Web Vulnerability Scanner},
+\url{https://portswigger.net/burp}, 2023.
+
+\bibitem{nikto}
+Nikto Project,
+\textit{Nikto Web Server Scanner},
+\url{https://cirt.net/Nikto2}, 2023.
+
+\bibitem{requests}
+K. Reitz,
+\textit{Requests: HTTP for Humans},
+\url{https://docs.python-requests.org/}, 2023.
+
+\bibitem{bs4}
+L. Richardson,
+\textit{Beautiful Soup Documentation},
+\url{https://www.crummy.com/software/BeautifulSoup/}, 2023.
+
+\end{thebibliography}
+
+\end{document}
