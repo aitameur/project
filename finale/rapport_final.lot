@@ -1,15 +1,15 @@
 \babel@toc {french}{}\relax 
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {1.1}{\ignorespaces Chronologie des cyberattaques majeures liées aux applications web}}{12}{table.caption.7}%
-\contentsline {table}{\numberline {1.2}{\ignorespaces Types d'attaques MITM et protections associées}}{13}{table.caption.8}%
-\contentsline {table}{\numberline {1.3}{\ignorespaces OWASP Top 10 — Édition 2021}}{14}{table.caption.9}%
-\contentsline {table}{\numberline {1.4}{\ignorespaces Comparaison détaillée des outils de scan de vulnérabilités web}}{17}{table.caption.10}%
-\contentsline {table}{\numberline {1.5}{\ignorespaces Niveaux de sévérité CVSS v3.1 et délais de remédiation}}{17}{table.caption.11}%
+\contentsline {table}{\numberline {1.1}{\ignorespaces Chronologie des cyberattaques majeures liées aux applications web}}{13}{table.caption.7}%
+\contentsline {table}{\numberline {1.2}{\ignorespaces Types d'attaques MITM et protections associées}}{14}{table.caption.8}%
+\contentsline {table}{\numberline {1.3}{\ignorespaces OWASP Top 10 — Édition 2021}}{15}{table.caption.9}%
+\contentsline {table}{\numberline {1.4}{\ignorespaces Comparaison détaillée des outils de scan de vulnérabilités web}}{18}{table.caption.10}%
+\contentsline {table}{\numberline {1.5}{\ignorespaces Niveaux de sévérité CVSS v3.1 et délais de remédiation}}{18}{table.caption.11}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Patterns de conception utilisés dans le scanner}}{21}{table.caption.13}%
-\contentsline {table}{\numberline {2.2}{\ignorespaces Description détaillée des cas d'utilisation}}{23}{table.caption.15}%
-\contentsline {table}{\numberline {2.3}{\ignorespaces Les 12 détecteurs et leurs caractéristiques}}{24}{table.caption.16}%
-\contentsline {table}{\numberline {2.4}{\ignorespaces Stack technologique complète du projet}}{31}{table.caption.19}%
+\contentsline {table}{\numberline {2.1}{\ignorespaces Patterns de conception utilisés dans le scanner}}{22}{table.caption.13}%
+\contentsline {table}{\numberline {2.2}{\ignorespaces Description détaillée des cas d'utilisation}}{24}{table.caption.15}%
+\contentsline {table}{\numberline {2.3}{\ignorespaces Les 12 détecteurs et leurs caractéristiques}}{25}{table.caption.16}%
+\contentsline {table}{\numberline {2.4}{\ignorespaces Stack technologique complète du projet}}{30}{table.caption.19}%
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {3.1}{\ignorespaces Configuration détaillée des machines virtuelles}}{33}{table.caption.20}%
 \contentsline {table}{\numberline {3.2}{\ignorespaces Tableau de bord — résultats complets du scan (70 vulnérabilités)}}{47}{table.caption.21}%
@@ -17,11 +17,22 @@
 \contentsline {table}{\numberline {3.4}{\ignorespaces Mesures de performance sur différentes cibles}}{48}{table.caption.23}%
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {4.1}{\ignorespaces Comparaison des cycles de vie de projet}}{49}{table.caption.24}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces Tableau de répartition des tâches avec durées et antériorités (14/03/2026 – 18/05/2026)}}{51}{table.caption.25}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces Ressources humaines du projet}}{55}{table.caption.28}%
-\contentsline {table}{\numberline {4.4}{\ignorespaces Ressources matérielles et logicielles du projet}}{56}{table.caption.29}%
-\contentsline {table}{\numberline {4.5}{\ignorespaces Affectation des ressources humaines par phase}}{56}{table.caption.30}%
-\contentsline {table}{\numberline {4.6}{\ignorespaces Budget estimatif du projet}}{57}{table.caption.31}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Tableau de répartition des tâches avec durées et antériorités (16/03/2026 – 06/05/2026)}}{51}{table.caption.25}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Ressources humaines du projet}}{54}{table.caption.28}%
+\contentsline {table}{\numberline {4.5}{\ignorespaces Affectation des ressources humaines par tâche}}{54}{table.caption.30}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Ressources matérielles et logicielles du projet}}{55}{table.caption.29}%
+\contentsline {table}{\numberline {4.6}{\ignorespaces Budget estimatif du projet}}{55}{table.caption.31}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {5.1}{\ignorespaces Segments de clientèle cibles}}{58}{table.caption.32}%
-\contentsline {table}{\numberline {5.2}{\ignorespaces Business Model Canvas — ImpleScan}}{59}{table.caption.33}%
+\contentsline {table}{\numberline {5.1}{\ignorespaces Limites des solutions existantes sur le marché}}{58}{table.caption.32}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Analyse des concurrents directs et indirects}}{61}{table.caption.34}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces Fournisseurs nécessaires au fonctionnement du projet}}{62}{table.caption.35}%
+\contentsline {table}{\numberline {5.4}{\ignorespaces Matrice SWOT du projet ImpleScan}}{63}{table.caption.36}%
+\contentsline {table}{\numberline {5.5}{\ignorespaces Analyse PESTEL du marché de la cybersécurité au Maroc}}{64}{table.caption.37}%
+\contentsline {table}{\numberline {5.6}{\ignorespaces Analyse des 5 forces de Porter}}{64}{table.caption.38}%
+\contentsline {table}{\numberline {5.7}{\ignorespaces Segmentation du marché cible}}{65}{table.caption.39}%
+\contentsline {table}{\numberline {5.8}{\ignorespaces Besoins en matériel}}{67}{table.caption.45}%
+\contentsline {table}{\numberline {5.9}{\ignorespaces Besoins en compétences humaines}}{68}{table.caption.46}%
+\contentsline {table}{\numberline {5.10}{\ignorespaces Détail de l'investissement initial}}{68}{table.caption.47}%
+\contentsline {table}{\numberline {5.11}{\ignorespaces Prévisions de chiffre d'affaires mensuel}}{69}{table.caption.48}%
+\contentsline {table}{\numberline {5.12}{\ignorespaces Charges variables par client}}{69}{table.caption.49}%
+\contentsline {table}{\numberline {5.13}{\ignorespaces Charges fixes mensuelles}}{70}{table.caption.50}%

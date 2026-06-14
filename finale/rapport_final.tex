@@ -134,6 +134,7 @@
 \usepackage{graphicx}
 \usepackage{grffile}
 \usepackage{caption}
+\usepackage{float}
 \graphicspath{{../screenshoots/}}
 \captionsetup{font=small,labelfont={bf,color=owaspblue},
               labelsep=period, skip=6pt}
@@ -171,8 +172,7 @@
   \thispagestyle{empty}
   \begin{center}
     \vspace*{0.5cm}
-    % Logo (décommenter si le fichier emsi_logo.png est disponible)
-    % \includegraphics[width=4cm]{emsi_logo.png}\\[0.6cm]
+    \includegraphics[width=4cm]{logo_emsi.png}\\[0.6cm]
     {\large\bfseries École Marocaine des Sciences de l'Ingénieur}\\[0.1cm]
     {\small\color{darkgray} EMSI — Casablanca}\\[0.6cm]
     \rule{\linewidth}{2pt}\\[0.4cm]
@@ -201,7 +201,7 @@
 
     \begin{minipage}{0.5\textwidth}
       {\small\color{darkgray} Encadrant PFA :}\\
-      {\normalsize\bfseries M. [Nom de l'encadrant]}
+      {\normalsize\bfseries M. Hicham Toumi}
     \end{minipage}\\[0.4cm]
 
     \begin{minipage}{0.5\textwidth}
@@ -644,13 +644,11 @@ Notre scanner adopte une \textbf{architecture en pipeline à cinq étapes} :
 \;\longrightarrow\; \texttt{Evaluate} \;\longrightarrow\; \texttt{Report}
 \]
 
-\begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{diagram1_architecture.png}
+\includegraphics[width=0.6\textwidth,height=0.88\textheight,keepaspectratio]{diagram1_architecture.png}
 \caption{Architecture en pipeline du scanner de vulnérabilités}
 \end{figure}
-\end{landscape}
 
 \subsection{Principes de Conception Retenus}
 
@@ -754,13 +752,11 @@ simple indiquent une utilisation sans possession.
 Le diagramme de séquence illustre les interactions entre les objets lors d'un cycle de scan
 complet, depuis la commande CLI jusqu'à la génération du rapport HTML final.
 
-\begin{landscape}
 \begin{figure}[p]
 \centering
-\includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{diagram4_sequence.png}
+\includegraphics[width=0.85\textwidth,height=0.88\textheight,keepaspectratio]{diagram4_sequence.png}
 \caption{Diagramme de séquence --- cycle de scan complet}
 \end{figure}
-\end{landscape}
 
 \section{Description Détaillée des Modules}
 
@@ -1603,118 +1599,34 @@ Le cycle de vie Agile retenu s'articule autour des cinq phases suivantes :
 Le tableau suivant présente l'ensemble des tâches du projet, avec leur durée estimée,
 leurs dates de réalisation et leurs dépendances.
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
-\caption{Tableau de répartition des tâches avec durées et antériorités (14/03/2026 – 18/05/2026)}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{p{0.7cm}p{5.5cm}p{1.3cm}p{1.6cm}p{1.6cm}p{2.5cm}}
+\caption{Tableau de répartition des tâches avec durées et antériorités (16/03/2026 – 06/05/2026)}
+\begin{tabular}{p{0.7cm}p{5.5cm}p{1.3cm}p{2cm}p{2cm}p{2.5cm}}
 \toprule
 \hdr{Réf.} & \hdr{Tâche} & \hdr{Durée (j)} & \hdr{Début} & \hdr{Fin} & \hdr{Antériorités} \\
 \midrule
-A & Étude des besoins et état de l'art & 5 & 14/03 & 20/03 & — \\
-\rowA B & Cahier des charges et choix technologiques & 4 & 21/03 & 26/03 & A \\
-C & Conception de l'architecture logicielle & 4 & 27/03 & 01/04 & B \\
-\rowA D & Mise en place de l'environnement (VMs, Flask) & 3 & 27/03 & 30/03 & B \\
-E & Développement des détecteurs SQLi et XSS & 6 & 02/04 & 09/04 & C, D \\
-\rowA F & Développement des détecteurs SSRF et IDOR & 5 & 10/04 & 16/04 & E \\
-G & Développement des détecteurs XXE, Upload, Auth & 5 & 10/04 & 16/04 & E \\
-\rowA H & Module CVSSEvaluator et rapport HTML & 4 & 17/04 & 22/04 & F \\
-I & Intégration CLI et orchestrateur & 3 & 17/04 & 21/04 & G \\
-\rowA J & Tests unitaires et fonctionnels & 4 & 23/04 & 28/04 & H, I \\
-K & Tests de sécurité sur DVWA et VMs & 4 & 23/04 & 28/04 & I \\
-\rowA L & Analyse des résultats et corrections & 4 & 29/04 & 04/05 & J, K \\
-M & Rédaction du rapport et documentation & 6 & 29/04 & 06/05 & J \\
-\rowA N & Relecture, correction et finalisation & 3 & 07/05 & 11/05 & L, M \\
-O & Préparation et soutenance & 5 & 12/05 & 18/05 & N \\
+A & Étude de besoin & 5 & 16/03/2026 & 20/03/2026 & — \\
+\rowA B & Cahier de charges & 4 & 24/03/2026 & 27/03/2026 & A \\
+C & Conception & 4 & 30/03/2026 & 02/04/2026 & B \\
+\rowA D & Environnement VMs & 3 & 06/04/2026 & 08/04/2026 & C \\
+E & Rapport HTML & 4 & 10/04/2026 & 15/04/2026 & D \\
+\rowA F & Analyse résultats & 4 & 17/04/2026 & 22/04/2026 & E \\
+G & Rédaction rapport & 6 & 24/04/2026 & 01/05/2026 & F \\
+\rowA H & Finalisation & 3 & 03/05/2026 & 06/05/2026 & G \\
 \bottomrule
-\end{tabular}}
+\end{tabular}
 \end{table}
 
 % ────────────────────────────────────────────────────────────
 \section{Diagramme de Gantt}
 % ────────────────────────────────────────────────────────────
 
-Le diagramme de Gantt ci-dessous représente le calendrier de réalisation du projet du
-14 mars 2026 au 18 mai 2026 (10 semaines). Les tâches du chemin critique sont
-indiquées en rouge foncé.
-
-Le chemin critique est : A $\rightarrow$ B $\rightarrow$ C $\rightarrow$ E
-$\rightarrow$ F $\rightarrow$ H $\rightarrow$ J $\rightarrow$ L $\rightarrow$
-N $\rightarrow$ O, représentant la succession de tâches dont tout retard entraînerait
-un retard sur la date de fin du projet (18/05/2026).
-
-\vspace{0.5cm}
-\begin{center}
-\begin{ganttchart}[
-    hgrid,
-    vgrid={*{1}{dotted}},
-    title/.style={fill=owaspblue, draw=none},
-    title label font=\small\bfseries\color{white},
-    title height=1,
-    bar/.style={fill=owaspblue!80, rounded corners=2pt},
-    bar label font=\small,
-    bar label node/.append style={text width=4.5cm, align=right, font=\small},
-    group/.style={fill=owaspred!70, draw=owaspred, rounded corners=2pt},
-    group label font=\small\bfseries\color{owaspred},
-    milestone/.style={fill=owaspred, shape=diamond},
-    x unit=0.74cm,
-    y unit title=0.55cm,
-    y unit chart=0.58cm,
-    canvas/.style={draw=gray!30, fill=white},
-    bar height=0.5,
-    bar top shift=0.25,
-    link/.style={-latex, thick, owaspred!80},
-  ]{1}{10}
-  % ── En-têtes semaines
-  \gantttitle{\textbf{Mars}}{3}
-  \gantttitle{\textbf{Avril}}{4}
-  \gantttitle{\textbf{Mai}}{3} \\
-  \gantttitlelist{1,...,10}{1} \\
-  % ── Tâches (chemin critique en rouge, autres en bleu)
-  \ganttbar[bar/.style={fill=owaspred!80}]{A -- \'Etude des besoins}{1}{1} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{B -- Cahier des charges}{2}{2} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{C -- Conception architecture}{2}{3} \\
-  \ganttbar[bar/.style={fill=owaspblue!60}]{D -- Environnement VMs}{2}{2} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{E -- D\'etecteurs SQLi, XSS}{3}{4} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{F -- D\'etecteurs SSRF, IDOR}{4}{5} \\
-  \ganttbar[bar/.style={fill=owaspblue!60}]{G -- D\'etecteurs XXE, Upload}{4}{5} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{H -- CVSS + Rapport HTML}{5}{6} \\
-  \ganttbar[bar/.style={fill=owaspblue!60}]{I -- CLI + Orchestrateur}{5}{6} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{J -- Tests unitaires}{6}{7} \\
-  \ganttbar[bar/.style={fill=owaspblue!60}]{K -- Tests DVWA/VMs}{6}{7} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{L -- Analyse r\'esultats}{7}{8} \\
-  \ganttbar[bar/.style={fill=owaspblue!60}]{M -- R\'edaction rapport}{7}{8} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{N -- Finalisation}{8}{9} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{O -- Soutenance}{9}{10} \\
-  % ── Jalons
-  \ganttmilestone{Fin conception}{3} \\
-  \ganttmilestone{Livraison finale}{10}
-  % ── Dépendances chemin critique
-  \ganttlink{elem0}{elem1}
-  \ganttlink{elem1}{elem2}
-  \ganttlink{elem2}{elem4}
-  \ganttlink{elem4}{elem5}
-  \ganttlink{elem5}{elem7}
-  \ganttlink{elem7}{elem9}
-  \ganttlink{elem9}{elem11}
-  \ganttlink{elem11}{elem13}
-  \ganttlink{elem13}{elem14}
-\end{ganttchart}
-\end{center}
-\vspace{0.2cm}
-\begin{center}
-{\small \textcolor{owaspred}{\rule{1cm}{4pt}} Chemin critique \quad
-\textcolor{owaspblue!60}{\rule{1cm}{4pt}} Tâches non critiques}
-\end{center}
-\captionof{figure}{Diagramme de Gantt --- Planification du projet (14/03 au 18/05/2026)}
-
-\vspace{0.5cm}
-
 \begin{landscape}
 \begin{figure}[p]
 \centering
 \includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{gantt_planning.jpeg}
-\caption{Diagramme de Gantt --- vue GanttProject avec dates de début et fin}
+\caption{Diagramme de Gantt --- Planification du projet (14/03 au 18/05/2026)}
 \end{figure}
 \end{landscape}
 
@@ -1732,20 +1644,20 @@ un retard sur la date de fin du projet (18/05/2026).
 
 \subsection{Ressources humaines}
 
-Le projet est réalisé par deux membres : Fatima Ezzahrae NOUAIMI (R1) et Salma EL KAMILI (R2),
+Le projet est réalisé par deux membres : Salma EL KAMILI (Chef de projet) et Fatima Ezzahrae NOUAIMI,
 encadrées par leur encadrant PFA. Le calendrier de travail retenu est de 5 jours par semaine,
 à raison de 4 à 6 heures par jour.
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
 \caption{Ressources humaines du projet}
 \begin{tabular}{p{4.5cm}p{3.5cm}p{5cm}}
 \toprule
 \hdr{Ressource} & \hdr{Rôle} & \hdr{Tâches principales} \\
 \midrule
-NOUAIMI Fatima (R1) & Développeuse Backend & A, B, C, E, F, H, J (co), L (co), N \\
-\rowA EL KAMILI Salma (R2) & Développeuse Frontend & A, B, D, G, I, K, J (co), M, L (co), O \\
-Encadrant PFA & Encadrant & Suivi, validation, conseils \\
+EL KAMILI Salma & Chef de projet & A, B, C, D, E, F, G, H \\
+\rowA NOUAIMI Fatima & Chef de projet & A, B, C, D, E, F, G, H \\
+M. HICHAM TOUMI & Encadrant PFA & Suivi, validation, conseils \\
 \rowA Mme. DAOUDI & Ens. Gestion de Projet & Encadrement gestion de projet \\
 Mme. BENYAHYA & Ens. Entrepreneuriat & Encadrement entrepreneuriat \\
 \bottomrule
@@ -1773,26 +1685,21 @@ Git / GitHub & Logiciel (gratuit) & Gestion de version du code \\
 \end{tabular}
 \end{table}
 
-\subsection{Affectation des ressources par phase}
+\subsection{Affectation des ressources par tâche}
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
-\caption{Affectation des ressources humaines par phase}
-\begin{tabular}{p{3.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}}
+\caption{Affectation des ressources humaines par tâche}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{p{3.5cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}}
 \toprule
-\hdr{Ressource} & \hdr{Ph. 1} & \hdr{Ph. 2} & \hdr{Ph. 3} & \hdr{Ph. 4} & \hdr{Ph. 5} \\
+\hdr{Ressource} & \hdr{A} & \hdr{B} & \hdr{C} & \hdr{D} & \hdr{E} & \hdr{F} & \hdr{G} & \hdr{H} \\
 \midrule
-R1 — Fatima & 100\% & 100\% & 60\% & 50\% & 100\% \\
-\rowA R2 — Salma & 100\% & 50\% & 100\% & 50\% & 100\% \\
-\midrule
-\rowcolor{gray!12}Total & 2 & 1,5 & 1,6 & 1 & 2 \\
+Salma (Chef de projet) & 50\% & 70\% & 50\% & 60\% & 80\% & 80\% & --- & --- \\
+\rowA Fatima & 50\% & 30\% & 50\% & 40\% & 20\% & 20\% & --- & --- \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}
-
-\textit{Remarque : En Phase 3, Salma est à 100\% sur les détecteurs côté intégration CLI et
-environnement (D, G, I) tandis que Fatima est à 60\% sur les détecteurs backend (E, F, H).
-Cette répartition parallèle réduit la durée totale du projet.}
 
 \subsection{Budget estimatif du projet}
 
@@ -1834,433 +1741,665 @@ des livrables.
 \chapter{Entrepreneuriat}
 % ============================================================
 
-Ce chapitre analyse la viabilité entrepreneuriale de notre scanner de vulnérabilités web en tant
-que produit commercialisable. Nous présentons le modèle économique, le Business Model Canvas,
-puis l'analyse financière complète basée sur une offre \textbf{SaaS} (Software as a Service)
-à destination des développeurs, PME et équipes DevSecOps.
+Ce chapitre analyse la viabilité entrepreneuriale de notre scanner de vulnérabilités web.
+Il démontre que le projet répond à un besoin réel, possède un potentiel de marché,
+peut générer de la valeur, est économiquement viable, et peut être transformé en
+véritable projet d'entreprise.
 
 % ────────────────────────────────────────────────────────────
-\section{Idée et Proposition de Valeur}
+\section{Contexte et Identification du Problème}
 % ────────────────────────────────────────────────────────────
 
-\begin{infobox}[title={Proposition de Valeur}]
-\textbf{ImpleScan} est un scanner de vulnérabilités web open source proposé en mode SaaS.
-Il détecte automatiquement les 9 catégories OWASP Top 10 les plus critiques, génère un rapport
-HTML avec scoring CVSS v3.1, et s'intègre dans les pipelines CI/CD. Gratuit pour les projets
-académiques, il offre un abonnement mensuel pour les entreprises souhaitant le support,
-l'hébergement cloud et les mises à jour de signatures.
-\end{infobox}
+\subsection{Présentation du contexte}
 
-\begin{table}[h!]
+Le secteur de la cybersécurité applicative connaît une croissance exponentielle à l'échelle mondiale.
+Selon Cybersecurity Ventures (2024), les dommages liés à la cybercriminalité atteindront
+10,5 trillions USD par an d'ici 2025. Au Maroc, la transformation digitale accélérée des entreprises
+(stratégie Maroc Digital 2030) expose un nombre croissant d'applications web à des vulnérabilités critiques.
+
+\textbf{Tendances du marché :}
+\begin{itemize}
+  \item Croissance du marché mondial de la sécurité applicative : +18\% par an (Gartner, 2024)
+  \item Au Maroc : multiplication des cyberattaques (+30\% en 2024 selon la DGSSI)
+  \item Adoption croissante du DevSecOps dans les entreprises marocaines
+  \item Obligation de conformité (loi 09-08 sur la protection des données personnelles)
+  \item Pénurie d'experts en cybersécurité au Maroc (moins de 1~000 professionnels certifiés)
+\end{itemize}
+
+\subsection{Identification du problème}
+
+Les PME et développeurs marocains font face à un problème majeur : l'absence d'outils de scan de vulnérabilités web accessibles, abordables et adaptés à leur contexte.
+
+\begin{itemize}
+  \item Les outils professionnels (Burp Suite Pro, Acunetix) coûtent entre 4~000 et 50~000~MAD/an
+  \item Les outils gratuits (OWASP ZAP) nécessitent une expertise technique avancée
+  \item Aucun outil ne propose de support en français ni d'adaptation au contexte marocain
+  \item Les audits manuels de sécurité coûtent entre 30~000 et 100~000~MAD par mission
+  \item Les PME n'ont pas les moyens de recruter un expert sécurité à temps plein
+\end{itemize}
+
+\subsection{Limites des solutions existantes}
+
+\begin{table}[H]
 \centering
-\caption{Segments de clientèle cibles}
-\begin{tabular}{p{3.5cm}p{4cm}p{4.5cm}}
+\caption{Limites des solutions existantes sur le marché}
+\begin{tabular}{p{3cm}p{4cm}p{5cm}}
 \toprule
-\hdr{Segment} & \hdr{Profil} & \hdr{Besoin principal} \\
+\hdr{Solution} & \hdr{Limite principale} & \hdr{Impact pour les PME} \\
 \midrule
-Développeurs indépendants & Freelances, startups & Scanner léger, gratuit, CLI \\
-\rowA PME / TPE           & Équipes web 2–20 pers. & Audit régulier, rapport clair \\
-Équipes DevSecOps         & CI/CD, GitHub Actions & Intégration pipeline, seuils CVSS \\
-\rowA Établissements académiques & Universités, écoles & Formation sécurité web \\
+Burp Suite Pro & Prix élevé (4~500+ MAD/an) & Inaccessible pour les petites structures \\
+\rowA Acunetix & Licence entreprise uniquement & Pas adapté aux freelances/startups \\
+OWASP ZAP & Interface complexe, pas de scoring CVSS & Nécessite un expert pour interpréter \\
+\rowA Nikto & Détection limitée, pas de rapport structuré & Résultats inexploitables sans expertise \\
+Audit manuel & 30~000--100~000 MAD/mission & Ponctuel, non automatisable \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 % ────────────────────────────────────────────────────────────
-\section{Business Model Canvas}
+\section{Présentation de l'Idée et de la Solution}
 % ────────────────────────────────────────────────────────────
 
-\begin{table}[h!]
+\subsection{Description de la solution}
+
+\textbf{ImpleScan} est un scanner de vulnérabilités web automatisé, open source, proposé en mode SaaS (Software as a Service). Il détecte les 10 catégories de vulnérabilités OWASP Top 10 2021, génère un rapport HTML avec scoring CVSS v3.1, et s'intègre nativement dans les pipelines CI/CD.
+
+\subsection{Fonctionnalités principales}
+
+\begin{itemize}
+  \item Détection automatique de 12 types de vulnérabilités (SQLi, XSS, SSRF, IDOR, XXE, etc.)
+  \item Scoring CVSS v3.1 avec vecteur d'attaque détaillé
+  \item Rapport HTML autonome avec recommandations de remédiation
+  \item Crawler BFS intelligent avec gestion de l'authentification (DVWA, formulaires)
+  \item Interface CLI simple : une seule commande pour lancer un scan complet
+  \item Intégration CI/CD (GitHub Actions, GitLab CI)
+\end{itemize}
+
+\subsection{Technologies utilisées}
+
+\begin{table}[H]
 \centering
-\caption{Business Model Canvas — ImpleScan}
+\begin{tabular}{p{4cm}p{4cm}p{4cm}}
+\toprule
+\hdr{Composant} & \hdr{Technologie} & \hdr{Justification} \\
+\midrule
+Langage principal & Python 3.10+ & Écosystème sécurité riche \\
+\rowA Requêtes HTTP & Requests + BeautifulSoup & Fiabilité, performance \\
+Rapport & HTML/CSS/JS intégré & Autonome, pas de dépendances \\
+\rowA Distribution & PyPI (pip install) & Installation en une commande \\
+Hébergement SaaS & OVH Cloud (Maroc) & Données localisées, prix compétitif \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Valeur ajoutée et avantage concurrentiel}
+
+\begin{itemize}
+  \item \textbf{Accessibilité} : gratuit en version open source, 99~MAD/mois en version Pro
+  \item \textbf{Simplicité} : aucune configuration complexe, résultats exploitables sans expertise
+  \item \textbf{Scoring automatique} : CVSS v3.1 intégré (unique parmi les outils Python)
+  \item \textbf{Francophone} : documentation et rapports en français
+  \item \textbf{Intégrable} : fonctionne en CI/CD, contrairement aux outils à interface graphique
+\end{itemize}
+
+% ────────────────────────────────────────────────────────────
+\section{Origine et Génération de l'Idée}
+% ────────────────────────────────────────────────────────────
+
+\textbf{Source de l'idée :} L'idée est née d'une observation directe lors de notre formation à l'EMSI. En travaillant sur des projets web, nous avons constaté que :
+
+\begin{itemize}
+  \item Les étudiants et développeurs juniors déploient des applications sans aucun audit de sécurité
+  \item Les outils existants sont soit trop chers, soit trop complexes pour un usage quotidien
+  \item Il n'existe aucun outil Python léger combinant détection OWASP + scoring CVSS + rapport
+\end{itemize}
+
+\textbf{Opportunité identifiée :} Le marché marocain de la cybersécurité est en pleine expansion, mais les outils adaptés aux PME et startups sont quasi inexistants. L'opportunité consiste à proposer un outil accessible qui démocratise l'audit de sécurité web.
+
+\textbf{Inspirations :} OWASP ZAP (pour la couverture), Burp Suite (pour la qualité des rapports), et les outils CLI modernes (pour la simplicité d'usage).
+
+% ────────────────────────────────────────────────────────────
+\section{Étude de Marché (Faisabilité Commerciale)}
+% ────────────────────────────────────────────────────────────
+
+\subsection{Analyse de la demande}
+
+\textbf{Besoins des utilisateurs :}
+\begin{itemize}
+  \item Scanner leurs applications web avant mise en production
+  \item Obtenir un rapport clair et exploitable (pas des logs techniques bruts)
+  \item Automatiser les audits dans leur pipeline de déploiement
+  \item Se conformer aux exigences de sécurité (loi 09-08, RGPD pour les clients européens)
+\end{itemize}
+
+\textbf{Comportement des consommateurs :}
+\begin{itemize}
+  \item Les développeurs marocains utilisent majoritairement des outils gratuits (GitHub, VS Code)
+  \item Ils sont prêts à payer pour un service qui fait gagner du temps et évite des incidents
+  \item Le budget moyen d'une PME marocaine pour la sécurité IT est de 500--2~000~MAD/mois
+  \item Les équipes DevSecOps recherchent des outils intégrables en CI/CD
+\end{itemize}
+
+\textbf{Disposition à payer :} Oui. À 99~MAD/mois (environ 9~EUR), le prix est bien en dessous du coût d'un audit manuel (30~000+ MAD) et d'un abonnement Burp Suite (4~500~MAD/an).
+
+\subsection{Analyse de la concurrence}
+
+\begin{table}[H]
+\centering
+\caption{Analyse des concurrents directs et indirects}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{|p{3.2cm}|p{3.2cm}|p{3.5cm}|p{3.2cm}|p{3.2cm}|}
-\hline
-\cellcolor{gray!12}\textbf{Partenaires clés}
-& \cellcolor{gray!12}\textbf{Activités clés}
-& \cellcolor{gray!12}\textbf{Proposition de valeur}
-& \cellcolor{gray!12}\textbf{Relation client}
-& \cellcolor{gray!12}\textbf{Segments clients} \\
-\hline
-• OWASP Foundation\newline
-• Hébergeur cloud (OVH/AWS)\newline
-• GitHub / PyPI\newline
-• Partenaires formation
-&
-• Développement détecteurs\newline
-• Maintenance signatures CVE\newline
-• Support utilisateurs\newline
-• Marketing digital
-&
-\cellcolor{gray!8}
-\textbf{Scanner OWASP automatique, léger, open source avec CVSS v3.1 et rapport HTML. Intégrable CI/CD.}
-&
-• Documentation en ligne\newline
-• Communauté GitHub\newline
-• Support email (Pro)\newline
-• Tutoriels vidéo
-&
-• Développeurs web\newline
-• PME / Startups\newline
-• Équipes DevSecOps\newline
-• Académique \\
-\hline
-\cellcolor{gray!12}\textbf{Ressources clés}
-& \multicolumn{2}{c|}{\cellcolor{gray!12}\textbf{Canaux de distribution}}
-& \multicolumn{2}{c|}{\cellcolor{gray!12}\textbf{Structure des coûts}} \\
-\hline
-• Code source Python\newline
-• Base de signatures\newline
-• Infrastructure serveur\newline
-• Compétences sécurité
-& \multicolumn{2}{c|}{
-• GitHub (open source)\newline
-• PyPI (pip install)\newline
-• Site web officiel\newline
-• LinkedIn / Dev.to
-}
-& \multicolumn{2}{c|}{
-• Hébergement serveur : 300~MAD/mois\newline
-• Marketing digital : 500~MAD/mois\newline
-• Outils / logiciels : 300~MAD/mois\newline
-• \textbf{Total charges fixes : 3~000~MAD/mois}
-} \\
-\hline
-\multicolumn{5}{|c|}{\cellcolor{gray!10}
-\textbf{Sources de revenus :}
-Abonnement SaaS (99~MAD/mois) \textbullet{}
-Audit sur mesure (500~MAD/session) \textbullet{}
-Formation (200~MAD/pers.)
-} \\
-\hline
+\begin{tabular}{p{2.5cm}p{3cm}p{2cm}p{2cm}p{2cm}p{2cm}p{2.5cm}}
+\toprule
+\hdr{Concurrent} & \hdr{Type de solution} & \hdr{Taille} & \hdr{Pays} & \hdr{Ancienneté} & \hdr{Prix} & \hdr{Modèle} \\
+\midrule
+OWASP ZAP & Scanner GUI open source & Grande communauté & International & 15+ ans & Gratuit & Open source \\
+\rowA Burp Suite & Scanner professionnel & PME (500+ empl.) & UK & 20+ ans & 4~500 MAD/an & Licence \\
+Acunetix & Scanner entreprise & Grande entreprise & Malte & 18+ ans & 30~000+ MAD/an & Licence \\
+\rowA Nikto & Scanner CLI basique & Communauté & International & 20+ ans & Gratuit & Open source \\
+Detectify & Scanner SaaS & Startup (100 empl.) & Suède & 10 ans & 5~000+ MAD/mois & SaaS \\
+\bottomrule
 \end{tabular}}
 \end{table}
 
+\textbf{Forces et faiblesses des concurrents :}
+\begin{itemize}
+  \item \textbf{OWASP ZAP} --- Force : gratuit et complet. Faiblesse : interface complexe, pas de CVSS automatique.
+  \item \textbf{Burp Suite} --- Force : référence du marché. Faiblesse : prix élevé, nécessite une expertise.
+  \item \textbf{Nikto} --- Force : léger et rapide. Faiblesse : détection limitée, rapports basiques.
+\end{itemize}
+
+\subsection{Analyse des fournisseurs}
+
+\begin{table}[H]
+\centering
+\caption{Fournisseurs nécessaires au fonctionnement du projet}
+\begin{tabular}{p{3cm}p{3cm}p{3cm}p{3cm}}
+\toprule
+\hdr{Fournisseur} & \hdr{Service} & \hdr{Prix} & \hdr{Alternatives} \\
+\midrule
+OVH Cloud & Hébergement serveur & 150--300 MAD/mois & AWS, DigitalOcean \\
+\rowA GitHub & Hébergement code & Gratuit & GitLab, Bitbucket \\
+PyPI & Distribution package & Gratuit & Conda, npm \\
+\rowA Stripe/CMI & Paiement en ligne & 2,9\% + 3 MAD/tx & PayPal, Maroc Telecommerce \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Le projet ne dépend fortement d'aucun fournisseur unique. Tous les services utilisés sont substituables par des alternatives équivalentes.
+
+\subsection{Lois et réglementations}
+
+\begin{itemize}
+  \item \textbf{Loi 09-08} (Protection des données personnelles) : notre outil aide les entreprises à se conformer en détectant les failles pouvant exposer des données.
+  \item \textbf{Loi 07-03} (Criminalité informatique) : l'utilisation du scanner est légale uniquement sur les systèmes dont l'utilisateur est propriétaire ou a l'autorisation.
+  \item \textbf{Autorisations} : aucune autorisation spécifique requise pour commercialiser un logiciel de sécurité au Maroc.
+  \item \textbf{Risques juridiques} : responsabilité limitée (clause de non-responsabilité dans les CGU).
+\end{itemize}
+
+\subsection{Analyse SWOT}
+
+\begin{table}[H]
+\centering
+\caption{Matrice SWOT du projet ImpleScan}
+\begin{tabular}{|p{6cm}|p{6cm}|}
+\hline
+\cellcolor{gray!12}\textbf{Forces (S)} & \cellcolor{gray!12}\textbf{Faiblesses (W)} \\
+\hline
+$\bullet$ Open source (confiance, communauté)\newline
+$\bullet$ Prix très compétitif (99 MAD/mois)\newline
+$\bullet$ Scoring CVSS automatique intégré\newline
+$\bullet$ Installation simple (pip install)\newline
+$\bullet$ Intégrable CI/CD
+&
+$\bullet$ Notoriété nulle au lancement\newline
+$\bullet$ Équipe réduite (2 personnes)\newline
+$\bullet$ Couverture limitée aux vulnérabilités web\newline
+$\bullet$ Pas d'interface graphique (CLI uniquement)\newline
+$\bullet$ Pas de certification officielle \\
+\hline
+\cellcolor{gray!12}\textbf{Opportunités (O)} & \cellcolor{gray!12}\textbf{Menaces (T)} \\
+\hline
+$\bullet$ Marché marocain en forte croissance\newline
+$\bullet$ Transformation digitale des PME\newline
+$\bullet$ Pénurie d'experts cybersécurité\newline
+$\bullet$ Conformité réglementaire obligatoire\newline
+$\bullet$ Marché francophone sous-servi
+&
+$\bullet$ Concurrence de ZAP (gratuit)\newline
+$\bullet$ Évolution rapide des vulnérabilités\newline
+$\bullet$ Risque de copie par des acteurs plus grands\newline
+$\bullet$ Marché marocain encore peu mature\newline
+$\bullet$ Dépendance aux mises à jour CVE \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Analyse PESTEL}
+
+\begin{table}[H]
+\centering
+\caption{Analyse PESTEL du marché de la cybersécurité au Maroc}
+\begin{tabular}{p{3cm}p{9cm}}
+\toprule
+\hdr{Dimension} & \hdr{Analyse} \\
+\midrule
+\textbf{Politique} & Stratégie Maroc Digital 2030, soutien gouvernemental, création de la DGSSI \\
+\rowA \textbf{Économique} & Croissance du marché IT marocain (+12\%/an), émergence des startups tech \\
+\textbf{Social} & Pénurie de compétences cybersécurité, sensibilisation croissante aux risques \\
+\rowA \textbf{Technologique} & Adoption du cloud, DevOps en croissance, Python dominant en sécurité \\
+\textbf{Écologique} & Solution 100\% numérique (empreinte carbone faible) \\
+\rowA \textbf{Légal} & Loi 09-08, loi 07-03, conformité RGPD pour clients internationaux \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{5 Forces de Porter}
+
+\begin{table}[H]
+\centering
+\caption{Analyse des 5 forces de Porter}
+\begin{tabular}{p{4cm}p{2cm}p{6cm}}
+\toprule
+\hdr{Force} & \hdr{Intensité} & \hdr{Justification} \\
+\midrule
+Rivalité concurrentielle & Moyenne & Peu de concurrents sur le segment PME/francophone \\
+\rowA Menace nouveaux entrants & Élevée & Barrières à l'entrée faibles (open source) \\
+Pouvoir des clients & Moyen & Alternatives gratuites disponibles, mais moins complètes \\
+\rowA Pouvoir des fournisseurs & Faible & Nombreuses alternatives cloud, pas de dépendance \\
+Menace produits substituts & Moyenne & Audits manuels, consultants, outils GUI \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 % ────────────────────────────────────────────────────────────
-\section{Tableau d'Analyse Financière}
+\section{Marketing Stratégique}
 % ────────────────────────────────────────────────────────────
 
-\textit{Les projections sont établies sur la base d'un modèle SaaS avec abonnement mensuel
-de 99~MAD, ciblant initialement 50 clients PME/développeurs au Maroc.}
+\subsection{Segmentation}
 
-% ── 0. Investissement initial ─────────────────────────────
-\subsection*{\textcolor{owaspblue}{\ding{182}~~Investissement Initial}}
-
-\begin{table}[h!]
+\begin{table}[H]
 \centering
-\begin{tabular}{p{8cm}p{4cm}}
+\caption{Segmentation du marché cible}
+\begin{tabular}{p{3cm}p{2cm}p{2.5cm}p{2.5cm}p{2.5cm}}
 \toprule
-\hdr{Investissements} & \hdr{Montant (MAD)} \\
+\hdr{Segment} & \hdr{Âge} & \hdr{Niveau tech.} & \hdr{Problème} & \hdr{Critère de choix} \\
 \midrule
-Matériel / équipements (PC, serveur test)    & 15~000 \\
-\rowA Développement plateforme SaaS (site web + API) & 8~000 \\
-Aménagement (espace de travail)              & 2~000 \\
-\rowA Frais de création (SARL / auto-entrepreneur)   & 3~000 \\
-Autres (communication, papeterie)            & 1~000 \\
-\midrule
-\rowcolor{gray!12}\textbf{Total investissement initial} & \textbf{29~000 MAD} \\
+Développeurs indép. & 22--35 & Élevé & Sécuriser avant déploiement & Prix, simplicité \\
+\rowA PME / TPE & 30--50 & Moyen & Conformité, éviter incidents & Rapport clair, support \\
+Équipes DevSecOps & 25--40 & Très élevé & Automatisation CI/CD & Intégration, API \\
+\rowA Étudiants & 18--25 & Moyen & Apprentissage, projets & Gratuit, documentation \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-% ── 1. Hypothèses de base ─────────────────────────────────
-\subsection*{\textcolor{owaspblue}{\ding{183}~~Hypothèses de Base}}
+\subsection{Ciblage}
 
-\begin{table}[h!]
+Le segment principal visé est : \textbf{PME / TPE marocaines} (équipes web de 2 à 20 personnes).
+
+\begin{itemize}
+  \item Segment suffisamment large : plus de 50~000 PME au Maroc utilisent des applications web
+  \item Rentabilité : budget sécurité de 500--2~000~MAD/mois, notre prix (99~MAD) est compétitif
+  \item Potentiel de croissance : transformation digitale en cours, conformité obligatoire
+  \item Besoin non satisfait : aucun outil adapté à leur niveau technique et leur budget
+\end{itemize}
+
+\subsection{Positionnement}
+
+\textbf{Image souhaitée :} un outil \textbf{accessible}, \textbf{simple} et \textbf{professionnel}.
+
+\textbf{Pourquoi choisir ImpleScan ?}
+\begin{itemize}
+  \item Plus simple qu'OWASP ZAP (une commande vs. configuration manuelle)
+  \item Plus abordable que Burp Suite (99~MAD/mois vs. 4~500~MAD/an)
+  \item Plus complet que Nikto (12 détecteurs + CVSS + rapport HTML)
+\end{itemize}
+
+\textbf{Positionnement :} Accessible + Innovant + Économique.
+
+\textbf{Avantage compétitif principal :} seul scanner Python open source combinant détection OWASP Top 10 complète + scoring CVSS v3.1 automatique + rapport HTML professionnel.
+
+\subsection{Stratégie Marketing Mix}
+
+\subsubsection{A. Produit / Service}
+
+\begin{itemize}
+  \item \textbf{Fonctionnalités principales :} 12 détecteurs OWASP, crawler BFS, scoring CVSS, rapport HTML
+  \item \textbf{Valeur apportée :} gain de temps (scan en 2 min vs. audit manuel de plusieurs jours)
+  \item \textbf{Problème résolu :} détecter les vulnérabilités avant qu'un attaquant ne les exploite
+  \item \textbf{Avantages :} automatisation complète, pas besoin d'expertise en sécurité
+  \item \textbf{Expérience utilisateur :} CLI intuitive, sortie colorée, rapport HTML lisible par un non-expert
+\end{itemize}
+
+\subsubsection{B. Prix}
+
+\begin{table}[H]
 \centering
-\begin{tabular}{p{8cm}p{4cm}}
+\begin{tabular}{p{4cm}p{3cm}p{5cm}}
 \toprule
-\hdr{Élément} & \hdr{Valeur} \\
+\hdr{Offre} & \hdr{Prix} & \hdr{Inclus} \\
 \midrule
-Prix de vente unitaire (abonnement/mois)     & 99 MAD \\
-\rowA Quantité vendue (abonnements mensuels) & 50 clients \\
-Nombre de clients (objectif 6 mois)          & 50 \\
-\rowA Modèle de revenus                      & SaaS mensuel \\
+Community (gratuit) & 0 MAD & Scanner CLI, 12 détecteurs, rapport HTML \\
+\rowA Pro (abonnement) & 99 MAD/mois & Cloud, support email, mises à jour prioritaires \\
+Audit sur mesure & 500 MAD/session & Scan personnalisé + recommandations \\
+\rowA Formation & 200 MAD/pers. & Atelier pratique sécurité web (4h) \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-% ── 2. Chiffre d'affaires ─────────────────────────────────
-\subsection*{\textcolor{owaspblue}{\ding{184}~~Chiffre d'Affaires}}
+\textbf{Stratégie de prix :} Pénétration --- prix volontairement bas pour acquérir rapidement des parts de marché sur un segment sous-servi.
 
-\begin{table}[h!]
+\subsubsection{C. Distribution}
+
+\begin{itemize}
+  \item \textbf{GitHub} : code source open source, issues, releases
+  \item \textbf{PyPI} : installation via \texttt{pip install implescan}
+  \item \textbf{Site web officiel} : documentation, démos, inscription SaaS
+  \item \textbf{Marketplace} : GitHub Marketplace (action CI/CD)
+\end{itemize}
+
+\subsubsection{D. Communication}
+
+\begin{itemize}
+  \item \textbf{Réseaux sociaux :} LinkedIn (articles techniques), Twitter/X (communauté dev)
+  \item \textbf{SEO :} blog technique sur la sécurité web, tutoriels, guides OWASP
+  \item \textbf{Communauté :} contributions open source, réponses StackOverflow
+  \item \textbf{Partenariats :} écoles d'ingénieurs (EMSI, ENSIAS, INPT), meetups dev marocains
+  \item \textbf{Premiers utilisateurs :} offre gratuite 3 mois pour les 50 premières PME
+  \item \textbf{Confiance :} transparence du code (open source), témoignages, démos live
+\end{itemize}
+
+% ────────────────────────────────────────────────────────────
+\section{Étude de Faisabilité Technique}
+% ────────────────────────────────────────────────────────────
+
+\subsection{Matériel nécessaire}
+
+\begin{table}[H]
 \centering
-\begin{tabular}{p{9cm}p{3cm}}
+\caption{Besoins en matériel}
+\begin{tabular}{p{5cm}p{2cm}p{2.5cm}p{2.5cm}}
 \toprule
-\hdr{Calcul} & \hdr{Résultat} \\
+\hdr{Matériel} & \hdr{Quantité} & \hdr{Coût unitaire} & \hdr{Coût total} \\
 \midrule
-CA = Prix $\times$ Quantité = 99 $\times$ 50  & 4~950 MAD/mois \\
-\rowcolor{gray!12}\textbf{CA mensuel total} & \textbf{4~950 MAD} \\
+PC de développement (portable) & 2 & 6~000 MAD & 12~000 MAD \\
+\rowA Serveur cloud (VPS OVH) & 1 & 300 MAD/mois & 300 MAD/mois \\
+Domaine + certificat SSL & 1 & 150 MAD/an & 150 MAD/an \\
+\rowA Serveur de test (VM locale) & 1 & 3~000 MAD & 3~000 MAD \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-% ── 3. Coûts variables ────────────────────────────────────
-\subsection*{\textcolor{owaspblue}{\ding{185}~~Coûts Variables}}
+\subsection{Profils nécessaires}
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
-\begin{tabular}{p{8cm}p{4cm}}
+\caption{Besoins en compétences humaines}
+\begin{tabular}{p{4cm}p{2cm}p{6cm}}
 \toprule
-\hdr{Type de coût} & \hdr{Montant unitaire (MAD)} \\
+\hdr{Profil} & \hdr{Quantité} & \hdr{Compétences requises} \\
 \midrule
-Hébergement cloud par client (VPS partagé)   & 5 \\
-\rowA Support technique par client            & 3 \\
-Coût de bande passante / transfert données    & 0 \\
-\rowA Autres (frais de paiement en ligne)     & 0 \\
-\midrule
-\rowcolor{gray!12}\textbf{Total coût variable unitaire} & \textbf{8 MAD / client} \\
+Développeur Python / Sécurité & 2 & Python, sécurité web, OWASP, HTTP \\
+\rowA Designer UI (freelance) & 1 & HTML/CSS, design rapports, UX \\
+Community Manager (temps partiel) & 1 & Réseaux sociaux, rédaction technique \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-% ── 4. Marge ──────────────────────────────────────────────
-\subsection*{\textcolor{owaspblue}{\ding{186}~~Marge}}
+% ────────────────────────────────────────────────────────────
+\section{Étude de Faisabilité Financière}
+% ────────────────────────────────────────────────────────────
 
-\begin{table}[h!]
+\subsection{Investissement initial}
+
+\begin{table}[H]
 \centering
-\begin{tabular}{p{9cm}p{3cm}}
+\caption{Détail de l'investissement initial}
+\begin{tabular}{p{6cm}p{2cm}p{2.5cm}p{2.5cm}}
 \toprule
-\hdr{Calcul} & \hdr{Résultat} \\
+\hdr{Élément} & \hdr{Quantité} & \hdr{Coût unitaire} & \hdr{Coût total} \\
 \midrule
-Marge unitaire = 99 $-$ 8                      & 91 MAD \\
-\rowA Marge totale = 91 $\times$ 50             & 4~550 MAD \\
-\rowcolor{gray!12}\textbf{Taux de marge = (91 $\div$ 99) $\times$ 100}
-  & \textbf{91,9~\%} \\
+Développement logiciel (6 mois) & 2 pers. & 0 (fondateurs) & 0 \\
+\rowA Hébergement cloud (6 mois) & 1 & 300 MAD/mois & 1~800 MAD \\
+Matériel informatique (PC) & 2 & 6~000 MAD & 12~000 MAD \\
+\rowA Licences / outils (domaine, SSL) & --- & --- & 500 MAD \\
+Design UI/UX (freelance) & 1 mission & 3~000 MAD & 3~000 MAD \\
+\rowA Marketing de lancement & --- & --- & 5~000 MAD \\
+Création juridique (auto-entrepreneur) & 1 & 500 MAD & 500 MAD \\
+\rowA Fonds de roulement initial & --- & --- & 6~200 MAD \\
+\midrule
+\rowcolor{gray!12}\textbf{Total investissement initial} & & & \textbf{29~000 MAD} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-% ── 5. Charges fixes ──────────────────────────────────────
-\subsection*{\textcolor{owaspblue}{\ding{187}~~Charges Fixes Mensuelles}}
+\subsection{Prévisions de ventes}
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
-\begin{tabular}{p{8cm}p{4cm}}
+\caption{Prévisions de chiffre d'affaires mensuel}
+\begin{tabular}{p{4cm}p{2.5cm}p{3cm}p{3cm}}
 \toprule
-\hdr{Charges fixes mensuelles} & \hdr{Montant (MAD)} \\
+\hdr{Produit / Service} & \hdr{Prix de vente} & \hdr{Quantité mensuelle} & \hdr{CA mensuel} \\
 \midrule
-Salaires (2 associés, temps partiel)          & 2~000 \\
-\rowA Loyer (travail à domicile)              & 0 \\
-Marketing digital (réseaux sociaux, SEO)      & 500 \\
-\rowA Outils / logiciels (domaine, outils CI) & 300 \\
-Autres charges (comptabilité, divers)         & 200 \\
+Abonnement Pro SaaS & 99 MAD & 50 clients & 4~950 MAD \\
+\rowA Audit sur mesure & 500 MAD & 0 (objectif futur) & 0 MAD \\
+Formation sécurité & 200 MAD/pers. & 0 (objectif futur) & 0 MAD \\
+\midrule
+\rowcolor{gray!12}\textbf{Total CA mensuel} & & & \textbf{4~950 MAD} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Charges variables}
+
+\begin{table}[H]
+\centering
+\caption{Charges variables par client}
+\begin{tabular}{p{5cm}p{2.5cm}p{2.5cm}p{2.5cm}}
+\toprule
+\hdr{Charge variable} & \hdr{Coût unitaire} & \hdr{Quantité} & \hdr{Coût total} \\
+\midrule
+Hébergement cloud / client & 5 MAD & 50 & 250 MAD \\
+\rowA Support technique / client & 3 MAD & 50 & 150 MAD \\
+Commission paiement (2,9\%) & 0 MAD & --- & 0 MAD \\
+\rowA Bande passante & 0 MAD & --- & 0 MAD \\
+\midrule
+\rowcolor{gray!12}\textbf{Total charges variables} & & & \textbf{400 MAD} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Charges fixes mensuelles}
+
+\begin{table}[H]
+\centering
+\caption{Charges fixes mensuelles}
+\begin{tabular}{p{6cm}p{4cm}}
+\toprule
+\hdr{Charge fixe} & \hdr{Montant mensuel (MAD)} \\
+\midrule
+Salaires (2 associés, temps partiel) & 2~000 \\
+\rowA Loyer / coworking (travail à domicile) & 0 \\
+Hébergement serveur (VPS) & 300 \\
+\rowA Internet / télécom & 0 (inclus domicile) \\
+Comptabilité & 0 (auto-entrepreneur) \\
+\rowA Abonnements logiciels (GitHub, domaine) & 100 \\
+Marketing digital (SEO, réseaux sociaux) & 400 \\
+\rowA Assurance & 0 \\
+CNSS & 0 (auto-entrepreneur) \\
+\rowA Autres (divers) & 200 \\
 \midrule
 \rowcolor{gray!12}\textbf{Total charges fixes} & \textbf{3~000 MAD/mois} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-% ── 6. Résultat ───────────────────────────────────────────
-\subsection*{\textcolor{owaspblue}{\ding{188}~~Résultat Mensuel}}
+\subsection{Coût total}
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
-\begin{tabular}{p{9cm}p{3cm}}
-\toprule
-\hdr{Calcul} & \hdr{Résultat} \\
-\midrule
-Charges totales = CV total + CF = 400 + 3~000 & 3~400 MAD \\
-\rowA Résultat = CA $-$ Charges = 4~950 $-$ 3~400 & 1~550 MAD \\
-\rowcolor{gray!12}\textbf{Rentabilité = (1~550 $\div$ 4~950) $\times$ 100}
-  & \textbf{31,3~\%} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-% ── 7. Seuil de rentabilité ───────────────────────────────
-\subsection*{\textcolor{owaspblue}{\ding{189}~~Seuil de Rentabilité}}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{p{9cm}p{3cm}}
-\toprule
-\hdr{Calcul} & \hdr{Résultat} \\
-\midrule
-Marge unitaire = 91 MAD                                  & 91 MAD \\
-\rowA Seuil (unités) = 3~000 $\div$ 91                   & \textbf{33 clients} \\
-\rowcolor{gray!12}\textbf{Seuil (en CA) = 33 $\times$ 99}
-  & \textbf{3~267 MAD/mois} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{infobox}[title={Interprétation du seuil de rentabilité}]
-Avec \textbf{33 clients abonnés} (sur 50 visés), l'entreprise couvre ses charges fixes et
-atteint l'équilibre. Au-delà, chaque client supplémentaire génère \textbf{91~MAD de profit net}.
-\end{infobox}
-
-% ── 8. BFR ────────────────────────────────────────────────
-\subsection*{\textcolor{owaspblue}{\ding{190}~~Besoin en Fonds de Roulement (BFR)}}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{p{8cm}p{4cm}}
+\begin{tabular}{p{6cm}p{4cm}}
 \toprule
 \hdr{Élément} & \hdr{Montant (MAD)} \\
 \midrule
-Stock initial (service numérique — pas de stock) & 0 \\
-\rowA Créances clients (10 clients $\times$ 99)  & 990 \\
-Dettes fournisseurs (hébergement)                & 150 \\
+Total charges variables & 400 \\
+\rowA Total charges fixes & 3~000 \\
 \midrule
-\rowcolor{gray!12}\textbf{BFR = 0 + 990 $-$ 150}  & \textbf{840 MAD} \\
+\rowcolor{gray!12}\textbf{Coût total mensuel} & \textbf{3~400 MAD} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-% ── 9. Trésorerie ─────────────────────────────────────────
-\subsection*{\textcolor{owaspblue}{\ding{191}~~Trésorerie Prévisionnelle (Mois 1)}}
+\subsection{Résultat prévisionnel}
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
-\begin{tabular}{p{8cm}p{4cm}}
+\begin{tabular}{p{6cm}p{4cm}}
 \toprule
 \hdr{Élément} & \hdr{Montant (MAD)} \\
 \midrule
-Trésorerie initiale (apport personnel)        & 5~000 \\
-\rowA Entrées d'argent (CA encaissé)          & 4~950 \\
-Sorties d'argent (charges totales)            & 3~400 \\
+Chiffre d'affaires & 4~950 \\
+\rowA Coût total & 3~400 \\
 \midrule
-\rowcolor{gray!12}\textbf{Trésorerie finale = 5~000 + 4~950 $-$ 3~400}
-  & \textbf{6~550 MAD} \\
+\rowcolor{gray!12}\textbf{Résultat prévisionnel mensuel} & \textbf{1~550 MAD} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-% ── Graphique de projection ───────────────────────────────
-\subsection*{\textcolor{owaspblue}{Projection de trésorerie sur 6 mois}}
+\subsection{Marge}
 
-\begin{center}
-\begin{tikzpicture}
-\begin{axis}[
-  width=12cm, height=6cm,
-  xlabel={Mois},
-  ylabel={MAD},
-  xtick={1,2,3,4,5,6},
-  xticklabels={M1,M2,M3,M4,M5,M6},
-  legend style={at={(0.02,0.98)}, anchor=north west, font=\small},
-  ymajorgrids=true, grid style=dashed,
-  ymin=0, ymax=22000,
-  bar width=0.35cm,
-  axis lines=left,
-  tick label style={font=\small},
-  label style={font=\small},
-]
-% CA mensuel (croissant)
-\addplot[color=owaspblue, mark=*, thick] coordinates {
-  (1,4950)(2,6435)(3,7920)(4,8910)(5,10395)(6,12375)};
-\addlegendentry{CA mensuel}
+\begin{table}[H]
+\centering
+\begin{tabular}{p{7cm}p{4cm}}
+\toprule
+\hdr{Calcul} & \hdr{Résultat} \\
+\midrule
+Marge brute = CA $-$ CV = 4~950 $-$ 400 & 4~550 MAD \\
+\rowA Taux de marge = (4~550 $\div$ 4~950) $\times$ 100 & \textbf{91,9~\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-% Charges totales (fixes)
-\addplot[color=owaspred, mark=square*, thick, dashed] coordinates {
-  (1,3400)(2,3500)(3,3600)(4,3700)(5,3800)(6,3900)};
-\addlegendentry{Charges totales}
+\subsection{Seuil de rentabilité}
 
-% Trésorerie cumulée
-\addplot[color=green!60!black, mark=triangle*, thick] coordinates {
-  (1,6550)(2,9485)(3,13805)(4,19015)(5,25610)(6,34085)};
-\addlegendentry{Trésorerie cumulée}
-\end{axis}
-\end{tikzpicture}
-\end{center}
-\captionof{figure}{Projection financière sur 6 mois — CA, Charges et Trésorerie cumulée}
+\begin{table}[H]
+\centering
+\begin{tabular}{p{7cm}p{4cm}}
+\toprule
+\hdr{Élément} & \hdr{Résultat} \\
+\midrule
+Charges fixes & 3~000 MAD/mois \\
+\rowA Taux de marge sur coût variable & 91,9~\% \\
+Seuil de rentabilité (unités) = 3~000 $\div$ 91 & \textbf{33 clients} \\
+\rowA Seuil de rentabilité (CA) = 33 $\times$ 99 & \textbf{3~267 MAD/mois} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-% ── 10. Analyse & Décision ────────────────────────────────
-\subsection*{\textcolor{owaspblue}{\ding{192}~~Analyse \& Décision}}
+\subsection{Besoin en Fonds de Roulement (BFR)}
 
-\bigskip
-\textbf{\large 1. Le projet est-il rentable ?}
+BFR = Stocks + Créances clients $-$ Dettes fournisseurs
 
-\medskip
-\fbox{\textbf{OUI}} — Le taux de rentabilité mensuelle est de \textbf{31,3~\%}. Avec un chiffre d'affaires de 4~950~MAD/mois et des charges totales de 3~400~MAD, le résultat net mensuel est de \textbf{1~550~MAD}. Le taux de marge unitaire atteint 91,9~\%, ce qui est caractéristique d'un service numérique sans stock physique.
+\begin{table}[H]
+\centering
+\begin{tabular}{p{6cm}p{4cm}}
+\toprule
+\hdr{Élément} & \hdr{Montant (MAD)} \\
+\midrule
+Stocks (service numérique, pas de stock) & 0 \\
+\rowA Créances clients (10 clients $\times$ 99) & 990 \\
+Dettes fournisseurs (hébergement) & 150 \\
+\midrule
+\rowcolor{gray!12}\textbf{BFR} & \textbf{840 MAD} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\bigskip
-\textbf{\large 2. Quel est le seuil de rentabilité ?}
+\subsection{Trésorerie prévisionnelle}
 
-\medskip
-Le seuil de rentabilité est atteint avec \textbf{33 clients abonnés}, soit un CA de \textbf{3~267~MAD/mois}. Au-delà de ce seuil, chaque client supplémentaire génère 91~MAD de profit net. Ce seuil est réaliste car il ne représente que 66~\% de l'objectif de 50 clients.
+\begin{table}[H]
+\centering
+\begin{tabular}{p{6cm}p{4cm}}
+\toprule
+\hdr{Élément} & \hdr{Montant (MAD)} \\
+\midrule
+Apport initial & 5~000 \\
+\rowA Revenus prévus (CA mois 1) & 4~950 \\
+Dépenses prévues (charges totales) & 3~400 \\
+\midrule
+\rowcolor{gray!12}\textbf{Trésorerie fin mois 1} & \textbf{6~550 MAD} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\bigskip
-\textbf{\large 3. Quel est le retour sur investissement ?}
+\subsection{Analyse financière}
 
-\medskip
-L'investissement initial est de \textbf{29~000~MAD}. Avec un résultat net mensuel de 1~550~MAD, le retour sur investissement est atteint en \textbf{19 mois} environ (29~000 $\div$ 1~550 $\approx$ 18,7 mois). Ce délai diminue avec la croissance du nombre de clients.
-
-\bigskip
-\textbf{\large 4. Comment se positionne le projet face à la concurrence ?}
-
-\medskip
-Notre scanner se différencie par :
 \begin{itemize}
-  \item \textbf{Open source} : contrairement à Burp Suite (payant) et Acunetix (licence coûteuse)
-  \item \textbf{Scoring CVSS v3.1 intégré} : seul outil Python à générer un rapport avec évaluation CVSS automatique
-  \item \textbf{Légèreté} : installation en une commande (pip install), pas d'interface lourde
-  \item \textbf{Intégration CI/CD} : usage en pipeline automatisé, contrairement à OWASP ZAP qui nécessite une configuration manuelle
-  \item \textbf{Prix accessible} : 99~MAD/mois vs. 4~000+ MAD/mois pour les solutions entreprise
+  \item \textbf{Le projet est-il rentable ?} Oui. Résultat net positif de 1~550~MAD/mois dès le premier mois (taux de rentabilité : 31,3~\%).
+  \item \textbf{Le seuil de rentabilité est-il réaliste ?} Oui. 33 clients suffisent pour l'équilibre, soit 66~\% de l'objectif. Atteignable dès le 2e mois grâce à la stratégie freemium.
+  \item \textbf{Le BFR est-il maîtrisé ?} Oui. BFR très faible (840~MAD) car service numérique sans stock et paiement mensuel d'avance.
+  \item \textbf{Risques financiers :} faible trésorerie initiale (5~000~MAD). Mitigation : fondateurs sans salaire les 3 premiers mois si nécessaire. Pas d'emprunt requis.
 \end{itemize}
 
-\bigskip
-\textbf{\large 5. Quels sont les risques identifiés ?}
+% ────────────────────────────────────────────────────────────
+\section{Aspect Juridique}
+% ────────────────────────────────────────────────────────────
 
-\medskip
+\textbf{Forme juridique choisie :} Auto-entrepreneur (statut individuel marocain).
+
+\textbf{Raisons du choix :}
 \begin{itemize}
-  \item \textbf{Risque concurrentiel} : OWASP ZAP est gratuit et bien établi. Mitigation : positionnement sur la simplicité et le support francophone.
-  \item \textbf{Risque de notoriété} : marque inconnue au lancement. Mitigation : stratégie open source (GitHub stars, communauté) + présence LinkedIn/Dev.to.
-  \item \textbf{Risque technique} : nécessité de mise à jour régulière des signatures CVE. Mitigation : veille automatisée + communauté de contributeurs.
-  \item \textbf{Risque marché} : marché marocain de la cybersécurité en développement. Mitigation : cibler également le marché francophone (Tunisie, Sénégal, France).
+  \item Création rapide et gratuite (inscription en ligne sur ae.gov.ma)
+  \item Pas de capital minimum requis
+  \item Fiscalité avantageuse : taux forfaitaire de 0,5~\% sur le CA (activité de services)
+  \item Pas de cotisation CNSS obligatoire (optionnelle)
+  \item Adapté à un projet en démarrage avec CA inférieur à 500~000~MAD/an
+  \item Évolution possible vers SARL si le projet dépasse le plafond
 \end{itemize}
 
-\bigskip
-\textbf{\large 6. Quelle est la stratégie de lancement ?}
+% ────────────────────────────────────────────────────────────
+\section{Stratégie de Développement}
+% ────────────────────────────────────────────────────────────
 
-\medskip
 \begin{enumerate}
-  \item \textbf{Phase 1 (Mois 1--2)} : lancement open source sur GitHub et PyPI, documentation, tutoriels. Objectif : visibilité et premiers utilisateurs gratuits.
-  \item \textbf{Phase 2 (Mois 3--4)} : lancement de l'offre SaaS Pro (99~MAD/mois) avec hébergement cloud, support email, et mises à jour prioritaires. Objectif : 20 clients payants.
-  \item \textbf{Phase 3 (Mois 5--6)} : partenariats avec des écoles d'ingénieurs et PME marocaines. Formations payantes (200~MAD/personne). Objectif : 50 clients payants.
+  \item \textbf{Court terme (0--6 mois)} :
+  \begin{itemize}
+    \item Lancement open source sur GitHub et PyPI
+    \item Acquisition de 50 clients Pro au Maroc
+    \item Partenariats avec 3 écoles d'ingénieurs (EMSI, ENSIAS, INPT)
+  \end{itemize}
+
+  \item \textbf{Moyen terme (6--18 mois)} :
+  \begin{itemize}
+    \item Extension au marché francophone (Tunisie, Sénégal, France)
+    \item Ajout d'une interface web (dashboard SaaS)
+    \item Intégration IA/ML pour la détection de vulnérabilités zero-day
+    \item Offre entreprise avec API dédiée et SLA
+    \item Objectif : 200 clients, CA de 20~000~MAD/mois
+  \end{itemize}
+
+  \item \textbf{Long terme (18--36 mois)} :
+  \begin{itemize}
+    \item Levée de fonds (Innov Invest, VC marocains)
+    \item Certification ISO 27001 de la plateforme
+    \item Extension aux applications mobiles (Android/iOS)
+    \item Partenariats avec des SOC marocains
+    \item Objectif : 1~000 clients, expansion internationale
+  \end{itemize}
 \end{enumerate}
-
-\bigskip
-\textbf{\large 7. Décision finale}
-
-\medskip
-\begin{table}[h!]
-\centering
-\begin{tabular}{p{5.5cm}p{6cm}}
-\toprule
-\hdr{Critère} & \hdr{Évaluation} \\
-\midrule
-Rentabilité mensuelle        & 31,3~\% --- Bonne \\
-\rowA Seuil de rentabilité   & 33 clients --- Atteignable \\
-Investissement initial       & 29~000 MAD --- Modéré \\
-\rowA Trésorerie prévisionnelle & Positive dès M1 --- Solide \\
-Risque marché                & Concurrence ZAP/Burp --- Moyen \\
-\rowA Retour sur investissement & 19 mois --- Acceptable \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\bigskip
-\textbf{Décision :} \quad
-\fbox{\textbf{$\checkmark$ LANCER}} \quad
-$\square$ Modifier \quad $\square$ Abandonner
-
-\medskip
-\textit{Recommandation : lancer en version freemium (open source gratuit + abonnement Pro à
-99~MAD/mois), cibler les développeurs marocains via GitHub et les réseaux professionnels,
-et viser 33 clients dès le 2\up{e} mois d'exploitation.}
 
 % ────────────────────────────────────────────────────────────
 \section{Conclusion}
 % ────────────────────────────────────────────────────────────
 
-Ce chapitre a analysé la viabilité entrepreneuriale de notre scanner de vulnérabilités web.
-Le Business Model Canvas a mis en évidence les segments cibles, les canaux de distribution
-et la proposition de valeur. L'analyse financière démontre la rentabilité de l'offre SaaS à
-99~MAD/mois, avec un seuil de rentabilité atteint dès 33 clients et un résultat net de
-31,3~\% du chiffre d'affaires. Le projet présente un fort potentiel commercial, notamment
-auprès des PME marocaines et des équipes DevSecOps, grâce à la gratuité de la pile
-technologique et à la pertinence croissante de la cybersécurité applicative.
+Ce chapitre a démontré que notre projet constitue non seulement une solution technique performante,
+mais également une opportunité entrepreneuriale crédible, viable et rentable. L'étude de marché
+confirme un besoin réel et croissant des PME marocaines en matière de sécurité applicative.
+L'analyse financière montre un seuil de rentabilité atteignable (33 clients), un taux de marge
+élevé (91,9~\%) et un résultat positif dès le premier mois. Le positionnement
+(accessible, simple, professionnel) et la stratégie marketing (freemium + communauté open source)
+permettent une acquisition rapide de clients. Le projet est prêt à être lancé sous statut
+d'auto-entrepreneur avec un investissement initial modéré de 29~000~MAD.
 
 % ============================================================
 \chapter*{Conclusion Générale}

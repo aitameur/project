@@ -3,54 +3,54 @@
 \contentsline {chapter}{Résumé}{2}{chapter*.2}%
 \contentsline {chapter}{Table des mati\`eres}{3}{chapter*.3}%
 \contentsline {chapter}{Liste des tableaux}{7}{chapter*.4}%
-\contentsline {chapter}{Liste des tableaux}{7}{chapter*.4}%
-\contentsline {chapter}{Table des figures}{8}{chapter*.5}%
-\contentsline {chapter}{Liste des figures}{8}{chapter*.5}%
-\contentsline {chapter}{Introduction}{9}{chapter*.6}%
-\contentsline {chapter}{\numberline {1}État de l'Art}{11}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Contexte et Enjeux de la Sécurité des Applications Web}{11}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}Évolution des Cybermenaces}{11}{subsection.1.1.1}%
-\contentsline {subsection}{\numberline {1.1.2}Impact Économique et Réglementaire}{11}{subsection.1.1.2}%
-\contentsline {section}{\numberline {1.2}Panorama des Cybermenaces Web}{12}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Attaques Man-in-the-Middle (MITM)}{12}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Attaques par Injection}{12}{subsection.1.2.2}%
-\contentsline {subsection}{\numberline {1.2.3}Attaques sur l'Authentification}{13}{subsection.1.2.3}%
-\contentsline {subsection}{\numberline {1.2.4}Attaques sur le Contrôle d'Accès}{13}{subsection.1.2.4}%
-\contentsline {section}{\numberline {1.3}Le Référentiel OWASP Top 10 (2021)}{13}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Vulnérabilités Ciblées : Mécanismes et Impacts}{13}{section.1.4}%
-\contentsline {subsection}{\numberline {1.4.1}SQL Injection (SQLi) — OWASP A03}{14}{subsection.1.4.1}%
-\contentsline {subsection}{\numberline {1.4.2}Cross-Site Scripting (XSS) — OWASP A03}{15}{subsection.1.4.2}%
-\contentsline {subsection}{\numberline {1.4.3}IDOR — Broken Access Control (OWASP A01)}{15}{subsection.1.4.3}%
-\contentsline {subsection}{\numberline {1.4.4}SSRF — Server-Side Request Forgery (OWASP A10)}{15}{subsection.1.4.4}%
-\contentsline {subsection}{\numberline {1.4.5}Path Traversal (OWASP A01)}{15}{subsection.1.4.5}%
-\contentsline {subsection}{\numberline {1.4.6}XXE — XML External Entity (OWASP A05)}{16}{subsection.1.4.6}%
-\contentsline {subsection}{\numberline {1.4.7}Upload de Fichier Non Sécurisé (OWASP A04)}{16}{subsection.1.4.7}%
-\contentsline {subsection}{\numberline {1.4.8}Failures d'Authentification (OWASP A07)}{16}{subsection.1.4.8}%
-\contentsline {section}{\numberline {1.5}Outils de Scan Existants — Analyse Comparative}{16}{section.1.5}%
-\contentsline {section}{\numberline {1.6}Standards de Scoring : CVSS v3.1}{16}{section.1.6}%
-\contentsline {section}{\numberline {1.7}Techniques de Détection Automatique}{16}{section.1.7}%
-\contentsline {subsection}{\numberline {1.7.1}Crawling et Découverte d'Endpoints}{16}{subsection.1.7.1}%
-\contentsline {subsection}{\numberline {1.7.2}Scan Actif vs Scan Passif}{17}{subsection.1.7.2}%
-\contentsline {subsection}{\numberline {1.7.3}Détection par Signatures}{17}{subsection.1.7.3}%
-\contentsline {section}{\numberline {1.8}Synthèse et Positionnement}{18}{section.1.8}%
-\contentsline {section}{\numberline {1.9}Conclusion}{18}{section.1.9}%
-\contentsline {chapter}{\numberline {2}Conception}{19}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Architecture Générale du Système}{19}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Principes de Conception Retenus}{21}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Patterns de Conception Utilisés}{21}{subsection.2.1.2}%
-\contentsline {section}{\numberline {2.2}Diagramme de Cas d'Utilisation}{21}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Les 12 Détecteurs}{23}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Diagramme de Classes}{23}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Diagramme de Séquence}{26}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Description Détaillée des Modules}{28}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}Module Crawler}{28}{subsection.2.6.1}%
-\contentsline {subsection}{\numberline {2.6.2}Module BaseDetector (Classe Abstraite)}{28}{subsection.2.6.2}%
-\contentsline {subsection}{\numberline {2.6.3}Module CVSSEvaluator}{28}{subsection.2.6.3}%
+\contentsline {chapter}{Liste des tableaux}{8}{chapter*.4}%
+\contentsline {chapter}{Table des figures}{9}{chapter*.5}%
+\contentsline {chapter}{Liste des figures}{9}{chapter*.5}%
+\contentsline {chapter}{Introduction}{10}{chapter*.6}%
+\contentsline {chapter}{\numberline {1}État de l'Art}{12}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Contexte et Enjeux de la Sécurité des Applications Web}{12}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Évolution des Cybermenaces}{12}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Impact Économique et Réglementaire}{12}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}Panorama des Cybermenaces Web}{13}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Attaques Man-in-the-Middle (MITM)}{13}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Attaques par Injection}{13}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Attaques sur l'Authentification}{14}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}Attaques sur le Contrôle d'Accès}{14}{subsection.1.2.4}%
+\contentsline {section}{\numberline {1.3}Le Référentiel OWASP Top 10 (2021)}{14}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Vulnérabilités Ciblées : Mécanismes et Impacts}{14}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}SQL Injection (SQLi) — OWASP A03}{15}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Cross-Site Scripting (XSS) — OWASP A03}{16}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}IDOR — Broken Access Control (OWASP A01)}{16}{subsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.4.4}SSRF — Server-Side Request Forgery (OWASP A10)}{16}{subsection.1.4.4}%
+\contentsline {subsection}{\numberline {1.4.5}Path Traversal (OWASP A01)}{16}{subsection.1.4.5}%
+\contentsline {subsection}{\numberline {1.4.6}XXE — XML External Entity (OWASP A05)}{17}{subsection.1.4.6}%
+\contentsline {subsection}{\numberline {1.4.7}Upload de Fichier Non Sécurisé (OWASP A04)}{17}{subsection.1.4.7}%
+\contentsline {subsection}{\numberline {1.4.8}Failures d'Authentification (OWASP A07)}{17}{subsection.1.4.8}%
+\contentsline {section}{\numberline {1.5}Outils de Scan Existants — Analyse Comparative}{17}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Standards de Scoring : CVSS v3.1}{17}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Techniques de Détection Automatique}{17}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}Crawling et Découverte d'Endpoints}{17}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}Scan Actif vs Scan Passif}{18}{subsection.1.7.2}%
+\contentsline {subsection}{\numberline {1.7.3}Détection par Signatures}{18}{subsection.1.7.3}%
+\contentsline {section}{\numberline {1.8}Synthèse et Positionnement}{19}{section.1.8}%
+\contentsline {section}{\numberline {1.9}Conclusion}{19}{section.1.9}%
+\contentsline {chapter}{\numberline {2}Conception}{20}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Architecture Générale du Système}{20}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Principes de Conception Retenus}{20}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Patterns de Conception Utilisés}{20}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Diagramme de Cas d'Utilisation}{20}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Les 12 Détecteurs}{24}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Diagramme de Classes}{24}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Diagramme de Séquence}{27}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Description Détaillée des Modules}{27}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Module Crawler}{27}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Module BaseDetector (Classe Abstraite)}{27}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Module CVSSEvaluator}{27}{subsection.2.6.3}%
 \contentsline {subsection}{\numberline {2.6.4}Module HTMLReporter}{28}{subsection.2.6.4}%
-\contentsline {section}{\numberline {2.7}Structure du Projet}{29}{section.2.7}%
-\contentsline {section}{\numberline {2.8}Technologies et Stack Technique}{30}{section.2.8}%
-\contentsline {section}{\numberline {2.9}Environnement de Déploiement — Topologie Réseau}{30}{section.2.9}%
-\contentsline {section}{\numberline {2.10}Conclusion}{32}{section.2.10}%
+\contentsline {section}{\numberline {2.7}Structure du Projet}{28}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Technologies et Stack Technique}{29}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Environnement de Déploiement — Topologie Réseau}{29}{section.2.9}%
+\contentsline {section}{\numberline {2.10}Conclusion}{31}{section.2.10}%
 \contentsline {chapter}{\numberline {3}Réalisation et Implémentation}{33}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Environnement de Travail (Machines Virtuelles)}{33}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Configuration Réseau}{33}{subsection.3.1.1}%
@@ -85,16 +85,57 @@
 \contentsline {section}{\numberline {4.2}Répartition des tâches}{50}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Tableau des tâches, durées et antériorités}{50}{subsection.4.2.1}%
 \contentsline {section}{\numberline {4.3}Diagramme de Gantt}{51}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Répartition des ressources}{55}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Ressources humaines}{55}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Ressources matérielles et logicielles}{55}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Affectation des ressources par phase}{55}{subsection.4.4.3}%
-\contentsline {subsection}{\numberline {4.4.4}Budget estimatif du projet}{55}{subsection.4.4.4}%
-\contentsline {section}{\numberline {4.5}Conclusion}{56}{section.4.5}%
-\contentsline {chapter}{\numberline {5}Entrepreneuriat}{58}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Idée et Proposition de Valeur}{58}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Business Model Canvas}{59}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Tableau d'Analyse Financière}{59}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Conclusion}{64}{section.5.4}%
-\contentsline {chapter}{Conclusion Générale}{65}{chapter*.45}%
-\contentsline {chapter}{Bibliographie}{66}{chapter*.46}%
+\contentsline {section}{\numberline {4.4}Répartition des ressources}{54}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Ressources humaines}{54}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Ressources matérielles et logicielles}{54}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Affectation des ressources par tâche}{54}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}Budget estimatif du projet}{54}{subsection.4.4.4}%
+\contentsline {section}{\numberline {4.5}Conclusion}{55}{section.4.5}%
+\contentsline {chapter}{\numberline {5}Entrepreneuriat}{57}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Contexte et Identification du Problème}{57}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Présentation du contexte}{57}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Identification du problème}{57}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Limites des solutions existantes}{58}{subsection.5.1.3}%
+\contentsline {section}{\numberline {5.2}Présentation de l'Idée et de la Solution}{58}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Description de la solution}{58}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Fonctionnalités principales}{58}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Technologies utilisées}{59}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}Valeur ajoutée et avantage concurrentiel}{59}{subsection.5.2.4}%
+\contentsline {section}{\numberline {5.3}Origine et Génération de l'Idée}{59}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Étude de Marché (Faisabilité Commerciale)}{60}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Analyse de la demande}{60}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Analyse de la concurrence}{61}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Analyse des fournisseurs}{62}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}Lois et réglementations}{62}{subsection.5.4.4}%
+\contentsline {subsection}{\numberline {5.4.5}Analyse SWOT}{63}{subsection.5.4.5}%
+\contentsline {subsection}{\numberline {5.4.6}Analyse PESTEL}{64}{subsection.5.4.6}%
+\contentsline {subsection}{\numberline {5.4.7}5 Forces de Porter}{64}{subsection.5.4.7}%
+\contentsline {section}{\numberline {5.5}Marketing Stratégique}{65}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Segmentation}{65}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Ciblage}{65}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}Positionnement}{65}{subsection.5.5.3}%
+\contentsline {subsection}{\numberline {5.5.4}Stratégie Marketing Mix}{66}{subsection.5.5.4}%
+\contentsline {subsubsection}{A. Produit / Service}{66}{subsubsection*.40}%
+\contentsline {subsubsection}{B. Prix}{66}{subsubsection*.41}%
+\contentsline {subsubsection}{C. Distribution}{67}{subsubsection*.43}%
+\contentsline {subsubsection}{D. Communication}{67}{subsubsection*.44}%
+\contentsline {section}{\numberline {5.6}Étude de Faisabilité Technique}{67}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Matériel nécessaire}{67}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}Profils nécessaires}{68}{subsection.5.6.2}%
+\contentsline {section}{\numberline {5.7}Étude de Faisabilité Financière}{68}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Investissement initial}{68}{subsection.5.7.1}%
+\contentsline {subsection}{\numberline {5.7.2}Prévisions de ventes}{69}{subsection.5.7.2}%
+\contentsline {subsection}{\numberline {5.7.3}Charges variables}{69}{subsection.5.7.3}%
+\contentsline {subsection}{\numberline {5.7.4}Charges fixes mensuelles}{70}{subsection.5.7.4}%
+\contentsline {subsection}{\numberline {5.7.5}Coût total}{70}{subsection.5.7.5}%
+\contentsline {subsection}{\numberline {5.7.6}Résultat prévisionnel}{71}{subsection.5.7.6}%
+\contentsline {subsection}{\numberline {5.7.7}Marge}{71}{subsection.5.7.7}%
+\contentsline {subsection}{\numberline {5.7.8}Seuil de rentabilité}{71}{subsection.5.7.8}%
+\contentsline {subsection}{\numberline {5.7.9}Besoin en Fonds de Roulement (BFR)}{71}{subsection.5.7.9}%
+\contentsline {subsection}{\numberline {5.7.10}Trésorerie prévisionnelle}{72}{subsection.5.7.10}%
+\contentsline {subsection}{\numberline {5.7.11}Analyse financière}{72}{subsection.5.7.11}%
+\contentsline {section}{\numberline {5.8}Aspect Juridique}{72}{section.5.8}%
+\contentsline {section}{\numberline {5.9}Stratégie de Développement}{73}{section.5.9}%
+\contentsline {section}{\numberline {5.10}Conclusion}{73}{section.5.10}%
+\contentsline {chapter}{Conclusion Générale}{75}{chapter*.57}%
+\contentsline {chapter}{Bibliographie}{76}{chapter*.58}%
