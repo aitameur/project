@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.3)  14 JUN 2026 16:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.3)  14 JUN 2026 16:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1391,39 +1391,39 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 <../screenshoots/logo_emsi.png, id=548, 602.25pt x 162.6075pt>
 File: ../screenshoots/logo_emsi.png Graphic file (type png)
 <use ../screenshoots/logo_emsi.png>
-Package pdftex.def Info: ../screenshoots/logo_emsi.png  used on input line 175.
+Package pdftex.def Info: ../screenshoots/logo_emsi.png  used on input line 200.
 
-(pdftex.def)             Requested size: 113.81102pt x 30.72702pt.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-94.
+(pdftex.def)             Requested size: 142.26378pt x 38.41125pt.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
+18.
 (C:\Users\aitam\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-94.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
+18.
 
 (C:\Users\aitam\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-194.
+218.
 
 (C:\Users\aitam\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-194.
+218.
 
 (C:\Users\aitam\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 194.
+(Font)              <12> on input line 218.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 194.
+(Font)              <8> on input line 218.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 194.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 194
+(Font)              <6> on input line 218.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 218
 .
 
 (C:\Users\aitam\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -1432,7 +1432,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\aitam\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 194
+LaTeX Font Info:    Trying to load font information for U+msb on input line 218
 .
 
 (C:\Users\aitam\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1453,20 +1453,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
-[2]
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.06094pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.06094pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
-
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.246 \clearpage
+l.281 \clearpage
                  [1
 
 
@@ -1478,13 +1470,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.273 \clearpage
-                 [2
+[2
 
 
 ] (rapport_final.toc [3
@@ -1569,15 +1555,15 @@ Package microtype Info: Character `029' is missing
 (microtype)             Ignoring protrusion settings for this character.
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 357.
+(Font)              using `T1/lmr/bx/n' instead on input line 392.
 
 
-Underfull \hbox (badness 4144) in paragraph at lines 363--364
+Underfull \hbox (badness 4144) in paragraph at lines 398--399
 []|\T1/lmr/m/n/12 (+20) Standardisation des risques
  []
 
 
-Underfull \hbox (badness 1348) in paragraph at lines 367--368
+Underfull \hbox (badness 1348) in paragraph at lines 402--403
 []|\T1/lmr/m/n/12 (+20) Milliards de ser-veurs vul-né-
  []
 
@@ -1587,7 +1573,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [12
 
 ]
-Underfull \hbox (badness 1394) in paragraph at lines 405--406
+Underfull \hbox (badness 1394) in paragraph at lines 440--441
 []|\T1/lmr/m/n/12 (+20) ARP dy-na-mique sé-cu-risé,
  []
 
@@ -1602,22 +1588,22 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [13]
-Overfull \hbox (19.44128pt too wide) in paragraph at lines 444--444
+Overfull \hbox (19.44128pt too wide) in paragraph at lines 479--479
 []|\T1/lmr/bx/n/12 (-20) Prévalence| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 447--447
+Underfull \hbox (badness 10000) in paragraph at lines 482--482
 []|\T1/lmr/m/n/12 (+20) Cryptographic Fai-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 451--451
+Underfull \hbox (badness 10000) in paragraph at lines 486--486
 []|\T1/lmr/m/n/12 (+20) Vulnerable Com-po-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 451--452
+Underfull \hbox (badness 10000) in paragraph at lines 486--487
 []|\T1/lmr/m/n/12 (+20) Dépendances avec CVE
  []
 
@@ -1639,7 +1625,7 @@ File: lstlang1.sty 2025/11/14 1.11b listings language file
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 467.
+nput line 502.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1656,7 +1642,7 @@ File: lstlang1.sty 2025/11/14 1.11b listings language file
 File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 493.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 528.
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1669,52 +1655,52 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (C:\Users\aitam\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
-Underfull \hbox (badness 10000) in paragraph at lines 551--551
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\T1/lmr/bx/n/12 (+20) OWASP
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 551--551
+Underfull \hbox (badness 10000) in paragraph at lines 586--586
 []|\T1/lmr/bx/n/12 (+20) Burp
  []
 
 
-Overfull \hbox (0.93971pt too wide) in paragraph at lines 551--551
+Overfull \hbox (0.93971pt too wide) in paragraph at lines 586--586
 []|\T1/lmr/bx/n/12 (-20) Acunetix| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 553--553
+Underfull \hbox (badness 10000) in paragraph at lines 588--588
 []|\T1/lmr/m/n/12 (+20) Open
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 553--553
+Underfull \hbox (badness 10000) in paragraph at lines 588--588
 []|\T1/lmr/m/n/12 (+20) Open
  []
 
 
-Overfull \hbox (8.91898pt too wide) in paragraph at lines 553--553
+Overfull \hbox (8.91898pt too wide) in paragraph at lines 588--588
 []|\T1/lmr/m/n/12 (-20) Commercial| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 553--554
+Underfull \hbox (badness 10000) in paragraph at lines 588--589
 []|\T1/lmr/m/n/12 (+20) Open
  []
 
 
-Overfull \hbox (1.24232pt too wide) in paragraph at lines 554--554
+Overfull \hbox (1.24232pt too wide) in paragraph at lines 589--589
 []|\T1/lmr/m/n/12 (-20) 0^^U449$/an| 
  []
 
 
-Overfull \hbox (35.25192pt too wide) in paragraph at lines 554--554
+Overfull \hbox (35.25192pt too wide) in paragraph at lines 589--589
 []|\T1/lmr/m/n/12 (-20) 5 000^^U25 000$/an| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 560--560
+Underfull \hbox (badness 10000) in paragraph at lines 595--595
 []|\T1/lmr/m/n/12 (+20) Léger
  []
 
@@ -1750,28 +1736,28 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [19]
 Chapitre 2.
-<../screenshoots/diagram1_architecture.png, id=894, 490.83376pt x 845.1575pt>
+<../screenshoots/diagram1_architecture.png, id=891, 490.83376pt x 845.1575pt>
 File: ../screenshoots/diagram1_architecture.png Graphic file (type png)
 <use ../screenshoots/diagram1_architecture.png>
 Package pdftex.def Info: ../screenshoots/diagram1_architecture.png  used on inp
-ut line 649.
+ut line 684.
 (pdftex.def)             Requested size: 264.61937pt x 455.64319pt.
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 6
-73.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 7
+08.
 (C:\Users\aitam\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 674--674
+Underfull \hbox (badness 10000) in paragraph at lines 709--709
 []|\T1/lmr/m/n/12 (+20) ALL_DETECTORS
  []
 
 
-Overfull \hbox (4.57722pt too wide) in paragraph at lines 675--675
+Overfull \hbox (4.57722pt too wide) in paragraph at lines 710--710
 []|\T1/lmr/m/n/12 (-20) detectors/__init__.py| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 675--676
+Underfull \hbox (badness 10000) in paragraph at lines 710--711
 []|\T1/lmr/m/n/12 (+20) Instanciation par nom
  []
 
@@ -1799,11 +1785,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [22{C:/Users/aitam/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}
 ]
-<../screenshoots/diagram2_use_cases.png, id=910, 977.6525pt x 407.5225pt>
+<../screenshoots/diagram2_use_cases.png, id=907, 977.6525pt x 407.5225pt>
 File: ../screenshoots/diagram2_use_cases.png Graphic file (type png)
 <use ../screenshoots/diagram2_use_cases.png>
 Package pdftex.def Info: ../screenshoots/diagram2_use_cases.png  used on input 
-line 686.
+line 721.
 (pdftex.def)             Requested size: 702.79044pt x 292.9496pt.
 
 
@@ -1814,67 +1800,67 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [23 <../screenshoots/diagram2_use_cases.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 700--700
+Underfull \hbox (badness 10000) in paragraph at lines 735--735
 []|\T1/lmr/m/n/12 (+20) Credentials va-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 700--701
+Underfull \hbox (badness 10000) in paragraph at lines 735--736
 []|\T1/lmr/m/n/12 (+20) Session HTTP
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 702--702
+Underfull \hbox (badness 10000) in paragraph at lines 737--737
 []|\T1/lmr/m/n/12 (+20) Crawler l'ap-pli-ca-
  []
 
 
-Overfull \hbox (1.67838pt too wide) in paragraph at lines 703--704
+Overfull \hbox (1.67838pt too wide) in paragraph at lines 738--739
 []|\T1/lmr/m/n/12 (-20) list[Vulnerability]| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 704--704
+Underfull \hbox (badness 10000) in paragraph at lines 739--739
 []|\T1/lmr/m/n/12 (+20) Vulnérabilités
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 705--705
+Underfull \hbox (badness 10000) in paragraph at lines 740--740
 []|\T1/lmr/m/n/12 (+20) Vulnérabilités
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 705--706
+Underfull \hbox (badness 10000) in paragraph at lines 740--741
 []|\T1/lmr/m/n/12 (+20) Fichier HTML
  []
 
 
-Overfull \hbox (13.9608pt too wide) in paragraph at lines 717--717
+Overfull \hbox (13.9608pt too wide) in paragraph at lines 752--752
 []|\T1/lmr/bx/n/12 (-20) OWASP| 
  []
 
 
-Overfull \hbox (5.79237pt too wide) in paragraph at lines 717--718
+Overfull \hbox (5.79237pt too wide) in paragraph at lines 752--753
 []|\T1/lmr/bx/n/12 (-20) CVSS| 
  []
 
 
-Overfull \hbox (30.91628pt too wide) in paragraph at lines 722--722
+Overfull \hbox (30.91628pt too wide) in paragraph at lines 757--757
 []|\T1/lmr/m/n/12 (-20) Incrémentation/décrémentation
  []
 
 
-Underfull \hbox (badness 4726) in paragraph at lines 723--723
+Underfull \hbox (badness 4726) in paragraph at lines 758--758
 []|\T1/lmr/m/n/12 (+20) ../etc/passwd + en-co-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 728--728
+Underfull \hbox (badness 10000) in paragraph at lines 763--763
 []|\T1/lmr/m/n/12 (+20) Headers HTTP man-
  []
 
 
-Underfull \hbox (badness 6300) in paragraph at lines 729--729
+Underfull \hbox (badness 6300) in paragraph at lines 764--764
 []|\T1/lmr/m/n/12 (+20) Bannières ver-sion ser-
  []
 
@@ -1900,11 +1886,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [25]
-<../screenshoots/diagram3_classes.png, id=925, 1302.8675pt x 934.49126pt>
+<../screenshoots/diagram3_classes.png, id=922, 1302.8675pt x 934.49126pt>
 File: ../screenshoots/diagram3_classes.png Graphic file (type png)
 <use ../screenshoots/diagram3_classes.png>
 Package pdftex.def Info: ../screenshoots/diagram3_classes.png  used on input li
-ne 745.
+ne 780.
 (pdftex.def)             Requested size: 522.64865pt x 374.87358pt.
 
 
@@ -1915,14 +1901,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [26 <../screenshoots/diagram3_classes.png>]
-<../screenshoots/diagram4_sequence.png, id=931, 1083.04625pt x 880.28876pt>
+<../screenshoots/diagram4_sequence.png, id=928, 1083.04625pt x 880.28876pt>
 File: ../screenshoots/diagram4_sequence.png Graphic file (type png)
 <use ../screenshoots/diagram4_sequence.png>
 Package pdftex.def Info: ../screenshoots/diagram4_sequence.png  used on input l
-ine 757.
+ine 792.
 (pdftex.def)             Requested size: 374.85776pt x 304.6805pt.
 
-Overfull \hbox (42.42279pt too wide) in paragraph at lines 777--779
+Overfull \hbox (42.42279pt too wide) in paragraph at lines 812--814
 []\T1/lmr/m/n/12 (-20) La dé-du-pli-ca-tion des end-points se fait via une si-g
 na-ture unique : \T1/lmtt/m/n/12 METHOD:URL?sorted_params\T1/lmr/m/n/12 (-20) .
  
@@ -1949,41 +1935,41 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [28]
 
 Package caption Warning: \setcaptiontype
-(caption)                outside box or environment on input line 866.
+(caption)                outside box or environment on input line 901.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 866.
+(caption)                particular \caption on input line 901.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (0.51831pt too wide) in paragraph at lines 875--875
+Overfull \hbox (0.51831pt too wide) in paragraph at lines 910--910
 []|\T1/lmr/bx/n/12 (-20) Version| 
  []
 
 
-Underfull \hbox (badness 2875) in paragraph at lines 877--877
+Underfull \hbox (badness 2875) in paragraph at lines 912--912
 []|\T1/lmr/m/n/12 (+20) Langage prin-ci-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 880--880
+Underfull \hbox (badness 10000) in paragraph at lines 915--915
 []|\T1/lmr/m/n/12 (+20) argparse (std-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 882--883
+Underfull \hbox (badness 10000) in paragraph at lines 917--918
 []|\T1/lmr/m/n/12 (+20) Application vul-né-rable
  []
 
 
-Underfull \hbox (badness 1389) in paragraph at lines 884--885
+Underfull \hbox (badness 1389) in paragraph at lines 919--920
 []|\T1/lmr/m/n/12 (+20) Environnement de test
  []
 
 
-Underfull \hbox (badness 3690) in paragraph at lines 885--886
+Underfull \hbox (badness 3690) in paragraph at lines 920--921
 []|\T1/lmr/m/n/12 (+20) OS des ma-chines vir-
  []
 
@@ -1991,7 +1977,7 @@ Underfull \hbox (badness 3690) in paragraph at lines 885--886
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (44.08432pt too wide) in paragraph at lines 893--894
+Overfull \hbox (44.08432pt too wide) in paragraph at lines 928--929
 [][][][][][] 
  []
 
@@ -2003,7 +1989,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [29]
-Overfull \hbox (43.38864pt too wide) in paragraph at lines 895--896
+Overfull \hbox (43.38864pt too wide) in paragraph at lines 930--931
 [][] 
  []
 
@@ -2015,12 +2001,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [30]
-Overfull \hbox (43.38864pt too wide) in paragraph at lines 905--906
+Overfull \hbox (43.38864pt too wide) in paragraph at lines 940--941
 [][] 
  []
 
 
-Overfull \hbox (44.08432pt too wide) in paragraph at lines 907--908
+Overfull \hbox (44.08432pt too wide) in paragraph at lines 942--943
 [][][][][][] 
  []
 
@@ -2042,7 +2028,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [32 <../screenshoots/diagram4_sequence.png>]
 Chapitre 3.
 
-Underfull \hbox (badness 3872) in paragraph at lines 942--943
+Underfull \hbox (badness 3872) in paragraph at lines 977--978
 []|\T1/lmr/m/n/12 (+20) 25 Go (VDI dy-na-
  []
 
@@ -2066,7 +2052,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [35]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1050.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1085.
 
 (C:\Users\aitam\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
@@ -2151,12 +2137,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [45]
-Underfull \hbox (badness 10000) in paragraph at lines 1436--1436
+Underfull \hbox (badness 10000) in paragraph at lines 1471--1471
 []|\T1/lmr/bx/n/12 (+20) Score
  []
 
 
-Overfull \hbox (16.33627pt too wide) in paragraph at lines 1436--1437
+Overfull \hbox (16.33627pt too wide) in paragraph at lines 1471--1472
 []|\T1/lmr/bx/n/12 (-20) Remédiation| 
  []
 
@@ -2164,92 +2150,92 @@ Overfull \hbox (16.33627pt too wide) in paragraph at lines 1436--1437
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (1.47905pt too wide) in paragraph at lines 1469--1469
+Overfull \hbox (1.47905pt too wide) in paragraph at lines 1504--1504
 []|\T1/lmr/bx/n/12 (-20) Code| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1469--1469
+Underfull \hbox (badness 10000) in paragraph at lines 1504--1504
 []|\T1/lmr/m/n/12 (+20) IDOR$\OMS/lmsy/m/n/12 ^^B$\T1/lmr/m/n/12 (+20) N +
  []
 
 
-Overfull \hbox (4.03389pt too wide) in paragraph at lines 1469--1469
+Overfull \hbox (4.03389pt too wide) in paragraph at lines 1504--1504
 []|[]\T1/lmr/bx/n/12 (-20) Couvert[]| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1469--1469
+Underfull \hbox (badness 10000) in paragraph at lines 1504--1504
 []|\T1/lmr/m/n/12 (+20) Cryptographic Fai-
  []
 
 
-Overfull \hbox (27.135pt too wide) in paragraph at lines 1469--1469
+Overfull \hbox (27.135pt too wide) in paragraph at lines 1504--1504
 []|\T1/lmr/m/n/12 (-20) CryptographicFailuresDetector| 
  []
 
 
-Overfull \hbox (4.03389pt too wide) in paragraph at lines 1469--1469
+Overfull \hbox (4.03389pt too wide) in paragraph at lines 1504--1504
 []|[]\T1/lmr/bx/n/12 (-20) Couvert[]| 
  []
 
 
-Overfull \hbox (4.03389pt too wide) in paragraph at lines 1469--1469
+Overfull \hbox (4.03389pt too wide) in paragraph at lines 1504--1504
 []|[]\T1/lmr/bx/n/12 (-20) Couvert[]| 
  []
 
 
-Overfull \hbox (4.03389pt too wide) in paragraph at lines 1469--1469
+Overfull \hbox (4.03389pt too wide) in paragraph at lines 1504--1504
 []|[]\T1/lmr/bx/n/12 (-20) Couvert[]| 
  []
 
 
-Overfull \hbox (3.7332pt too wide) in paragraph at lines 1469--1469
+Overfull \hbox (3.7332pt too wide) in paragraph at lines 1504--1504
 []|\T1/lmr/m/n/12 (-20) SecurityMisconfigDetector
  []
 
 
-Overfull \hbox (4.03389pt too wide) in paragraph at lines 1469--1469
+Overfull \hbox (4.03389pt too wide) in paragraph at lines 1504--1504
 []|[]\T1/lmr/bx/n/12 (-20) Couvert[]| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1469--1469
+Underfull \hbox (badness 10000) in paragraph at lines 1504--1504
 []|\T1/lmr/m/n/12 (+20) Vulnerable Com-po-
  []
 
 
-Overfull \hbox (31.77115pt too wide) in paragraph at lines 1469--1469
+Overfull \hbox (31.77115pt too wide) in paragraph at lines 1504--1504
 []|\T1/lmr/m/n/12 (-20) VulnerableComponentsDetector| 
  []
 
 
-Overfull \hbox (4.03389pt too wide) in paragraph at lines 1469--1469
+Overfull \hbox (4.03389pt too wide) in paragraph at lines 1504--1504
 []|[]\T1/lmr/bx/n/12 (-20) Couvert[]| 
  []
 
 
-Overfull \hbox (4.03389pt too wide) in paragraph at lines 1469--1469
+Overfull \hbox (4.03389pt too wide) in paragraph at lines 1504--1504
 []|[]\T1/lmr/bx/n/12 (-20) Couvert[]| 
  []
 
 
-Overfull \hbox (4.03389pt too wide) in paragraph at lines 1469--1469
+Overfull \hbox (4.03389pt too wide) in paragraph at lines 1504--1504
 []|[]\T1/lmr/bx/n/12 (-20) Couvert[]| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1469--1469
+Underfull \hbox (badness 10000) in paragraph at lines 1504--1504
 []|[]\T1/lmr/bx/n/12 (+20) Non
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1469--1469
+Underfull \hbox (badness 10000) in paragraph at lines 1504--1504
 \T1/lmr/bx/n/12 (+20) dé-tec-
  []
 
 
-Overfull \hbox (4.03389pt too wide) in paragraph at lines 1469--1469
+Overfull \hbox (4.03389pt too wide) in paragraph at lines 1504--1504
 []|[]\T1/lmr/bx/n/12 (-20) Couvert[]| 
  []
 
@@ -2257,17 +2243,17 @@ Overfull \hbox (4.03389pt too wide) in paragraph at lines 1469--1469
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Overfull \hbox (7.40968pt too wide) in paragraph at lines 1483--1483
+Overfull \hbox (7.40968pt too wide) in paragraph at lines 1518--1518
 []|\T1/lmr/bx/n/12 (-20) Profond.| 
  []
 
 
-Underfull \hbox (badness 7012) in paragraph at lines 1487--1487
+Underfull \hbox (badness 7012) in paragraph at lines 1522--1522
 []|\T1/lmr/m/n/12 (+20) DVWA (VM, se-cu-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1488--1488
+Underfull \hbox (badness 10000) in paragraph at lines 1523--1523
 []|\T1/lmr/m/n/12 (+20) DVWA (se-cu-
  []
 
@@ -2275,7 +2261,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1488--1488
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1499--1500
+Underfull \hbox (badness 10000) in paragraph at lines 1534--1535
 []\T1/lmr/m/n/12 (+20) Pas de pa-ral-lé-lisme na-tif ^^V une op-ti-mi-sa-tion f
 u-ture se-rait
  []
@@ -2309,114 +2295,114 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [48]
 Chapitre 4.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1540--1540
+Underfull \hbox (badness 10000) in paragraph at lines 1575--1575
 []|\T1/lmr/m/n/12 (+20) Phases sé-quen-tielles, li-
  []
 
 
-Underfull \hbox (badness 1292) in paragraph at lines 1540--1540
+Underfull \hbox (badness 1292) in paragraph at lines 1575--1575
 \T1/lmr/m/n/12 (+20) vrables dé-fi-nis en amont,
  []
 
 
-Underfull \hbox (badness 3460) in paragraph at lines 1547--1548
+Underfull \hbox (badness 3460) in paragraph at lines 1582--1583
 []|\T1/lmr/m/n/12 (+20) Projets in-no-vants à
  []
 
 [49
 
 ]
-Overfull \hbox (3.70605pt too wide) in paragraph at lines 1607--1607
+Overfull \hbox (3.70605pt too wide) in paragraph at lines 1642--1642
 []|\T1/lmr/bx/n/12 (-20) Réf.| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1607--1607
+Underfull \hbox (badness 10000) in paragraph at lines 1642--1642
 []|\T1/lmr/bx/n/12 (+20) Durée
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1609--1609
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1644--1644
 []|\T1/lmr/m/n/12 (-20) 16/03/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1609--1609
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1644--1644
 []|\T1/lmr/m/n/12 (-20) 20/03/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1610--1610
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1645--1645
 []|\T1/lmr/m/n/12 (-20) 24/03/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1610--1610
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1645--1645
 []|\T1/lmr/m/n/12 (-20) 27/03/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1611--1611
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1646--1646
 []|\T1/lmr/m/n/12 (-20) 30/03/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1611--1611
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1646--1646
 []|\T1/lmr/m/n/12 (-20) 02/04/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1612--1612
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1647--1647
 []|\T1/lmr/m/n/12 (-20) 06/04/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1612--1612
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1647--1647
 []|\T1/lmr/m/n/12 (-20) 08/04/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1613--1613
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1648--1648
 []|\T1/lmr/m/n/12 (-20) 10/04/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1613--1613
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1648--1648
 []|\T1/lmr/m/n/12 (-20) 15/04/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1614--1614
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1649--1649
 []|\T1/lmr/m/n/12 (-20) 17/04/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1614--1614
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1649--1649
 []|\T1/lmr/m/n/12 (-20) 22/04/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1615--1615
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1650--1650
 []|\T1/lmr/m/n/12 (-20) 24/04/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1615--1615
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1650--1650
 []|\T1/lmr/m/n/12 (-20) 01/05/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1616--1616
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1651--1651
 []|\T1/lmr/m/n/12 (-20) 03/05/2026| 
  []
 
 
-Overfull \hbox (0.66942pt too wide) in paragraph at lines 1616--1616
+Overfull \hbox (0.66942pt too wide) in paragraph at lines 1651--1651
 []|\T1/lmr/m/n/12 (-20) 06/05/2026| 
  []
 
 
-Overfull \hbox (29.3208pt too wide) in paragraph at lines 1605--1619
+Overfull \hbox (29.3208pt too wide) in paragraph at lines 1640--1654
  [][] 
  []
 
@@ -2436,11 +2422,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [51]
-<../screenshoots/gantt_planning.jpeg, id=1434, 1535.7375pt x 328.22626pt>
+<../screenshoots/gantt_planning.jpeg, id=1431, 1535.7375pt x 328.22626pt>
 File: ../screenshoots/gantt_planning.jpeg Graphic file (type jpg)
 <use ../screenshoots/gantt_planning.jpeg>
 Package pdftex.def Info: ../screenshoots/gantt_planning.jpeg  used on input lin
-e 1628.
+e 1663.
 (pdftex.def)             Requested size: 702.79222pt x 150.2046pt.
 
 
@@ -2451,11 +2437,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [52 <../screenshoots/gantt_planning.jpeg>]
-<../screenshoots/gantt_ressources.jpeg, id=1439, 1462.46375pt x 645.41125pt>
+<../screenshoots/gantt_ressources.jpeg, id=1436, 1462.46375pt x 645.41125pt>
 File: ../screenshoots/gantt_ressources.jpeg Graphic file (type jpg)
 <use ../screenshoots/gantt_ressources.jpeg>
 Package pdftex.def Info: ../screenshoots/gantt_ressources.jpeg  used on input l
-ine 1636.
+ine 1671.
 (pdftex.def)             Requested size: 702.77798pt x 310.14842pt.
 
 
@@ -2466,37 +2452,37 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [53 <../screenshoots/gantt_ressources.jpeg>]
-Underfull \hbox (badness 7814) in paragraph at lines 1661--1661
+Underfull \hbox (badness 7814) in paragraph at lines 1696--1696
 []|\T1/lmr/m/n/12 (+20) Ens. Ges-tion de
  []
 
 
-Underfull \hbox (badness 3333) in paragraph at lines 1662--1662
+Underfull \hbox (badness 3333) in paragraph at lines 1697--1697
 []|\T1/lmr/m/n/12 (+20) Ens. En-tre-pre-neu-
  []
 
 
-Underfull \hbox (badness 2376) in paragraph at lines 1662--1663
+Underfull \hbox (badness 2376) in paragraph at lines 1697--1698
 []|\T1/lmr/m/n/12 (+20) Encadrement en-tre-pre-neu-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1678--1678
+Underfull \hbox (badness 10000) in paragraph at lines 1713--1713
 []|\T1/lmr/m/n/12 (+20) Logiciel (open
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1679--1679
+Underfull \hbox (badness 10000) in paragraph at lines 1714--1714
 []|\T1/lmr/m/n/12 (+20) Logiciel (open
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1680--1680
+Underfull \hbox (badness 10000) in paragraph at lines 1715--1715
 []|\T1/lmr/m/n/12 (+20) Logiciel (open
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1681--1681
+Underfull \hbox (badness 10000) in paragraph at lines 1716--1716
 []|\T1/lmr/m/n/12 (+20) Logiciel (open
  []
 
@@ -2504,17 +2490,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 1681--1681
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1713--1714
+Underfull \hbox (badness 10000) in paragraph at lines 1748--1749
 []|\T1/lmr/m/n/12 (+20) 0 MAD (open
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 1714--1715
+Underfull \hbox (badness 1365) in paragraph at lines 1749--1750
 []|\T1/lmr/m/n/12 (+20) 0 MAD (ma-té-riel
  []
 
 
-Underfull \hbox (badness 4872) in paragraph at lines 1715--1716
+Underfull \hbox (badness 4872) in paragraph at lines 1750--1751
 []|\T1/lmr/m/n/12 (+20) Inclus dans frais
  []
 
@@ -2554,27 +2540,27 @@ Chapitre 5.
 [57
 
 ]
-Underfull \hbox (badness 3168) in paragraph at lines 1790--1790
+Underfull \hbox (badness 3168) in paragraph at lines 1825--1825
 []|\T1/lmr/m/n/12 (+20) Prix élevé (4 500+
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1791--1792
+Underfull \hbox (badness 10000) in paragraph at lines 1826--1827
 []|\T1/lmr/m/n/12 (+20) Pas adapté aux free-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1792--1792
+Underfull \hbox (badness 10000) in paragraph at lines 1827--1827
 []|\T1/lmr/m/n/12 (+20) Interface com-plexe,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1793--1794
+Underfull \hbox (badness 10000) in paragraph at lines 1828--1829
 []|\T1/lmr/m/n/12 (+20) Résultats in-ex-ploi-tables
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1794--1794
+Underfull \hbox (badness 10000) in paragraph at lines 1829--1829
 []|\T1/lmr/m/n/12 (+20) 30 000--100 000
  []
 
@@ -2586,22 +2572,22 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [58]
-Underfull \hbox (badness 10000) in paragraph at lines 1826--1827
+Underfull \hbox (badness 10000) in paragraph at lines 1861--1862
 []|\T1/lmr/m/n/12 (+20) Écosystème sé-cu-rité
  []
 
 
-Underfull \hbox (badness 2020) in paragraph at lines 1828--1828
+Underfull \hbox (badness 2020) in paragraph at lines 1863--1863
 []|\T1/lmr/m/n/12 (+20) HTML/CSS/JS in-té-
  []
 
 
-Underfull \hbox (badness 6428) in paragraph at lines 1829--1830
+Underfull \hbox (badness 6428) in paragraph at lines 1864--1865
 []|\T1/lmr/m/n/12 (+20) Installation en une
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1830--1831
+Underfull \hbox (badness 10000) in paragraph at lines 1865--1866
 []|\T1/lmr/m/n/12 (+20) Données lo-ca-li-sées,
  []
 
@@ -2613,77 +2599,77 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [59]
-Overfull \hbox (7.945pt too wide) in paragraph at lines 1901--1901
+Overfull \hbox (7.945pt too wide) in paragraph at lines 1936--1936
 []|\T1/lmr/bx/n/12 (-20) Ancienneté| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1901--1901
+Underfull \hbox (badness 10000) in paragraph at lines 1936--1936
 []|\T1/lmr/m/n/12 (+20) Scanner GUI
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1901--1901
+Underfull \hbox (badness 10000) in paragraph at lines 1936--1936
 []|\T1/lmr/m/n/12 (+20) Grande
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1901--1901
+Underfull \hbox (badness 10000) in paragraph at lines 1936--1936
 \T1/lmr/m/n/12 (+20) com-mu-
  []
 
 
-Overfull \hbox (8.33589pt too wide) in paragraph at lines 1901--1901
+Overfull \hbox (8.33589pt too wide) in paragraph at lines 1936--1936
 []|\T1/lmr/m/n/12 (-20) International| 
  []
 
 
-Underfull \hbox (badness 4752) in paragraph at lines 1901--1901
+Underfull \hbox (badness 4752) in paragraph at lines 1936--1936
 []|\T1/lmr/m/n/12 (+20) Scanner pro-fes-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1901--1901
+Underfull \hbox (badness 10000) in paragraph at lines 1936--1936
 []|\T1/lmr/m/n/12 (+20) PME
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1901--1901
+Underfull \hbox (badness 10000) in paragraph at lines 1936--1936
 \T1/lmr/m/n/12 (+20) (500+
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1901--1901
+Underfull \hbox (badness 10000) in paragraph at lines 1936--1936
 []|\T1/lmr/m/n/12 (+20) 4 500
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1901--1901
+Underfull \hbox (badness 10000) in paragraph at lines 1936--1936
 []|\T1/lmr/m/n/12 (+20) Scanner en-tre-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1901--1901
+Underfull \hbox (badness 10000) in paragraph at lines 1936--1936
 []|\T1/lmr/m/n/12 (+20) 30 000+
  []
 
 
-Overfull \hbox (10.57944pt too wide) in paragraph at lines 1901--1901
+Overfull \hbox (10.57944pt too wide) in paragraph at lines 1936--1936
 []|\T1/lmr/m/n/12 (-20) Communauté| 
  []
 
 
-Overfull \hbox (8.33589pt too wide) in paragraph at lines 1901--1901
+Overfull \hbox (8.33589pt too wide) in paragraph at lines 1936--1936
 []|\T1/lmr/m/n/12 (-20) International| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1901--1901
+Underfull \hbox (badness 10000) in paragraph at lines 1936--1936
 []|\T1/lmr/m/n/12 (+20) Startup
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1901--1901
+Underfull \hbox (badness 10000) in paragraph at lines 1936--1936
 []|\T1/lmr/m/n/12 (+20) 5 000+
  []
 
@@ -2695,37 +2681,37 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [60]
-Underfull \hbox (badness 10000) in paragraph at lines 1920--1920
+Underfull \hbox (badness 10000) in paragraph at lines 1955--1955
 []|\T1/lmr/m/n/12 (+20) 150--300
  []
 
 
-Underfull \hbox (badness 1072) in paragraph at lines 1920--1921
+Underfull \hbox (badness 1072) in paragraph at lines 1955--1956
 []|\T1/lmr/m/n/12 (+20) AWS, Di-gi-ta-lO-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1921--1921
+Underfull \hbox (badness 10000) in paragraph at lines 1956--1956
 []|\T1/lmr/m/n/12 (+20) Hébergement
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1921--1922
+Underfull \hbox (badness 10000) in paragraph at lines 1956--1957
 []|\T1/lmr/m/n/12 (+20) GitLab, Bit-bu-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1923--1923
+Underfull \hbox (badness 10000) in paragraph at lines 1958--1958
 []|\T1/lmr/m/n/12 (+20) Paiement en
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1923--1923
+Underfull \hbox (badness 10000) in paragraph at lines 1958--1958
 []|\T1/lmr/m/n/12 (+20) 2,9% + 3
  []
 
 
-Underfull \hbox (badness 6445) in paragraph at lines 1923--1924
+Underfull \hbox (badness 6445) in paragraph at lines 1958--1959
 []|\T1/lmr/m/n/12 (+20) PayPal, Ma-roc
  []
 
@@ -2737,17 +2723,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [61]
-Underfull \hbox (badness 10000) in paragraph at lines 1948--1953
+Underfull \hbox (badness 10000) in paragraph at lines 1983--1988
 \OMS/lmsy/m/n/12 ^^O$ \T1/lmr/m/n/12 (+20) Prix très com-pé-ti-tif (99
  []
 
 
-Underfull \hbox (badness 2781) in paragraph at lines 1948--1953
+Underfull \hbox (badness 2781) in paragraph at lines 1983--1988
 \OMS/lmsy/m/n/12 ^^O$ \T1/lmr/m/n/12 (+20) Sco-ring CVSS au-to-ma-tique
  []
 
 
-Underfull \hbox (badness 2409) in paragraph at lines 1962--1967
+Underfull \hbox (badness 2409) in paragraph at lines 1997--2002
 \OMS/lmsy/m/n/12 ^^O$ \T1/lmr/m/n/12 (+20) Trans-for-ma-tion di-gi-tale des
  []
 
@@ -2759,7 +2745,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [62]
-Underfull \hbox (badness 1082) in paragraph at lines 1990--1991
+Underfull \hbox (badness 1082) in paragraph at lines 2025--2026
 []|\T1/lmr/m/n/12 (+20) Solution 100% nu-mé-rique (em-preinte car-bone
  []
 
@@ -2771,17 +2757,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [63]
-Underfull \hbox (badness 10000) in paragraph at lines 2005--2005
+Underfull \hbox (badness 10000) in paragraph at lines 2040--2040
 []|\T1/lmr/m/n/12 (+20) Rivalité concur-ren-
  []
 
 
-Underfull \hbox (badness 2261) in paragraph at lines 2008--2008
+Underfull \hbox (badness 2261) in paragraph at lines 2043--2043
 []|\T1/lmr/m/n/12 (+20) Pouvoir des four-nis-
  []
 
 
-Underfull \hbox (badness 1577) in paragraph at lines 2008--2009
+Underfull \hbox (badness 1577) in paragraph at lines 2043--2044
 []|\T1/lmr/m/n/12 (+20) Nombreuses al-ter-na-tives cloud,
  []
 
@@ -2793,52 +2779,52 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [64]
-Underfull \hbox (badness 10000) in paragraph at lines 2025--2025
+Underfull \hbox (badness 10000) in paragraph at lines 2060--2060
 []|\T1/lmr/bx/n/12 (+20) Niveau
  []
 
 
-Underfull \hbox (badness 8151) in paragraph at lines 2025--2026
+Underfull \hbox (badness 8151) in paragraph at lines 2060--2061
 []|\T1/lmr/bx/n/12 (+20) Critère de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2027--2027
+Underfull \hbox (badness 10000) in paragraph at lines 2062--2062
 []|\T1/lmr/m/n/12 (+20) Sécuriser
  []
 
 
-Underfull \hbox (badness 6842) in paragraph at lines 2027--2028
+Underfull \hbox (badness 6842) in paragraph at lines 2062--2063
 []|\T1/lmr/m/n/12 (+20) Prix, sim-pli-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2028--2028
+Underfull \hbox (badness 10000) in paragraph at lines 2063--2063
 []|\T1/lmr/m/n/12 (+20) Conformité,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2028--2028
+Underfull \hbox (badness 10000) in paragraph at lines 2063--2063
 \T1/lmr/m/n/12 (+20) évi-ter in-ci-
  []
 
 
-Underfull \hbox (badness 1776) in paragraph at lines 2029--2029
+Underfull \hbox (badness 1776) in paragraph at lines 2064--2064
 []|\T1/lmr/m/n/12 (+20) Équipes Dev-Se-
  []
 
 
-Overfull \hbox (6.9678pt too wide) in paragraph at lines 2029--2029
+Overfull \hbox (6.9678pt too wide) in paragraph at lines 2064--2064
 []|\T1/lmr/m/n/12 (-20) Automatisation
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2029--2030
+Underfull \hbox (badness 10000) in paragraph at lines 2064--2065
 []|\T1/lmr/m/n/12 (+20) Intégration,
  []
 
 
-Overfull \hbox (0.91997pt too wide) in paragraph at lines 2030--2030
+Overfull \hbox (0.91997pt too wide) in paragraph at lines 2065--2065
 []|\T1/lmr/m/n/12 (-20) Apprentissage,
  []
 
@@ -2850,7 +2836,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [65]
-Underfull \hbox (badness 10000) in paragraph at lines 2083--2083
+Underfull \hbox (badness 10000) in paragraph at lines 2118--2118
 []|\T1/lmr/m/n/12 (+20) 500
  []
 
@@ -2862,22 +2848,22 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [66]
-Underfull \hbox (badness 10000) in paragraph at lines 2122--2122
+Underfull \hbox (badness 10000) in paragraph at lines 2157--2157
 []|\T1/lmr/bx/n/12 (+20) Coût uni-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2125--2125
+Underfull \hbox (badness 10000) in paragraph at lines 2160--2160
 []|\T1/lmr/m/n/12 (+20) 300
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2125--2126
+Underfull \hbox (badness 10000) in paragraph at lines 2160--2161
 []|\T1/lmr/m/n/12 (+20) 300
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2142--2142
+Underfull \hbox (badness 10000) in paragraph at lines 2177--2177
 []|\T1/lmr/m/n/12 (+20) Designer UI (free-
  []
 
@@ -2889,22 +2875,22 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [67]
-Underfull \hbox (badness 10000) in paragraph at lines 2159--2159
+Underfull \hbox (badness 10000) in paragraph at lines 2194--2194
 []|\T1/lmr/bx/n/12 (+20) Coût uni-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2162--2162
+Underfull \hbox (badness 10000) in paragraph at lines 2197--2197
 []|\T1/lmr/m/n/12 (+20) 300
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2167--2167
+Underfull \hbox (badness 10000) in paragraph at lines 2202--2202
 []|\T1/lmr/m/n/12 (+20) Création ju-ri-dique (auto-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2170--2171
+Underfull \hbox (badness 10000) in paragraph at lines 2205--2206
 []|\T1/lmr/bx/n/12 (+20) 29 000
  []
 
@@ -2916,27 +2902,27 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [68]
-Underfull \hbox (badness 10000) in paragraph at lines 2182--2182
+Underfull \hbox (badness 10000) in paragraph at lines 2217--2217
 []|\T1/lmr/bx/n/12 (+20) Prix de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2186--2186
+Underfull \hbox (badness 10000) in paragraph at lines 2221--2221
 []|\T1/lmr/m/n/12 (+20) 200
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2200--2200
+Underfull \hbox (badness 10000) in paragraph at lines 2235--2235
 []|\T1/lmr/bx/n/12 (+20) Coût uni-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2204--2204
+Underfull \hbox (badness 10000) in paragraph at lines 2239--2239
 []|\T1/lmr/m/n/12 (+20) Commission paie-ment
  []
 
 
-Underfull \hbox (badness 6001) in paragraph at lines 2219--2220
+Underfull \hbox (badness 6001) in paragraph at lines 2254--2255
 []|\T1/lmr/bx/n/12 (+20) Montant men-suel
  []
 
@@ -2948,7 +2934,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [69]
-Underfull \hbox (badness 1418) in paragraph at lines 2264--2264
+Underfull \hbox (badness 1418) in paragraph at lines 2299--2299
 []|\T1/lmr/bx/n/12 (+20) Résultat pré-vi-sion-nel men-
  []
 
@@ -2968,7 +2954,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.06094pt}.
 
 [71]
-Underfull \hbox (badness 1776) in paragraph at lines 2328--2328
+Underfull \hbox (badness 1776) in paragraph at lines 2363--2363
 []|\T1/lmr/m/n/12 (+20) Dépenses pré-vues (charges to-
  []
 
@@ -2998,14 +2984,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [74] [75
 
 ]
-Underfull \hbox (badness 5147) in paragraph at lines 2456--2458
+Underfull \hbox (badness 5147) in paragraph at lines 2491--2493
 []\T1/lmr/m/n/12 (+20) L. Ri-chard-son, \T1/lmr/m/it/12 (+20) Beau-ti-ful Soup 
 Do-cu-men-ta-tion\T1/lmr/m/n/12 (+20) , [][]$\T1/lmtt/m/n/12 https : / / www . 
 crummy . com /
  []
 
 
-Underfull \hbox (badness 4954) in paragraph at lines 2464--2466
+Underfull \hbox (badness 4954) in paragraph at lines 2499--2501
 []\T1/lmr/m/n/12 (+20) CrowdStrike, \T1/lmr/m/it/12 (+20) 2023 Glo-bal Threat R
 e-port\T1/lmr/m/n/12 (+20) , [][]$\T1/lmtt/m/n/12 https : / / www . crowdstrike
  . com /
@@ -3022,14 +3008,17 @@ L3 programming layer <2025-12-24>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `rapport_final.out' has not changed.
 (rerunfilecheck)             Checksum: 6B4CE34B1914F1F4B07660935A0392C0;28211.
  ) 
 Here is how much of TeX's memory you used:
- 47601 strings out of 467871
- 1073826 string characters out of 5418377
- 2079013 words of memory out of 5000000
- 74818 multiletter control sequences out of 15000+600000
+ 47625 strings out of 467871
+ 1074532 string characters out of 5418377
+ 2079045 words of memory out of 5000000
+ 74842 multiletter control sequences out of 15000+600000
  710537 words of font info for 190 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  116i,14n,121p,1012b,2199s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -3050,9 +3039,9 @@ m/lmtt10.pfb><C:/Users/aitam/AppData/Local/Programs/MiKTeX/fonts/type1/public/l
 m/lmtt12.pfb><C:/Users/aitam/AppData/Local/Programs/MiKTeX/fonts/type1/public/l
 m/lmtti10.pfb><C:/Users/aitam/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/symbols/msam10.pfb>
-Output written on rapport_final.pdf (78 pages, 1097581 bytes).
+Output written on rapport_final.pdf (77 pages, 1099864 bytes).
 PDF statistics:
- 1818 PDF objects out of 2073 (max. 8388607)
+ 1815 PDF objects out of 2073 (max. 8388607)
  704 named destinations out of 1000 (max. 500000)
  49776 words of extra memory for PDF output out of 51595 (max. 10000000)
 

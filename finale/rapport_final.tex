@@ -170,52 +170,87 @@
 % ── Page de garde ──────────────────────────────────────────
 \begin{titlepage}
   \thispagestyle{empty}
+  \begin{tikzpicture}[remember picture, overlay]
+    % Cadre extérieur
+    \draw[owaspblue, line width=2.5pt]
+      ([shift={(1cm,-1cm)}]current page.north west)
+      rectangle
+      ([shift={(-1cm,1cm)}]current page.south east);
+    % Cadre intérieur
+    \draw[owaspblue!50, line width=0.8pt]
+      ([shift={(1.3cm,-1.3cm)}]current page.north west)
+      rectangle
+      ([shift={(-1.3cm,1.3cm)}]current page.south east);
+    % Bande décorative en haut
+    \fill[owaspblue]
+      ([shift={(1cm,-1cm)}]current page.north west)
+      rectangle
+      ([shift={(-1cm,-1.5cm)}]current page.north east);
+    % Bande décorative en bas
+    \fill[owaspblue]
+      ([shift={(1cm,1cm)}]current page.south west)
+      rectangle
+      ([shift={(-1cm,1.5cm)}]current page.south east);
+  \end{tikzpicture}
+
   \begin{center}
-    \vspace*{0.5cm}
-    \includegraphics[width=4cm]{logo_emsi.png}\\[0.6cm]
-    {\large\bfseries École Marocaine des Sciences de l'Ingénieur}\\[0.1cm]
-    {\small\color{darkgray} EMSI — Casablanca}\\[0.6cm]
-    \rule{\linewidth}{2pt}\\[0.4cm]
-    {\LARGE\bfseries\color{owaspblue} Projet de Fin d'Année}\\[0.3cm]
-    \rule{\linewidth}{0.6pt}\\[0.8cm]
+    \vspace*{1.2cm}
 
-    {\Huge\bfseries\color{owaspblue} Scanner de Vulnérabilités Web}\\[0.4cm]
-    {\Large\color{owaspred}\bfseries OWASP Top 10 — 2021}\\[0.5cm]
+    % Logo
+    \includegraphics[width=5cm]{logo_emsi.png}\\[0.8cm]
 
-    {\normalsize\color{darkgray}
-      Détection automatique des vulnérabilités critiques des applications web\\
-      avec scoring CVSS v3.1 et génération de rapport HTML}\\[1.2cm]
+    % Nom école
+    {\Large\bfseries École Marocaine des Sciences de l'Ingénieur}\\[0.15cm]
+    {\normalsize\color{darkgray} EMSI — Casablanca}\\[0.3cm]
+    {\normalsize\bfseries Filière : Ingénierie Informatique et Réseaux (IIR)}\\[1cm]
 
-    \rule{\linewidth}{0.6pt}\\[0.8cm]
+    % Titre PFA
+    \fcolorbox{owaspblue}{owaspblue!5}{%
+      \parbox{0.85\textwidth}{\centering\vspace{0.4cm}
+        {\large\color{darkgray} Rapport de Projet de Fin d'Année}\\[0.3cm]
+        {\LARGE\bfseries\color{owaspblue} Scanner de Vulnérabilités Web}\\[0.2cm]
+        {\Large\bfseries\color{owaspred} OWASP Top 10 — 2021}\\[0.3cm]
+        {\small\color{darkgray}
+          Détection automatique des vulnérabilités critiques des applications web\\
+          avec scoring CVSS v3.1 et génération de rapport HTML}
+        \vspace{0.4cm}
+      }%
+    }\\[1.2cm]
 
-    \begin{minipage}{0.5\textwidth}
-      {\small\color{darkgray} Filière :}\\
-      {\normalsize\bfseries Ingénierie Informatique et Réseaux (IIR)}
+    % Informations en deux colonnes
+    \begin{minipage}[t]{0.45\textwidth}
+      \begin{flushleft}
+        {\small\color{darkgray}\bfseries Réalisé par :}\\[0.3cm]
+        {\normalsize NOUAIMI Fatima Ezzahrae}\\[0.15cm]
+        {\normalsize EL KAMILI Salma}
+      \end{flushleft}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+      \begin{flushleft}
+        {\small\color{darkgray}\bfseries Encadrant PFA :}\\[0.3cm]
+        {\normalsize M. Hicham Toumi}
+      \end{flushleft}
     \end{minipage}\\[1cm]
 
-    \begin{minipage}{0.5\textwidth}
-      {\small\color{darkgray} Réalisé par :}\\[0.2cm]
-      {\large\bfseries\color{owaspblue} NOUAIMI Fatima Ezzahrae}\\
-      {\large\bfseries\color{owaspblue} EL KAMILI Salma}
-    \end{minipage}\\[0.8cm]
+    \begin{minipage}[t]{0.45\textwidth}
+      \begin{flushleft}
+        {\small\color{darkgray}\bfseries Enseignante de Gestion de Projet :}\\[0.3cm]
+        {\normalsize Mme. DAOUDI}
+      \end{flushleft}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+      \begin{flushleft}
+        {\small\color{darkgray}\bfseries Enseignante d'Entrepreneuriat :}\\[0.3cm]
+        {\normalsize Mme. BENYAHYA}
+      \end{flushleft}
+    \end{minipage}\\[1.5cm]
 
-    \begin{minipage}{0.5\textwidth}
-      {\small\color{darkgray} Encadrant PFA :}\\
-      {\normalsize\bfseries M. Hicham Toumi}
-    \end{minipage}\\[0.4cm]
+    % Année universitaire
+    \rule{0.6\linewidth}{0.8pt}\\[0.4cm]
+    {\large\bfseries Année Universitaire : 2025/2026}
 
-    \begin{minipage}{0.5\textwidth}
-      {\small\color{darkgray} Enseignante de Gestion de Projet :}\\
-      {\normalsize\bfseries Mme. DAOUDI}
-    \end{minipage}\\[0.4cm]
-
-    \begin{minipage}{0.5\textwidth}
-      {\small\color{darkgray} Enseignante d'Entrepreneuriat :}\\
-      {\normalsize\bfseries Mme. BENYAHYA}
-    \end{minipage}\\[1cm]
-
-    \rule{\linewidth}{0.6pt}\\[0.4cm]
-    {\normalsize\bfseries Année Universitaire : 2025/2026}
   \end{center}
 \end{titlepage}
 
