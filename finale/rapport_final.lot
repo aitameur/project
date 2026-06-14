@@ -6,22 +6,22 @@
 \contentsline {table}{\numberline {1.4}{\ignorespaces Comparaison détaillée des outils de scan de vulnérabilités web}}{18}{table.caption.10}%
 \contentsline {table}{\numberline {1.5}{\ignorespaces Niveaux de sévérité CVSS v3.1 et délais de remédiation}}{18}{table.caption.11}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {2.1}{\ignorespaces Patterns de conception utilisés dans le scanner}}{22}{table.caption.13}%
-\contentsline {table}{\numberline {2.2}{\ignorespaces Description détaillée des cas d'utilisation}}{24}{table.caption.15}%
-\contentsline {table}{\numberline {2.3}{\ignorespaces Les 12 détecteurs et leurs caractéristiques}}{25}{table.caption.16}%
-\contentsline {table}{\numberline {2.4}{\ignorespaces Stack technologique complète du projet}}{30}{table.caption.19}%
+\contentsline {table}{\numberline {2.1}{\ignorespaces Comparaison des cycles de vie de projet}}{20}{table.caption.12}%
+\contentsline {table}{\numberline {2.2}{\ignorespaces Tableau de répartition des tâches avec durées et antériorités (16/03/2026 – 06/05/2026)}}{22}{table.caption.13}%
+\contentsline {table}{\numberline {2.3}{\ignorespaces Ressources humaines du projet}}{25}{table.caption.16}%
+\contentsline {table}{\numberline {2.4}{\ignorespaces Ressources matérielles et logicielles du projet}}{26}{table.caption.17}%
+\contentsline {table}{\numberline {2.5}{\ignorespaces Affectation des ressources humaines par tâche}}{26}{table.caption.18}%
+\contentsline {table}{\numberline {2.6}{\ignorespaces Budget estimatif du projet}}{27}{table.caption.19}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Configuration détaillée des machines virtuelles}}{33}{table.caption.20}%
-\contentsline {table}{\numberline {3.2}{\ignorespaces Tableau de bord — résultats complets du scan (70 vulnérabilités)}}{47}{table.caption.21}%
-\contentsline {table}{\numberline {3.3}{\ignorespaces Couverture détaillée par catégorie OWASP Top 10}}{47}{table.caption.22}%
-\contentsline {table}{\numberline {3.4}{\ignorespaces Mesures de performance sur différentes cibles}}{48}{table.caption.23}%
+\contentsline {table}{\numberline {3.1}{\ignorespaces Patterns de conception utilisés dans le scanner}}{30}{table.caption.21}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Description détaillée des cas d'utilisation}}{32}{table.caption.23}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Les 12 détecteurs et leurs caractéristiques}}{33}{table.caption.24}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces Stack technologique complète du projet}}{38}{table.caption.27}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces Comparaison des cycles de vie de projet}}{49}{table.caption.24}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces Tableau de répartition des tâches avec durées et antériorités (16/03/2026 – 06/05/2026)}}{51}{table.caption.25}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces Ressources humaines du projet}}{54}{table.caption.28}%
-\contentsline {table}{\numberline {4.5}{\ignorespaces Affectation des ressources humaines par tâche}}{54}{table.caption.30}%
-\contentsline {table}{\numberline {4.4}{\ignorespaces Ressources matérielles et logicielles du projet}}{55}{table.caption.29}%
-\contentsline {table}{\numberline {4.6}{\ignorespaces Budget estimatif du projet}}{55}{table.caption.31}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces Configuration détaillée des machines virtuelles}}{41}{table.caption.28}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Tableau de bord — résultats complets du scan (70 vulnérabilités)}}{55}{table.caption.29}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Couverture détaillée par catégorie OWASP Top 10}}{55}{table.caption.30}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Mesures de performance sur différentes cibles}}{56}{table.caption.31}%
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {5.1}{\ignorespaces Limites des solutions existantes sur le marché}}{58}{table.caption.32}%
 \contentsline {table}{\numberline {5.2}{\ignorespaces Analyse des concurrents directs et indirects}}{61}{table.caption.34}%

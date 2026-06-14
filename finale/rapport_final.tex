@@ -36,8 +36,8 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\color{darkgray}\textit{École Marocaine des Sciences de l'Ingénieur}}
-\fancyhead[R]{\small\color{darkgray}\textit{Rapport de Projet de Fin d'Année (PFA)}}
+\fancyhead[L]{\small\color{black}\textit{École Marocaine des Sciences de l'Ingénieur}}
+\fancyhead[R]{\small\color{black}\textit{Rapport de Projet de Fin d'Année (PFA)}}
 \fancyfoot[C]{\small\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
@@ -45,7 +45,7 @@
 % ── Titres de chapitres ────────────────────────────────────
 \usepackage{titlesec}
 \titleformat{\chapter}[block]
-  {\normalfont\huge\bfseries\color{owaspblue}}
+  {\normalfont\huge\bfseries\color{black}}
   {}
   {0pt}
   {\rule{\linewidth}{3pt}\\\vspace{2pt}}
@@ -53,16 +53,16 @@
 \titlespacing*{\chapter}{0pt}{10pt}{20pt}
 
 \titleformat{\section}
-  {\normalfont\Large\bfseries\color{owaspblue}}
+  {\normalfont\Large\bfseries\color{black}}
   {\thesection}{1em}{}
-  [\vspace{-4pt}{\color{owaspblue}\rule{\linewidth}{0.5pt}}]
+  [\vspace{-4pt}{\color{black}\rule{\linewidth}{0.5pt}}]
 
 \titleformat{\subsection}
-  {\normalfont\large\bfseries\color{darkgray}}
+  {\normalfont\large\bfseries\color{black}}
   {\thesubsection}{1em}{}
 
 \titleformat{\subsubsection}
-  {\normalfont\normalsize\bfseries\color{darkgray}}
+  {\normalfont\normalsize\bfseries\color{black}}
   {\thesubsubsection}{1em}{}
 
 % ── Tables ─────────────────────────────────────────────────
@@ -125,8 +125,8 @@
 \setlist[enumerate]{leftmargin=1.5em, itemsep=2pt}
 
 % ── Liens hypertexte ───────────────────────────────────────
-\usepackage[colorlinks=true, linkcolor=owaspblue,
-            urlcolor=linkblue, citecolor=owaspblue,
+\usepackage[colorlinks=true, linkcolor=black,
+            urlcolor=black, citecolor=black,
             pdftitle={Scanner de Vulnérabilités Web — OWASP Top 10},
             pdfauthor={Fatima Ezzahrae Nouaimi, Salma El Kamili}]{hyperref}
 
@@ -136,7 +136,7 @@
 \usepackage{caption}
 \usepackage{float}
 \graphicspath{{../screenshoots/}}
-\captionsetup{font=small,labelfont={bf,color=owaspblue},
+\captionsetup{font=small,labelfont={bf,color=black},
               labelsep=period, skip=6pt}
 
 % ── Divers ─────────────────────────────────────────────────
@@ -661,6 +661,231 @@ scoring CVSS v3.1. Cette étude préalable justifie le positionnement de notre s
 open source, modulaire, intégrant le scoring CVSS automatique, et couvrant 9 catégories sur
 10 de l'OWASP Top 10 2021. Le chapitre suivant présente la conception détaillée de notre
 solution.
+
+% ============================================================
+\chapter{Gestion de Projet}
+% ============================================================
+
+Ce chapitre présente la démarche de gestion de projet adoptée pour ce PFA. Il expose
+le choix du cycle de vie, la répartition détaillée des tâches avec leurs dépendances, le
+diagramme de Gantt, ainsi que la répartition des
+ressources humaines, matérielles et le budget estimatif.
+
+% ────────────────────────────────────────────────────────────
+\section{Choix du cycle de vie}
+% ────────────────────────────────────────────────────────────
+
+\subsection{Présentation des cycles de vie}
+
+Un cycle de vie de projet définit les phases par lesquelles passe un projet depuis son
+lancement jusqu'à sa clôture. Dans le domaine informatique, plusieurs modèles existent,
+chacun adapté à un type de projet particulier.
+
+\begin{table}[H]
+\centering
+\caption{Comparaison des cycles de vie de projet}
+\begin{tabular}{p{3.5cm}p{5cm}p{4cm}}
+\toprule
+\hdr{Cycle de vie} & \hdr{Caractéristiques} & \hdr{Adapté pour} \\
+\midrule
+Cascade (Waterfall) & Phases séquentielles, livrables définis en amont, peu flexible &
+  Projets bien spécifiés, exigences stables \\
+\rowA Agile (Scrum) & Itérations courtes (sprints), adaptation continue, collaboration &
+  Projets évolutifs, exigences changeantes \\
+En V & Extension du modèle cascade avec phases de validation symétriques &
+  Systèmes critiques, traçabilité forte \\
+\rowA Spirale & Itérations avec analyse des risques à chaque cycle &
+  Projets innovants à risques élevés \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cycle de vie retenu : Agile/Scrum}
+
+Pour ce projet, nous avons retenu le cycle de vie \textbf{Agile/Scrum}. Ce choix
+se justifie par plusieurs raisons :
+
+\begin{itemize}
+  \item \textbf{Exigences évolutives :} Les détecteurs de vulnérabilités nécessitent
+    des ajustements fréquents suite aux tests sur DVWA et les machines virtuelles.
+    Le modèle Agile permet d'intégrer ces retours itérativement.
+
+  \item \textbf{Développement incrémental :} Chaque détecteur (SQLi, XSS, SSRF, etc.)
+    peut être développé, testé et intégré indépendamment, favorisant une livraison
+    continue de valeur.
+
+  \item \textbf{Flexibilité de la planification :} La durée limitée (14/03 au 18/05/2026,
+    soit 10 semaines) et la nature académique du projet s'adaptent bien aux sprints
+    de deux semaines.
+
+  \item \textbf{Feedback continu :} Les sessions de validation avec l'encadrant permettent
+    des corrections rapides à chaque fin de sprint.
+\end{itemize}
+
+Le cycle de vie Agile retenu s'articule autour des cinq phases suivantes :
+
+\begin{enumerate}
+  \item \textbf{Étude préalable et planification :} Analyse des besoins, état de l'art
+    sur les vulnérabilités OWASP, choix technologiques, planification du projet.
+
+  \item \textbf{Conception de l'architecture :} Définition de l'architecture en pipeline,
+    conception des interfaces des détecteurs, modélisation UML.
+
+  \item \textbf{Développement et implémentation :} Développement des 12 détecteurs,
+    du CVSSEvaluator, du reporter HTML et de l'interface CLI.
+
+  \item \textbf{Intégration et tests :} Tests unitaires, tests fonctionnels sur Flask app,
+    tests de sécurité sur DVWA et machines virtuelles.
+
+  \item \textbf{Rédaction et clôture :} Rédaction du rapport, analyse des résultats,
+    préparation de la soutenance.
+\end{enumerate}
+
+% ────────────────────────────────────────────────────────────
+\section{Répartition des tâches}
+% ────────────────────────────────────────────────────────────
+
+\subsection{Tableau des tâches, durées et antériorités}
+
+Le tableau suivant présente l'ensemble des tâches du projet, avec leur durée estimée,
+leurs dates de réalisation et leurs dépendances.
+
+\begin{table}[H]
+\centering
+\caption{Tableau de répartition des tâches avec durées et antériorités (16/03/2026 – 06/05/2026)}
+\begin{tabular}{p{0.7cm}p{5.5cm}p{1.3cm}p{2cm}p{2cm}p{2.5cm}}
+\toprule
+\hdr{Réf.} & \hdr{Tâche} & \hdr{Durée (j)} & \hdr{Début} & \hdr{Fin} & \hdr{Antériorités} \\
+\midrule
+A & Étude de besoin & 5 & 16/03/2026 & 20/03/2026 & — \\
+\rowA B & Cahier de charges & 4 & 24/03/2026 & 27/03/2026 & A \\
+C & Conception & 4 & 30/03/2026 & 02/04/2026 & B \\
+\rowA D & Environnement VMs & 3 & 06/04/2026 & 08/04/2026 & C \\
+E & Rapport HTML & 4 & 10/04/2026 & 15/04/2026 & D \\
+\rowA F & Analyse résultats & 4 & 17/04/2026 & 22/04/2026 & E \\
+G & Rédaction rapport & 6 & 24/04/2026 & 01/05/2026 & F \\
+\rowA H & Finalisation & 3 & 03/05/2026 & 06/05/2026 & G \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ────────────────────────────────────────────────────────────
+\section{Diagramme de Gantt}
+% ────────────────────────────────────────────────────────────
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{gantt_planning.jpeg}
+\caption{Diagramme de Gantt --- Planification du projet (16/03 au 06/05/2026)}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{gantt_ressources.jpeg}
+\caption{Affectation des ressources par tâche --- vue GanttProject}
+\end{figure}
+\end{landscape}
+
+% ────────────────────────────────────────────────────────────
+\section{Répartition des ressources}
+% ────────────────────────────────────────────────────────────
+
+\subsection{Ressources humaines}
+
+Le projet est réalisé par deux membres : Salma EL KAMILI (Chef de projet) et Fatima Ezzahrae NOUAIMI,
+encadrées par leur encadrant PFA. Le calendrier de travail retenu est de 5 jours par semaine,
+à raison de 4 à 6 heures par jour.
+
+\begin{table}[H]
+\centering
+\caption{Ressources humaines du projet}
+\begin{tabular}{p{4.5cm}p{3.5cm}p{5cm}}
+\toprule
+\hdr{Ressource} & \hdr{Rôle} & \hdr{Tâches principales} \\
+\midrule
+EL KAMILI Salma & Chef de projet & A, B, C, D, E, F, G, H \\
+\rowA NOUAIMI Fatima & Chef de projet & A, B, C, D, E, F, G, H \\
+M. HICHAM TOUMI & Encadrant PFA & Suivi, validation, conseils \\
+\rowA Mme. DAOUDI & Ens. Gestion de Projet & Encadrement gestion de projet \\
+Mme. BENYAHYA & Ens. Entrepreneuriat & Encadrement entrepreneuriat \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Ressources matérielles et logicielles}
+
+\begin{table}[H]
+\centering
+\caption{Ressources matérielles et logicielles du projet}
+\begin{tabular}{p{4cm}p{3cm}p{5cm}}
+\toprule
+\hdr{Ressource} & \hdr{Type} & \hdr{Usage dans le projet} \\
+\midrule
+PC physique (×2) & Matériel & Hôtes de développement et de test \\
+\rowA Oracle VM VirtualBox 7.x & Logiciel (gratuit) & Hyperviseur pour les VMs de test \\
+Python 3.11 & Logiciel (open source) & Langage de développement principal \\
+\rowA Flask + DVWA & Logiciel (open source) & Applications cibles de test \\
+Kali Linux / Windows 10 VM & Logiciel (open source) & Environnements de test \\
+\rowA pytest & Logiciel (open source) & Suite de tests unitaires \\
+Git / GitHub & Logiciel (gratuit) & Gestion de version du code \\
+\rowA \LaTeX{} / Overleaf & Logiciel & Rédaction du rapport \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Affectation des ressources par tâche}
+
+\begin{table}[H]
+\centering
+\caption{Affectation des ressources humaines par tâche}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{p{3.5cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}}
+\toprule
+\hdr{Ressource} & \hdr{A} & \hdr{B} & \hdr{C} & \hdr{D} & \hdr{E} & \hdr{F} & \hdr{G} & \hdr{H} \\
+\midrule
+Salma (Chef de projet) & 50\% & 70\% & 50\% & 60\% & 80\% & 80\% & --- & --- \\
+\rowA Fatima & 50\% & 30\% & 50\% & 40\% & 20\% & 20\% & --- & --- \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\subsection{Budget estimatif du projet}
+
+\begin{table}[H]
+\centering
+\caption{Budget estimatif du projet}
+\begin{tabular}{p{5cm}p{3cm}p{3.5cm}}
+\toprule
+\hdr{Ressource} & \hdr{Type de coût} & \hdr{Coût estimé} \\
+\midrule
+Logiciels et outils & Coût direct (nul) & 0 MAD (open source) \\
+\rowA Matériel informatique & Coût direct (existant) & 0 MAD (matériel propre) \\
+Connexion internet & Coût indirect & Inclus dans frais courants \\
+\rowA Temps de travail & Coût humain & $\approx$ 250 heures / étudiante \\
+Documentation \& impression & Coût direct & $\approx$ 150 MAD \\
+\midrule
+\rowcolor{gray!12}\textbf{Coût total direct} & & \textbf{150 MAD} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+L'un des avantages majeurs de ce projet est la gratuité totale de la pile technologique
+(Python, Flask, DVWA, VirtualBox, pytest, \LaTeX{}), démontrant qu'une solution professionnelle
+de sécurité applicative est accessible sans investissement logiciel.
+
+% ────────────────────────────────────────────────────────────
+\section{Conclusion}
+% ────────────────────────────────────────────────────────────
+
+Ce chapitre a présenté la démarche de gestion de projet adoptée pour ce PFA. Le
+cycle de vie Agile/Scrum s'est révélé parfaitement adapté à la nature itérative du
+développement logiciel. Le diagramme de Gantt visualise le planning sur 8 semaines
+(16/03 au 06/05/2026) et organise le travail entre les deux membres. La répartition des ressources
+a été optimisée pour respecter les délais académiques tout en garantissant la qualité
+des livrables.
 
 % ============================================================
 \chapter{Conception}
@@ -1544,233 +1769,7 @@ valident la robustesse de chaque composant. Les huit études de cas démontrent 
 effective des vulnérabilités critiques : \textbf{70 vulnérabilités détectées en 6 secondes}
 sur 11 pages, couvrant 9 catégories sur 10 de l'OWASP Top 10 2021. Les résultats sur DVWA
 confirment la pertinence et la précision de l'outil dans des conditions réelles. Le chapitre
-suivant présente la gestion du projet et la planification des travaux.
-
-% ============================================================
-\chapter{Gestion de Projet}
-% ============================================================
-
-Ce chapitre présente la démarche de gestion de projet adoptée pour ce PFA. Il expose
-le choix du cycle de vie, la répartition détaillée des tâches avec leurs dépendances, le
-diagramme de Gantt, ainsi que la répartition des
-ressources humaines, matérielles et le budget estimatif.
-
-% ────────────────────────────────────────────────────────────
-\section{Choix du cycle de vie}
-% ────────────────────────────────────────────────────────────
-
-\subsection{Présentation des cycles de vie}
-
-Un cycle de vie de projet définit les phases par lesquelles passe un projet depuis son
-lancement jusqu'à sa clôture. Dans le domaine informatique, plusieurs modèles existent,
-chacun adapté à un type de projet particulier.
-
-\begin{table}[h!]
-\centering
-\caption{Comparaison des cycles de vie de projet}
-\begin{tabular}{p{3.5cm}p{5cm}p{4cm}}
-\toprule
-\hdr{Cycle de vie} & \hdr{Caractéristiques} & \hdr{Adapté pour} \\
-\midrule
-Cascade (Waterfall) & Phases séquentielles, livrables définis en amont, peu flexible &
-  Projets bien spécifiés, exigences stables \\
-\rowA Agile (Scrum) & Itérations courtes (sprints), adaptation continue, collaboration &
-  Projets évolutifs, exigences changeantes \\
-En V & Extension du modèle cascade avec phases de validation symétriques &
-  Systèmes critiques, traçabilité forte \\
-\rowA Spirale & Itérations avec analyse des risques à chaque cycle &
-  Projets innovants à risques élevés \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Cycle de vie retenu : Agile/Scrum}
-
-Pour ce projet, nous avons retenu le cycle de vie \textbf{Agile/Scrum}. Ce choix
-se justifie par plusieurs raisons :
-
-\begin{itemize}
-  \item \textbf{Exigences évolutives :} Les détecteurs de vulnérabilités nécessitent
-    des ajustements fréquents suite aux tests sur DVWA et les machines virtuelles.
-    Le modèle Agile permet d'intégrer ces retours itérativement.
-
-  \item \textbf{Développement incrémental :} Chaque détecteur (SQLi, XSS, SSRF, etc.)
-    peut être développé, testé et intégré indépendamment, favorisant une livraison
-    continue de valeur.
-
-  \item \textbf{Flexibilité de la planification :} La durée limitée (14/03 au 18/05/2026,
-    soit 10 semaines) et la nature académique du projet s'adaptent bien aux sprints
-    de deux semaines.
-
-  \item \textbf{Feedback continu :} Les sessions de validation avec l'encadrant permettent
-    des corrections rapides à chaque fin de sprint.
-\end{itemize}
-
-Le cycle de vie Agile retenu s'articule autour des cinq phases suivantes :
-
-\begin{enumerate}
-  \item \textbf{Étude préalable et planification :} Analyse des besoins, état de l'art
-    sur les vulnérabilités OWASP, choix technologiques, planification du projet.
-
-  \item \textbf{Conception de l'architecture :} Définition de l'architecture en pipeline,
-    conception des interfaces des détecteurs, modélisation UML.
-
-  \item \textbf{Développement et implémentation :} Développement des 12 détecteurs,
-    du CVSSEvaluator, du reporter HTML et de l'interface CLI.
-
-  \item \textbf{Intégration et tests :} Tests unitaires, tests fonctionnels sur Flask app,
-    tests de sécurité sur DVWA et machines virtuelles.
-
-  \item \textbf{Rédaction et clôture :} Rédaction du rapport, analyse des résultats,
-    préparation de la soutenance.
-\end{enumerate}
-
-% ────────────────────────────────────────────────────────────
-\section{Répartition des tâches}
-% ────────────────────────────────────────────────────────────
-
-\subsection{Tableau des tâches, durées et antériorités}
-
-Le tableau suivant présente l'ensemble des tâches du projet, avec leur durée estimée,
-leurs dates de réalisation et leurs dépendances.
-
-\begin{table}[H]
-\centering
-\caption{Tableau de répartition des tâches avec durées et antériorités (16/03/2026 – 06/05/2026)}
-\begin{tabular}{p{0.7cm}p{5.5cm}p{1.3cm}p{2cm}p{2cm}p{2.5cm}}
-\toprule
-\hdr{Réf.} & \hdr{Tâche} & \hdr{Durée (j)} & \hdr{Début} & \hdr{Fin} & \hdr{Antériorités} \\
-\midrule
-A & Étude de besoin & 5 & 16/03/2026 & 20/03/2026 & — \\
-\rowA B & Cahier de charges & 4 & 24/03/2026 & 27/03/2026 & A \\
-C & Conception & 4 & 30/03/2026 & 02/04/2026 & B \\
-\rowA D & Environnement VMs & 3 & 06/04/2026 & 08/04/2026 & C \\
-E & Rapport HTML & 4 & 10/04/2026 & 15/04/2026 & D \\
-\rowA F & Analyse résultats & 4 & 17/04/2026 & 22/04/2026 & E \\
-G & Rédaction rapport & 6 & 24/04/2026 & 01/05/2026 & F \\
-\rowA H & Finalisation & 3 & 03/05/2026 & 06/05/2026 & G \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-% ────────────────────────────────────────────────────────────
-\section{Diagramme de Gantt}
-% ────────────────────────────────────────────────────────────
-
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{gantt_planning.jpeg}
-\caption{Diagramme de Gantt --- Planification du projet (14/03 au 18/05/2026)}
-\end{figure}
-\end{landscape}
-
-\begin{landscape}
-\begin{figure}[p]
-\centering
-\includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{gantt_ressources.jpeg}
-\caption{Affectation des ressources par tâche --- vue GanttProject}
-\end{figure}
-\end{landscape}
-
-% ────────────────────────────────────────────────────────────
-\section{Répartition des ressources}
-% ────────────────────────────────────────────────────────────
-
-\subsection{Ressources humaines}
-
-Le projet est réalisé par deux membres : Salma EL KAMILI (Chef de projet) et Fatima Ezzahrae NOUAIMI,
-encadrées par leur encadrant PFA. Le calendrier de travail retenu est de 5 jours par semaine,
-à raison de 4 à 6 heures par jour.
-
-\begin{table}[H]
-\centering
-\caption{Ressources humaines du projet}
-\begin{tabular}{p{4.5cm}p{3.5cm}p{5cm}}
-\toprule
-\hdr{Ressource} & \hdr{Rôle} & \hdr{Tâches principales} \\
-\midrule
-EL KAMILI Salma & Chef de projet & A, B, C, D, E, F, G, H \\
-\rowA NOUAIMI Fatima & Chef de projet & A, B, C, D, E, F, G, H \\
-M. HICHAM TOUMI & Encadrant PFA & Suivi, validation, conseils \\
-\rowA Mme. DAOUDI & Ens. Gestion de Projet & Encadrement gestion de projet \\
-Mme. BENYAHYA & Ens. Entrepreneuriat & Encadrement entrepreneuriat \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Ressources matérielles et logicielles}
-
-\begin{table}[h!]
-\centering
-\caption{Ressources matérielles et logicielles du projet}
-\begin{tabular}{p{4cm}p{3cm}p{5cm}}
-\toprule
-\hdr{Ressource} & \hdr{Type} & \hdr{Usage dans le projet} \\
-\midrule
-PC physique (×2) & Matériel & Hôtes de développement et de test \\
-\rowA Oracle VM VirtualBox 7.x & Logiciel (gratuit) & Hyperviseur pour les VMs de test \\
-Python 3.11 & Logiciel (open source) & Langage de développement principal \\
-\rowA Flask + DVWA & Logiciel (open source) & Applications cibles de test \\
-Kali Linux / Windows 10 VM & Logiciel (open source) & Environnements de test \\
-\rowA pytest & Logiciel (open source) & Suite de tests unitaires \\
-Git / GitHub & Logiciel (gratuit) & Gestion de version du code \\
-\rowA \LaTeX{} / Overleaf & Logiciel & Rédaction du rapport \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Affectation des ressources par tâche}
-
-\begin{table}[H]
-\centering
-\caption{Affectation des ressources humaines par tâche}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{p{3.5cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}p{1.2cm}}
-\toprule
-\hdr{Ressource} & \hdr{A} & \hdr{B} & \hdr{C} & \hdr{D} & \hdr{E} & \hdr{F} & \hdr{G} & \hdr{H} \\
-\midrule
-Salma (Chef de projet) & 50\% & 70\% & 50\% & 60\% & 80\% & 80\% & --- & --- \\
-\rowA Fatima & 50\% & 30\% & 50\% & 40\% & 20\% & 20\% & --- & --- \\
-\bottomrule
-\end{tabular}}
-\end{table}
-
-\subsection{Budget estimatif du projet}
-
-\begin{table}[h!]
-\centering
-\caption{Budget estimatif du projet}
-\begin{tabular}{p{5cm}p{3cm}p{3.5cm}}
-\toprule
-\hdr{Ressource} & \hdr{Type de coût} & \hdr{Coût estimé} \\
-\midrule
-Logiciels et outils & Coût direct (nul) & 0 MAD (open source) \\
-\rowA Matériel informatique & Coût direct (existant) & 0 MAD (matériel propre) \\
-Connexion internet & Coût indirect & Inclus dans frais courants \\
-\rowA Temps de travail & Coût humain & $\approx$ 250 heures / étudiante \\
-Documentation \& impression & Coût direct & $\approx$ 150 MAD \\
-\midrule
-\rowcolor{gray!12}\textbf{Coût total direct} & & \textbf{150 MAD} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-L'un des avantages majeurs de ce projet est la gratuité totale de la pile technologique
-(Python, Flask, DVWA, VirtualBox, pytest, \LaTeX{}), démontrant qu'une solution professionnelle
-de sécurité applicative est accessible sans investissement logiciel.
-
-% ────────────────────────────────────────────────────────────
-\section{Conclusion}
-% ────────────────────────────────────────────────────────────
-
-Ce chapitre a présenté la démarche de gestion de projet adoptée pour ce PFA. Le
-cycle de vie Agile/Scrum s'est révélé parfaitement adapté à la nature itérative du
-développement logiciel. Le diagramme de Gantt visualise le planning sur 10 semaines
-(14/03 au 18/05/2026), identifie le chemin critique A→B→C→E→F→H→J→L→N→O
-et organise le travail en parallèle entre les deux membres. La répartition des ressources
-a été optimisée pour respecter les délais académiques tout en garantissant la qualité
-des livrables.
+suivant présente la dimension entrepreneuriale du projet.
 
 % ============================================================
 \chapter{Entrepreneuriat}
