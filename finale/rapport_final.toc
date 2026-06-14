@@ -1,0 +1,100 @@
+\babel@toc {french}{}\relax 
+\contentsline {chapter}{Remerciements}{1}{chapter*.1}%
+\contentsline {chapter}{Résumé}{2}{chapter*.2}%
+\contentsline {chapter}{Table des mati\`eres}{3}{chapter*.3}%
+\contentsline {chapter}{Liste des tableaux}{7}{chapter*.4}%
+\contentsline {chapter}{Liste des tableaux}{7}{chapter*.4}%
+\contentsline {chapter}{Table des figures}{8}{chapter*.5}%
+\contentsline {chapter}{Liste des figures}{8}{chapter*.5}%
+\contentsline {chapter}{Introduction}{9}{chapter*.6}%
+\contentsline {chapter}{\numberline {1}État de l'Art}{11}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Contexte et Enjeux de la Sécurité des Applications Web}{11}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Évolution des Cybermenaces}{11}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Impact Économique et Réglementaire}{11}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}Panorama des Cybermenaces Web}{12}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Attaques Man-in-the-Middle (MITM)}{12}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Attaques par Injection}{12}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Attaques sur l'Authentification}{13}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}Attaques sur le Contrôle d'Accès}{13}{subsection.1.2.4}%
+\contentsline {section}{\numberline {1.3}Le Référentiel OWASP Top 10 (2021)}{13}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Vulnérabilités Ciblées : Mécanismes et Impacts}{13}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}SQL Injection (SQLi) — OWASP A03}{14}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Cross-Site Scripting (XSS) — OWASP A03}{15}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}IDOR — Broken Access Control (OWASP A01)}{15}{subsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.4.4}SSRF — Server-Side Request Forgery (OWASP A10)}{15}{subsection.1.4.4}%
+\contentsline {subsection}{\numberline {1.4.5}Path Traversal (OWASP A01)}{15}{subsection.1.4.5}%
+\contentsline {subsection}{\numberline {1.4.6}XXE — XML External Entity (OWASP A05)}{16}{subsection.1.4.6}%
+\contentsline {subsection}{\numberline {1.4.7}Upload de Fichier Non Sécurisé (OWASP A04)}{16}{subsection.1.4.7}%
+\contentsline {subsection}{\numberline {1.4.8}Failures d'Authentification (OWASP A07)}{16}{subsection.1.4.8}%
+\contentsline {section}{\numberline {1.5}Outils de Scan Existants — Analyse Comparative}{16}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Standards de Scoring : CVSS v3.1}{16}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Techniques de Détection Automatique}{16}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}Crawling et Découverte d'Endpoints}{16}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}Scan Actif vs Scan Passif}{17}{subsection.1.7.2}%
+\contentsline {subsection}{\numberline {1.7.3}Détection par Signatures}{17}{subsection.1.7.3}%
+\contentsline {section}{\numberline {1.8}Synthèse et Positionnement}{18}{section.1.8}%
+\contentsline {section}{\numberline {1.9}Conclusion}{18}{section.1.9}%
+\contentsline {chapter}{\numberline {2}Conception}{19}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Architecture Générale du Système}{19}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Principes de Conception Retenus}{21}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Patterns de Conception Utilisés}{21}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Diagramme de Cas d'Utilisation}{21}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Les 12 Détecteurs}{23}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Diagramme de Classes}{23}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Diagramme de Séquence}{26}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Description Détaillée des Modules}{28}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Module Crawler}{28}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Module BaseDetector (Classe Abstraite)}{28}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Module CVSSEvaluator}{28}{subsection.2.6.3}%
+\contentsline {subsection}{\numberline {2.6.4}Module HTMLReporter}{28}{subsection.2.6.4}%
+\contentsline {section}{\numberline {2.7}Structure du Projet}{29}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Technologies et Stack Technique}{30}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Environnement de Déploiement — Topologie Réseau}{30}{section.2.9}%
+\contentsline {section}{\numberline {2.10}Conclusion}{32}{section.2.10}%
+\contentsline {chapter}{\numberline {3}Réalisation et Implémentation}{33}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Environnement de Travail (Machines Virtuelles)}{33}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Configuration Réseau}{33}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Installation de DVWA sur VM 2 (Cible)}{34}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Installation du Scanner sur VM 1}{35}{subsection.3.1.3}%
+\contentsline {section}{\numberline {3.2}Implémentation Détaillée des Modules}{36}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Orchestrateur Principal (\texttt {scanner/core.py})}{36}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Détecteur SQLi (\texttt {detectors/sqli.py})}{37}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}CVSSEvaluator (\texttt {evaluator/cvss.py})}{37}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Crawler BFS (\texttt {crawler/crawler.py})}{38}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Authenticator (\texttt {scanner/authenticator.py})}{40}{subsection.3.2.5}%
+\contentsline {section}{\numberline {3.3}Interface en Ligne de Commande (CLI)}{41}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Suite de Tests Unitaires}{41}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Application Flask Vulnérable (\texttt {conftest.py})}{43}{subsection.3.4.1}%
+\contentsline {section}{\numberline {3.5}Scénarios de Test — Études de Cas}{44}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Étude de Cas 1 : SQL Injection — CVSS 9.8 CRITIQUE}{44}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Étude de Cas 2 : XSS Réfléchi — CVSS 6.1 MOYEN}{44}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}Étude de Cas 3 : SSRF — CVSS 8.5 ÉLEVÉ}{45}{subsection.3.5.3}%
+\contentsline {subsection}{\numberline {3.5.4}Étude de Cas 4 : Path Traversal — CVSS 7.5 ÉLEVÉ}{45}{subsection.3.5.4}%
+\contentsline {subsection}{\numberline {3.5.5}Étude de Cas 5 : XXE — CVSS 8.2 ÉLEVÉ}{45}{subsection.3.5.5}%
+\contentsline {subsection}{\numberline {3.5.6}Étude de Cas 6 : File Upload — CVSS 8.8 ÉLEVÉ}{45}{subsection.3.5.6}%
+\contentsline {subsection}{\numberline {3.5.7}Étude de Cas 7 : Auth Failures — CVSS 9.8 CRITIQUE}{46}{subsection.3.5.7}%
+\contentsline {subsection}{\numberline {3.5.8}Étude de Cas 8 : IDOR — CVSS 6.5 MOYEN}{46}{subsection.3.5.8}%
+\contentsline {section}{\numberline {3.6}Résultats Globaux et Analyse de Couverture}{46}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Couverture OWASP Top 10 Détaillée}{46}{subsection.3.6.1}%
+\contentsline {section}{\numberline {3.7}Analyse des Performances}{47}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Conclusion}{48}{section.3.8}%
+\contentsline {chapter}{\numberline {4}Gestion de Projet}{49}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Choix du cycle de vie}{49}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Présentation des cycles de vie}{49}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Cycle de vie retenu : Agile/Scrum}{50}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Répartition des tâches}{50}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Tableau des tâches, durées et antériorités}{50}{subsection.4.2.1}%
+\contentsline {section}{\numberline {4.3}Diagramme de Gantt}{51}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Répartition des ressources}{55}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Ressources humaines}{55}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Ressources matérielles et logicielles}{55}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Affectation des ressources par phase}{55}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}Budget estimatif du projet}{55}{subsection.4.4.4}%
+\contentsline {section}{\numberline {4.5}Conclusion}{56}{section.4.5}%
+\contentsline {chapter}{\numberline {5}Entrepreneuriat}{58}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Idée et Proposition de Valeur}{58}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Business Model Canvas}{59}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Tableau d'Analyse Financière}{59}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Conclusion}{64}{section.5.4}%
+\contentsline {chapter}{Conclusion Générale}{65}{chapter*.45}%
+\contentsline {chapter}{Bibliographie}{66}{chapter*.46}%
